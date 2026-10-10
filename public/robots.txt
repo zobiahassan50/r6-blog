@@ -2,34 +2,28 @@ User-agent: Googlebot
 Allow: /
 Allow: /sitemap.xml
 Allow: /robots.txt
-Allow: /media/
 Allow: /og/
-Allow: /videos/
 
 User-agent: Google-InspectionTool
 Allow: /
 Allow: /sitemap.xml
 Allow: /robots.txt
-Allow: /media/
 Allow: /og/
-Allow: /videos/
 
 User-agent: Bingbot
 Allow: /
 Allow: /sitemap.xml
 Allow: /robots.txt
-Allow: /media/
 Allow: /og/
-Allow: /videos/
 
 User-agent: *
 Allow: /
 Allow: /sitemap.xml
 Allow: /robots.txt
-Allow: /media/
 Allow: /og/
-Allow: /videos/
 Disallow: /404
 Disallow: /404.html
+Disallow: /offline
+Disallow: /offline.html
 
-Sitemap: https://dayzcheats.io/sitemap.xml
+Sitemap: https://r6cheat.net/sitemap.xml

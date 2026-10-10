@@ -1,7 +1,9 @@
-﻿# Videos
+# Videos
 
-Self-hosted DayZ / DayZ Cheats media:
-- `/videos/dayz-preview.mp4` — battlelog DayZ Reaper preview (no third-party embeds)
-- `/media/dayz-hero-full.webp`, `dayz-cover.webp`, `dayz-box.jpg` — product art
-- `/media/dayz-menu.gif`, `dayz-esp-gameplay.gif` — menu/ESP stills
-- `/media/dayz-video-thumb.jpg` — preview poster frame
+| File | Used on |
+|------|---------|
+| `r6-hero-preview.mp4` | Homepage hero only (clean encode, no color filters; ~3.5 Mbps) |
+| `card-featured.mp4` | Forums page hero background only (`FORUMS_HERO_VIDEO`) |
+| `card-article.mp4` | Articles/guides hub hero background only (`ARTICLES_HERO_VIDEO`) |
+
+Grid cards (home “R6 Siege”, all articles, related posts, forum threads) use static images from `/media/blog-uploads/` — never these videos.

@@ -1,8 +1,8 @@
-# DayZ Cheats (dayzcheats.io)
+# R6 Siege Cheats (r6cheat.net)
 
-Static Astro site for DayZ Standalone cheats — silent aim Aimbot, ESP, wallhack, loot ESP, radar hack — Cloudflare Workers ready.
+Static Astro site for Rainbow Six Siege PC cheats product listing and supporting articles. Cloudflare Workers ready.
 
-Worldwide English SEO targeting **dayz cheats**, **dayz hacks**, and **undetected dayz cheats**.
+Canonical domain: **https://r6cheat.net** (not live yet — connect when DNS is ready).
 
 ```bash
 npm install

@@ -1,11 +1,14 @@
-import { DAYZ_HERO, DAYZ_SOLDIER, DAYZ_COVER, DAYZ_MENU, DAYZ_ESP } from './media'
-import { DAYZ_OG, getOgImageForPath, PAGE_OG } from './og'
+import {
+  PLACEHOLDER_HOME,
+  PLACEHOLDER_GUIDES,
+  PLACEHOLDER_COMMUNITY,
+  PLACEHOLDER_FAQ,
+  PLACEHOLDER_CONTACT,
+  PLACEHOLDER_PRODUCT,
+} from './media'
+import { PAGE_OG, getOgImageForPath, guideOgImage } from './og'
 
-export { DAYZ_OG, getOgImageForPath, PAGE_OG }
-export { forumOgImage } from './og'
-
-export const DAYZ_PRODUCT_HERO = DAYZ_HERO
-export const DAYZ_PRODUCT_COVER = DAYZ_COVER
+export { PAGE_OG, getOgImageForPath, guideOgImage }
 
 export type ImageSeoFields = {
   alt: string
@@ -13,107 +16,69 @@ export type ImageSeoFields = {
   caption: string
 }
 
-export const IMAGE_SEO: Record<
-  string,
-  ImageSeoFields & {
-    heroAlt: string
-    heroTitle: string
-    heroCaption: string
-  }
-> = {
-  dayz: {
-    alt: 'DayZ cheats product artwork for DayZ Standalone on PC',
-    title: 'DayZ Cheats Product Details',
-    caption: 'DayZ Aimbot, ESP, wallhack, loot ESP, radar hack and BattlEye compatibility',
-    heroAlt: 'DayZ cheats silent aim Aimbot and ESP features',
-    heroTitle: 'DayZ Cheats Features',
-    heroCaption: 'Review DayZ Aimbot, ESP, radar hack and current BattlEye status',
-  },
-}
+export type PageImageKey = 'home' | 'guides' | 'community' | 'faq' | 'contact' | 'product'
 
 type PageImage = ImageSeoFields & { src: string; og: string }
 
-/** On-page media + dedicated OG JPEG for Google SERP thumbnails. */
-export const PAGE_IMAGES: Record<
-  'home' | 'forums' | 'reviews' | 'faq' | 'support' | 'product',
-  PageImage
-> = {
+export const PAGE_IMAGES: Record<PageImageKey, PageImage> = {
   home: {
-    src: DAYZ_SOLDIER,
+    src: PLACEHOLDER_HOME,
     og: PAGE_OG.home,
-    alt: 'DayZ cheats Aimbot and ESP artwork for DayZ Standalone on PC',
-    title: 'DayZ Cheats',
-    caption: 'DayZ Aimbot, ESP, wallhack and radar hack overview.',
+    alt: 'Branded artwork for R6 Siege Cheats',
+    title: 'R6 Siege Cheats',
+    caption: 'Rainbow Six Siege PC product listing with supporting articles.',
   },
-  forums: {
-    src: DAYZ_HERO,
-    og: PAGE_OG.forums,
-    alt: 'DayZ cheats product artwork',
-    title: 'DayZ Cheats Guides',
-    caption: 'Setup, Aimbot and ESP guides for DayZ.',
+  guides: {
+    src: PLACEHOLDER_GUIDES,
+    og: PAGE_OG.guides,
+    alt: 'Branded artwork for the R6 Siege Cheats articles hub',
+    title: 'R6 Siege Cheats Articles',
+    caption: 'Features, buying, compatibility and fair-play articles in one hub.',
   },
-  reviews: {
-    src: DAYZ_ESP,
-    og: PAGE_OG.reviews,
-    alt: 'DayZ cheats review artwork',
-    title: 'DayZ Cheats Reviews',
-    caption: 'Feature and compatibility feedback for DayZ Standalone.',
+  community: {
+    src: PLACEHOLDER_COMMUNITY,
+    og: PAGE_OG.community,
+    alt: 'Branded artwork for the R6 Siege Cheats forums hub',
+    title: 'R6 Siege Cheats Forums',
+    caption: 'Forum-style setup and compatibility guides.',
   },
   faq: {
-    src: DAYZ_MENU,
+    src: PLACEHOLDER_FAQ,
     og: PAGE_OG.faq,
-    alt: 'DayZ cheats FAQ artwork',
-    title: 'DayZ Cheats FAQ',
-    caption: 'Compatibility, feature and setup answers for DayZ.',
+    alt: 'Branded artwork for the R6 Siege Cheats FAQ page',
+    title: 'R6 Siege Cheats FAQ',
+    caption: 'Pricing, checkout, compatibility and risk questions answered.',
   },
-  support: {
-    src: DAYZ_HERO,
-    og: PAGE_OG.support,
-    alt: 'DayZ cheats support artwork',
-    title: 'DayZ Cheats Support',
-    caption: 'Delivery, loader and setup support for DayZ cheats.',
+  contact: {
+    src: PLACEHOLDER_CONTACT,
+    og: PAGE_OG.contact,
+    alt: 'Branded artwork for the R6 Siege Cheats contact page',
+    title: 'Contact R6 Siege Cheats',
+    caption: 'Send questions about our articles or this site.',
   },
   product: {
-    src: DAYZ_COVER,
+    src: PLACEHOLDER_PRODUCT,
     og: PAGE_OG.product,
-    alt: 'DayZ Aimbot ESP and radar hack product artwork',
-    title: 'DayZ Cheats Features',
-    caption: 'Product details for DayZ Aimbot and ESP.',
+    alt: 'Branded artwork for the R6 Siege Cheats product page',
+    title: 'R6 Siege Cheats Product',
+    caption: 'Modules, pricing and checkout for the PC product.',
   },
-}
-
-export function getGameImage(_slug: string): string {
-  return DAYZ_PRODUCT_COVER
-}
-
-export function getProductHeroImage(_slug: string): string {
-  return DAYZ_PRODUCT_COVER
 }
 
 export function getOgImage(path?: string): string {
   return getOgImageForPath(path)
 }
 
-export function getPageImage(key: keyof typeof PAGE_IMAGES) {
+export function getPageImage(key: PageImageKey) {
   return PAGE_IMAGES[key]
 }
 
-export function getImageAlt(
-  slug: string,
-  name: string,
-  variant: 'catalog' | 'product' = 'catalog',
-): string {
-  const seo = IMAGE_SEO[slug]
-  if (seo) return variant === 'product' ? seo.heroAlt : seo.alt
-  return variant === 'product' ? `${name} product details` : `${name} product artwork`
+export function getImageAlt(key: PageImageKey, fallbackName: string): string {
+  const entry = PAGE_IMAGES[key]
+  return entry ? entry.alt : `${fallbackName} placeholder artwork`
 }
 
-export function getImageTitle(
-  slug: string,
-  name: string,
-  variant: 'catalog' | 'product' = 'catalog',
-): string {
-  const seo = IMAGE_SEO[slug]
-  if (seo) return variant === 'product' ? seo.heroTitle : seo.title
-  return `${name} product`
+export function getImageTitle(key: PageImageKey, fallbackName: string): string {
+  const entry = PAGE_IMAGES[key]
+  return entry ? entry.title : fallbackName
 }

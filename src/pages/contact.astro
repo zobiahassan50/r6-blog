@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { ContactPage } from '../views/ContactPage'
+import { SEO, SITE_URL } from '../data/site'
+import { breadcrumbJsonLd } from '../lib/seo'
+
+const jsonLdExtra = [
+  {
+    '@type': 'ContactPage',
+    '@id': `${SITE_URL}/contact#contactpage`,
+    url: `${SITE_URL}/contact`,
+    name: SEO.contact.title,
+    description: SEO.contact.description,
+    inLanguage: 'en',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+  },
+  breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' },
+  ]),
+]
+---
+
+<BaseLayout seo={SEO.contact} jsonLdExtra={jsonLdExtra}>
+  <ContactPage client:visible />
+</BaseLayout>

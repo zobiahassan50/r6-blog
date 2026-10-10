@@ -1,85 +1,51 @@
-﻿export type FaqItem = {
+export type FaqItem = {
   q: string
   a: string
 }
 
-/** Master FAQ — visible on /faq and reused in sections. */
+/**
+ * Master FAQ — visible on /faq and reused in sections.
+ * No fabricated detection rates or undetectability claims.
+ */
 export const SITE_FAQS: FaqItem[] = [
   {
-    q: 'What are DayZ Cheats?',
-    a: 'DayZ Cheats are DayZ Standalone tools on dayzcheats.io — silent-aim Aimbot, player ESP, wallhack, infected and loot ESP, and a 2D radar hack — with live BattlEye status after game patches.',
+    q: 'What is R6 Siege Cheats?',
+    a: 'R6 Siege Cheats is a third-party Windows PC product listing for Rainbow Six Siege, paired with original articles on features, buying, compatibility, and risk. Current modules and pricing are listed on the product page.',
   },
   {
-    q: 'How much do DayZ cheats cost?',
-    a: `DayZ cheats start from $35 for short access. Longer licenses cost more. Always confirm live BattlEye status and the price on dayzcheats.io before checkout.`,
+    q: 'How much does it cost?',
+    a: 'Licenses start from $35. Longer access tiers may cost more. Confirm the live price on the external checkout page before paying.',
   },
   {
-    q: 'Do you sell DayZ hacks for other games?',
-    a: 'No. dayzcheats.io sells DayZ cheats / DayZ hacks only — one product, no multi-game catalog.',
+    q: 'Where does checkout happen?',
+    a: 'Purchases are completed through an external Buy Now checkout. This site does not process cards or store payment details.',
   },
   {
-    q: 'Is Aimbot the main feature?',
-    a: 'Aimbot is optional. Most buyers lead with DayZ ESP, loot highlighting and radar awareness, then enable silent aim only if they want it.',
+    q: 'Is it available for consoles?',
+    a: 'No. This product is scoped to Windows PC. Console versions are not supported.',
   },
   {
-    q: 'How do you handle BattlEye updates?',
-    a: 'We publish live clear-to-load or Updating labels after DayZ and BattlEye patches. Always check status on dayzcheats.io before you load.',
+    q: 'Do you guarantee it is undetectable?',
+    a: 'No. We do not claim undetectability, ban immunity, or guaranteed results. Using third-party tools can violate the game’s terms and risk account sanctions.',
   },
   {
-    q: 'What is DayZ ESP / wallhack?',
-    a: 'DayZ ESP and wallhack show survivors, infected and loot through walls with distance and health when supported. Loot ESP highlights guns, ammo and medical gear so empty houses stop wasting your time.',
+    q: 'How do I confirm current status before buying?',
+    a: 'Read the status note on the product page immediately before checkout, and review our R6 ESP, wallhack and anti-cheat article plus settings terminology before you buy.',
   },
   {
-    q: 'What is a DayZ radar hack?',
-    a: 'The radar hack is a 2D overlay for off-screen survivors and third parties — useful for military loot approaches and avoiding ambushes on Chernarus or Livonia.',
+    q: 'Where can I read more before purchasing?',
+    a: 'Browse the articles hub for features overview, R6 ESP and wallhack terminology, anti-cheat context, R6 settings, and hacks & ESP coverage.',
   },
   {
-    q: 'What features are included?',
-    a: 'DayZ Aimbot with silent aim, player ESP, infected ESP, loot and item ESP, radar hack, base and stash intel, spoofer and stream-proof options — DayZ Standalone on Windows PC only. See the Features Checklist guide for the full list.',
-  },
-  {
-    q: 'Do DayZ Cheats work on official and private servers?',
-    a: 'Yes. The cheats run on official DayZ servers and on private servers using most common mod setups. Heavily modded servers with custom anti-cheat scripts can behave differently — ask support before you buy.',
-  },
-  {
-    q: 'How do I buy DayZ cheats?',
-    a: 'Start on the homepage, confirm live BattlEye status and review the price from $35. Open Product details for compatibility and features, then continue to checkout for digital delivery.',
-  },
-  {
-    q: 'How do I load DayZ Cheats?',
-    a: 'After checkout, follow the Complete Setup forum thread for the current load order. If status is Updating, wait rather than forcing an outdated build.',
-  },
-  {
-    q: 'Where do I get DayZ Cheats support?',
-    a: 'Use the Support page and your checkout order channel. Include current BattlEye status and whether you need load, menu or delivery help.',
-  },
-  {
-    q: 'Where can I read DayZ Cheats reviews?',
-    a: 'Player reviews with ratings are on the Reviews page. They cover ESP usefulness, status honesty and patch survival before you buy.',
-  },
-  {
-    q: 'What is your refund policy?',
-    a: 'Digital licenses follow the Refunds page — delivery failures and extended Updating windows can qualify; change of mind after a working key does not.',
-  },
-  {
-    q: 'Is this the official DayZ site?',
-    a: 'No. We sell DayZ Cheats only. Buy and play the game from dayz.com. We are not affiliated with Bohemia Interactive or DayZ.',
+    q: 'How do I get in touch?',
+    a: 'Use the Contact page for questions about our articles or this site. Checkout and payment issues are handled on the external checkout provider’s side.',
   },
 ]
 
-/** Commercial questions shown on the homepage; FAQ schema lives on /faq only. */
+/** Shown on the homepage; FAQPage schema lives on /faq. */
 export const HOME_FAQS: FaqItem[] = [
+  SITE_FAQS[0],
   SITE_FAQS[1],
+  SITE_FAQS[3],
   SITE_FAQS[4],
-  SITE_FAQS[5],
-  SITE_FAQS[9],
-]
-
-export const PRODUCT_PAGE_FAQS: FaqItem[] = [
-  SITE_FAQS[1],
-  SITE_FAQS[4],
-  SITE_FAQS[5],
-  SITE_FAQS[6],
-  SITE_FAQS[9],
-  SITE_FAQS[11],
 ]

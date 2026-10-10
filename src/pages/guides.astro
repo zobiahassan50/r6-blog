@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { GuidesPage } from '../views/GuidesPage'
+import { SEO } from '../data/site'
+import { breadcrumbJsonLd } from '../lib/seo'
+
+const initialQuery = Astro.url.searchParams.get('q') ?? ''
+
+const jsonLdExtra = [
+  breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Guides', path: '/guides' },
+  ]),
+]
+---
+
+<BaseLayout seo={SEO.guides} jsonLdExtra={jsonLdExtra}>
+  <GuidesPage client:idle initialQuery={initialQuery} />
+</BaseLayout>

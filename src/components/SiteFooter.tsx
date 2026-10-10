@@ -1,9 +1,5 @@
 import { LogoMark } from './LogoMark'
-import {
-  OFFICIAL_DAYZ_LINKS,
-  SITE_GUIDE_LINKS,
-  SITE_PAGE_LINKS,
-} from '../data/links'
+import { SITE_GUIDE_LINKS, SITE_PAGE_LINKS } from '../data/links'
 import { SITE_NAME } from '../data/site'
 
 type SiteFooterProps = {
@@ -23,10 +19,14 @@ function isCurrent(to: string, currentPath?: string) {
   return path === target || path.startsWith(`${target}/`)
 }
 
-/**
- * Site footer with page / guide / official DayZ links (crawl-friendly).
- * XML sitemap remains at /sitemap.xml — not shown as an on-page “sitemap” section.
- */
+const PAGE_LINKS = SITE_PAGE_LINKS.filter((l) => !['/privacy', '/terms'].includes(l.to))
+
+const LEGAL_LINKS = [
+  { label: 'Privacy', to: '/privacy' },
+  { label: 'Terms', to: '/terms' },
+  { label: 'Contact', to: '/contact' },
+] as const
+
 export function SiteFooter({ currentPath }: SiteFooterProps) {
   const path = normalizePath(currentPath || '/')
 
@@ -40,23 +40,16 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
               <span className="font-semibold text-z-ink">{SITE_NAME}</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-white/55">
-              DayZ Cheats for PC — silent aim Aimbot, ESP, wallhack, radar hack and live BattlEye
-              status for DayZ Standalone survivors worldwide.
+              R6 Siege Cheats for PC — silent aim Aimbot, ESP, wallhack, radar hack and live
+              BattlEye status for Rainbow Six Siege players worldwide.
             </p>
           </div>
 
-          <nav
-            aria-label="Footer"
-            className="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
-          >
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
-                Pages
-              </p>
+          <div className="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+            <nav aria-label="Footer pages">
+              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">Pages</p>
               <ul className="mt-3 space-y-2 text-sm text-white/65">
-                {SITE_PAGE_LINKS.filter(
-                  (l) => !['/privacy', '/terms', '/refunds'].includes(l.to),
-                ).map((l) => (
+                {PAGE_LINKS.map((l) => (
                   <li key={l.to}>
                     <a
                       href={l.to}
@@ -72,11 +65,11 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
 
-            <div>
+            <nav aria-label="Footer articles">
               <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
-                Guides
+                Articles
               </p>
               <ul className="mt-3 space-y-2 text-sm text-white/65">
                 {SITE_GUIDE_LINKS.map((l) => (
@@ -96,62 +89,33 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
                 ))}
                 <li>
                   <a
-                    href="/forums"
+                    href="/guides"
                     className="font-medium text-white/80 transition-colors hover:text-white"
                   >
-                    All guides →
+                    All articles →
                   </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
-                Official DayZ
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/65">
-                {OFFICIAL_DAYZ_LINKS.map((l) => (
-                  <li key={l.href}>
+            <nav aria-label="Footer legal">
+              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">Legal</p>
+              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/65">
+                {LEGAL_LINKS.map((l) => (
+                  <li key={l.to}>
                     <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-colors hover:text-white"
+                      href={l.to}
+                      aria-current={isCurrent(l.to, path) ? 'page' : undefined}
+                      className="hover:text-white"
                     >
                       {l.label}
                     </a>
                   </li>
                 ))}
               </ul>
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/55">
-                <li>
-                  <a href="/privacy" className="hover:text-white">
-                    Privacy
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms" className="hover:text-white">
-                    Terms
-                  </a>
-                </li>
-                <li>
-                  <a href="/refunds" className="hover:text-white">
-                    Refunds
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+            </nav>
+          </div>
         </div>
-
-        <p className="mt-10 border-t border-z-soft/10 pt-6 text-xs text-white/35">
-          © {new Date().getFullYear()} {SITE_NAME}. Not affiliated with Bohemia Interactive or
-          the official DayZ game. Indexed pages are listed in{' '}
-          <a href="/sitemap.xml" className="underline-offset-2 hover:text-white/55 hover:underline">
-            sitemap.xml
-          </a>
-          .
-        </p>
       </div>
     </footer>
   )

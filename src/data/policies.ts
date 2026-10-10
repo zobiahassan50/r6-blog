@@ -1,11 +1,11 @@
-﻿export type PolicySection = {
+export type PolicySection = {
   heading: string
   body: string[]
 }
 
 export type PolicyPageContent = {
-  slug: 'privacy' | 'terms' | 'refunds'
-  path: `/${'privacy' | 'terms' | 'refunds'}`
+  slug: 'privacy' | 'terms'
+  path: '/privacy' | '/terms'
   title: string
   description: string
   h1: string
@@ -18,143 +18,76 @@ export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'privacy',
     path: '/privacy',
-    title: 'Privacy Policy | DayZ Cheats PC',
-    description:
-      'How dayzcheats.io handles order details, delivery email, support messages and basic site analytics for DayZ cheats.',
-    h1: 'DayZ Cheats Privacy Policy',
+    title: 'Privacy Policy | R6 Siege Cheats',
+    description: 'How R6 Siege Cheats handles basic site analytics and contact messages.',
+    h1: 'Privacy Policy',
     intro:
-      'This page explains what we collect when you browse dayzcheats.io, buy a DayZ Cheats license, or contact support — and what we do not collect.',
+      'R6 Siege Cheats is a product listing site with supporting articles. This page explains what little data we collect when you read the site or contact us.',
     sections: [
       {
         heading: 'What we collect',
         body: [
-          'Checkout is handled by our payment partner. We receive the information needed to fulfill your order: email address, order ID, license duration, and payment status.',
-          'If you write to support, we keep the message thread, order ID, and any screenshots you attach so we can troubleshoot loader or delivery issues.',
-          'The site may log basic technical data such as browser type, approximate region, and page paths for security and performance. We do not sell personal data.',
+          'Like most websites, our hosting provider may log basic technical data such as IP address, browser type, and requested URLs for security and reliability.',
+          'If you use the Contact form, we receive the information you submit so we can respond. We do not sell contact messages.',
         ],
       },
       {
-        heading: 'How we use it',
+        heading: 'Payments',
         body: [
-          'Order email is used for license delivery, renewals, and reply-to support.',
-          'Support details are used only to resolve your ticket — loader errors, exclusions, status questions, or refund requests that fall under our refunds policy.',
-          'Aggregate traffic data helps us keep pages fast and catch abuse. It is not used to profile you for ads.',
+          'Purchases are completed on an external checkout page. We do not process card numbers or store payment credentials on this site.',
         ],
       },
       {
-        heading: 'Cookies and third parties',
+        heading: 'Cookies and analytics',
         body: [
-          'Essential cookies may be set by checkout or CDN providers so payment and delivery work.',
-          'Preview media is hosted on dayzcheats.io. Third-party embeds are not used for the main product preview.',
-          'Official DayZ and Bohemia Interactive links are external. Their privacy policies apply once you leave dayzcheats.io.',
+          'We may use lightweight analytics or hosting metrics. We do not use this site to build advertising profiles.',
         ],
       },
       {
-        heading: 'Retention and requests',
-        body: [
-          'Order and support records are kept as long as needed for delivery, fraud prevention, and accounting, then removed or anonymized.',
-          'To ask what we hold about your order or to request deletion where allowed, contact support with your order ID from the Support page.',
-        ],
+        heading: 'Contact',
+        body: ['Questions about this privacy policy can be sent through the Contact page.'],
       },
     ],
     related: [
       { label: 'Terms of Use', to: '/terms' },
-      { label: 'Refunds', to: '/refunds' },
-      { label: 'Support', to: '/support' },
+      { label: 'Contact', to: '/contact' },
     ],
   },
   {
     slug: 'terms',
     path: '/terms',
-    title: 'Terms of Use | DayZ Cheats PC',
-    description:
-      'License rules, age limits, BattlEye risk, and liability limits for DayZ cheats on dayzcheats.io.',
-    h1: 'DayZ Cheats Terms of Use',
+    title: 'Terms of Use | R6 Siege Cheats',
+    description: 'Terms of use for R6 Siege Cheats, including purchase and risk disclosures.',
+    h1: 'Terms of Use',
     intro:
-      'Buying or running DayZ Cheats means you accept these terms. A license covers personal use of Aimbot, ESP, wallhack, loot ESP and radar tools for DayZ Standalone on Windows PC — nothing beyond that.',
+      'Using this site means you accept these terms. R6 Siege Cheats publishes a product listing and original supporting articles. Purchases are completed externally.',
     sections: [
       {
-        heading: 'Acceptance and what a license covers',
+        heading: 'Editorial and product content',
         body: [
-          'A key unlocks the current DayZ Cheats build for the duration you purchased (weekly or monthly plans where offered).',
-          'Handing the package to someone else, reselling it, sharing accounts, or reverse-engineering the loader breaks these terms and can end your access without a refund.',
+          'Articles on this site are original informational content about the product and the purchase decision. Product details on the product page take priority when information differs.',
         ],
       },
       {
-        heading: 'Risk and anti-cheat disclaimer',
+        heading: 'Purchases and risk',
         body: [
-          'DayZ uses BattlEye, and private servers add their own admin moderation. Using third-party software can violate the game’s terms and lead to account or server penalties.',
-          'We push rebuilds after BattlEye and game updates when needed, but nothing here guarantees a build stays clear forever or that an account stays safe.',
-          'All risk sits with you. We accept no liability for bans, lost characters, or other damage tied to using the product. Check live status before you load.',
+          'Using unauthorized third-party tools with Rainbow Six Siege can violate the game’s terms of service and may result in account sanctions. We do not claim detection immunity, ban immunity, or guaranteed results. Purchases are at your own risk.',
         ],
       },
       {
-        heading: 'Age requirement and acceptable use',
+        heading: 'No warranties',
         body: [
-          'You must be at least 18, or the age of majority where you live, to buy a license.',
-          'Keys are for one person on their own Windows PC. Attacking our infrastructure, abusing support, or using the product for harassment is prohibited.',
-        ],
-      },
-      {
-        heading: 'Limitation of liability and disputes',
-        body: [
-          'The product is provided “as is.” If anything goes wrong, our total liability is capped at what you paid for the affected license in the previous 30 days.',
-          'Open a ticket on Support first. Governing law follows our payment processor’s jurisdiction unless local law requires otherwise.',
-          'We may update these terms on this page. Continued use after a change means the new version applies.',
+          'This site and its content are provided “as is,” without warranty of accuracy or completeness. We are not liable for decisions made based on editorial content or product use.',
         ],
       },
     ],
     related: [
       { label: 'Privacy Policy', to: '/privacy' },
-      { label: 'Refunds', to: '/refunds' },
-      { label: 'Support', to: '/support' },
-    ],
-  },
-  {
-    slug: 'refunds',
-    path: '/refunds',
-    title: 'Refund Policy | DayZ Cheats PC',
-    description:
-      'When DayZ Cheats refunds apply for digital DayZ licenses, delivery failures, and Updating status windows on dayzcheats.io.',
-    h1: 'DayZ Cheats Refund Policy',
-    intro:
-      'DayZ Cheats licenses are digital goods. This page covers when we can refund, when we cannot, and how to open a request with your order ID.',
-    sections: [
-      {
-        heading: 'When refunds are available',
-        body: [
-          'If payment cleared but no license or delivery email arrived within a reasonable window, contact Support with the order ID and we will replace the key or refund.',
-          'If the product shows Updating for an extended period after purchase and never returns to a clear-to-load status during your license window, you may request a refund or equivalent time credit.',
-          'Duplicate charges or clear processor errors are refunded once verified.',
-        ],
-      },
-      {
-        heading: 'When refunds are not available',
-        body: [
-          'Change of mind after a working key has been delivered and activated.',
-          'Bans, admin kicks, or gameplay outcomes — status is never a permanent guarantee.',
-          'Issues caused by skipping antivirus exclusions, running conflicting overlays, or loading while status is Updating.',
-          'Heavily modded private servers that block third-party software at the server level.',
-          'Shared, resold, or otherwise invalidated keys under the Terms of Use.',
-        ],
-      },
-      {
-        heading: 'How to request a refund',
-        body: [
-          'Open Support and include: order ID, purchase email, license length, and a short description of the problem (screenshots help).',
-          'We aim to reply within one to two business days. Approved refunds go back through the original payment method.',
-          'Buying a short weekly key first is the safest way to confirm the loader fits your PC before a longer plan.',
-        ],
-      },
-    ],
-    related: [
-      { label: 'Terms of Use', to: '/terms' },
-      { label: 'Privacy Policy', to: '/privacy' },
-      { label: 'Support', to: '/support' },
+      { label: 'Product', to: '/r6-cheats' },
     ],
   },
 ]
 
-export function getPolicyPage(slug: string): PolicyPageContent | undefined {
-  return POLICY_PAGES.find((page) => page.slug === slug)
+export function getPolicyPage(slug: string) {
+  return POLICY_PAGES.find((p) => p.slug === slug)
 }

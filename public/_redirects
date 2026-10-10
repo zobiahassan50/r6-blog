@@ -1,157 +1,70 @@
-# Cloudflare Workers/Pages redirects (static files always win over these rules).
-# Host www/HTTP → HTTPS apex is handled by workers/site.js (not_found_handling serves 404.html).
+# Cloudflare Workers/Pages redirects
 
-# Trailing-slash canonicalization
-/dayz-cheats/   /dayz-cheats   301
-/forums/        /forums        301
-/reviews/       /reviews       301
+# Trailing-slash canonicalization for current routes
+/guides/        /guides        301
+/community      /forums        301
+/community/     /forums        301
+/r6-cheats/     /r6-cheats     301
+/product        /r6-cheats     301
+/product/       /r6-cheats     301
 /faq/           /faq           301
-/support/       /support       301
+/contact/       /contact       301
 /privacy/       /privacy       301
 /terms/         /terms         301
-/refunds/       /refunds       301
-/refund/        /refunds       301
-/refund-policy  /refunds       301
-/refund-policy/ /refunds       301
-/privacy-policy /privacy       301
-/privacy-policy/ /privacy      301
-/terms-of-use   /terms         301
-/terms-of-use/  /terms         301
-/terms-of-service /terms       301
-/terms-of-service/ /terms      301
 
-# Primary SEO keyword variants → product or home
-/dayz-hacks     /dayz-cheats   301
-/dayz-hacks/    /dayz-cheats   301
-/dayz-hack      /dayz-cheats   301
-/dayz-hack/     /dayz-cheats   301
-/dayz-cheat     /dayz-cheats   301
-/dayz-cheat/    /dayz-cheats   301
-/dayz-standalone-cheats  /dayz-cheats   301
-/dayz-standalone-cheats/ /dayz-cheats   301
-/dayz-standalone-cheat   /dayz-cheats   301
-/dayz-standalone-cheat/  /dayz-cheats   301
-/dayz-standalone-hacks   /dayz-cheats   301
-/dayz-standalone-hacks/  /dayz-cheats   301
-/dayz-standalone-hack    /dayz-cheats   301
-/dayz-standalone-hack/   /dayz-cheats   301
-/cheats-dayz    /dayz-cheats   301
-/cheats-dayz/   /dayz-cheats   301
-/hacks-dayz     /dayz-cheats   301
-/hacks-dayz/    /dayz-cheats   301
-/dayz-aimbot    /dayz-cheats   301
-/dayz-aimbot/   /dayz-cheats   301
-/dayz-esp       /dayz-cheats   301
-/dayz-esp/      /dayz-cheats   301
-/dayz-loot-esp  /dayz-cheats   301
-/dayz-loot-esp/ /dayz-cheats   301
-/dayz-wallhack  /dayz-cheats   301
-/dayz-wallhack/ /dayz-cheats   301
-/dayz-radar     /dayz-cheats   301
-/dayz-radar/    /dayz-cheats   301
-/dayz-radar-hack  /dayz-cheats 301
-/dayz-radar-hack/ /dayz-cheats 301
-/dayz-spoofer   /dayz-cheats   301
-/dayz-spoofer/  /dayz-cheats   301
-/undetected-dayz-cheats  /dayz-cheats   301
-/undetected-dayz-cheats/ /dayz-cheats   301
-/undetected-dayz-hacks   /dayz-cheats   301
-/undetected-dayz-hacks/  /dayz-cheats   301
-/battleye-dayz-cheats    /dayz-cheats   301
-/battleye-dayz-cheats/   /dayz-cheats   301
-/buy-dayz-cheats   /   301
-/buy-dayz-cheats/  /   301
-/buy-dayz-hacks    /   301
-/buy-dayz-hacks/   /   301
-/guides         /forums        301
-/guides/        /forums        301
-/features-list  /forums/features-list  301
-/setup          /forums/complete-setup 301
-/dayz-setup     /forums/complete-setup 301
-/dayz-cheats-setup /forums/complete-setup 301
+# Removed general R6 fan sections → articles hub
+/operators      /guides        301
+/operators/     /guides        301
+/operators/*    /guides        301
+/maps           /guides        301
+/maps/          /guides        301
+/maps/*         /guides        301
+/updates        /guides        301
+/updates/       /guides        301
+/updates/*      /guides        301
 
-# Forum short-slug aliases
-/forums/setup         /forums/complete-setup     301
-/forums/features      /forums/features-list      301
-/forums/aimbot        /forums/aimbot-settings    301
-/forums/esp           /forums/esp-wallhack-guide 301
-/forums/wallhack      /forums/esp-wallhack-guide 301
-/forums/radar         /forums/radar-hack-guide   301
-/forums/antivirus     /forums/disable-antivirus  301
-/forums/defender      /forums/disable-antivirus  301
-/forums/windows       /forums/windows-setup      301
-/forums/stream-proof  /forums/stream-proof-setup 301
-/forums/battleye      /forums/battleye-status    301
-/forums/undetected    /forums/undetected-status  301
-/forums/loader        /forums/loader-errors      301
-/forums/survival      /forums/raid-play-guide    301
-/forums/loot-run      /forums/raid-play-guide    301
+# Legacy DayZ routes
+/dayz-cheats    /r6-cheats     301
+/dayz-cheats/   /r6-cheats     301
+/reviews        /              301
+/reviews/       /              301
+/refunds        /terms         301
+/refunds/       /terms         301
+/support        /contact       301
+/support/       /contact       301
+/forums/        /forums        301
 
-# Legacy Tarkov slugs → DayZ product (rebrand)
-/tarkov-cheats   /dayz-cheats   301
-/tarkov-cheats/  /dayz-cheats   301
-/eft-cheats      /dayz-cheats   301
-/eft-cheats/     /dayz-cheats   301
-/escape-from-tarkov-cheats   /dayz-cheats   301
-/escape-from-tarkov-cheats/  /dayz-cheats   301
-/tarkov-hacks   /dayz-cheats   301
-/tarkov-hacks/  /dayz-cheats   301
-/eft-hacks      /dayz-cheats   301
-/eft-hacks/     /dayz-cheats   301
-/escape-from-tarkov-hacks  /dayz-cheats   301
-/escape-from-tarkov-hacks/ /dayz-cheats   301
-/tarkov-aimbot  /dayz-cheats   301
-/tarkov-esp     /dayz-cheats   301
-/tarkov-wallhack /dayz-cheats  301
-/tarkov-radar   /dayz-cheats   301
-/eft-aimbot     /dayz-cheats   301
-/eft-esp        /dayz-cheats   301
-/eft-wallhack   /dayz-cheats   301
-/buy-tarkov-cheats  /   301
-/buy-tarkov-cheats/ /   301
-/buy-eft-cheats     /   301
-/buy-eft-cheats/    /   301
+# Deleted general-guide article slugs
+/guides/buying-guide              /guides/esp-wallhack-anticheat  301
+/guides/buying-guide/             /guides/esp-wallhack-anticheat  301
+/guides/understanding-anticheat   /guides/fair-play-risks   301
+/guides/understanding-anticheat/  /guides/fair-play-risks   301
+/guides/ranked-3-0                /guides                   301
+/guides/ranked-3-0/               /guides                   301
+/guides/operator-guide            /guides                   301
+/guides/operator-guide/           /guides                   301
+/guides/maps-guide                /guides                   301
+/guides/maps-guide/               /guides                   301
+/guides/season-updates            /guides                   301
+/guides/season-updates/           /guides                   301
+/guides/beginner-attack-defend    /guides                   301
+/guides/beginner-attack-defend/   /guides                   301
+/guides/map-knowledge             /guides                   301
+/guides/map-knowledge/            /guides                   301
+/guides/operator-gadgets          /guides                   301
+/guides/operator-gadgets/         /guides                   301
 
-# Legacy Warzone slugs → DayZ product (older rebrand)
-/warzone-cheats  /dayz-cheats   301
-/warzone-cheats/ /dayz-cheats   301
-/warzone-hacks   /dayz-cheats   301
-/warzone-hacks/  /dayz-cheats   301
-/warzone-aimbot  /dayz-cheats   301
-/warzone-esp     /dayz-cheats   301
-/warzone-wallhack /dayz-cheats  301
-/isle-cheats     /dayz-cheats   301
-/isle-cheats/    /dayz-cheats   301
-/wardogs-hacks   /dayz-cheats   301
-/wardogs-hacks/  /dayz-cheats   301
-/buy-warzone-cheats  /   301
-/buy-warzone-cheats/ /   301
+# Legacy blog routes
+/articles       /guides        301
+/articles/      /guides        301
+/articles/*     /guides        301
+/blog           /guides        301
+/blog/          /guides        301
+/blog/:slug/    /guides/:slug  301
+/blog/:slug     /guides/:slug  301
+/guides/:slug/  /guides/:slug  301
 
-# Legacy forum slugs
-/forums/ricochet-status   /forums/battleye-status   301
-/forums/ricochet-status/  /forums/battleye-status   301
-/forums/ranked-play-guide /forums/raid-play-guide   301
-/forums/ranked-play-guide/ /forums/raid-play-guide  301
-/forums/loot-run-guide    /forums/raid-play-guide   301
-/forums/loot-run-guide/   /forums/raid-play-guide   301
-/forums/survival-guide    /forums/raid-play-guide   301
-/forums/survival-guide/   /forums/raid-play-guide   301
-
-# Legacy slugs → forums
-/articles       /forums        301
-/articles/      /forums        301
-/articles/*     /forums        301
-/blog/instructions       /forums/complete-setup#quick-checklist  301
-/blog/how-to-load        /forums/complete-setup#load-order       301
-/forums/instructions     /forums/complete-setup#quick-checklist  301
-/forums/instructions/    /forums/complete-setup#quick-checklist  301
-/forums/how-to-load      /forums/complete-setup#load-order       301
-/forums/how-to-load/     /forums/complete-setup#load-order       301
-/blog/:slug/    /forums/:slug  301
-/blog/:slug     /forums/:slug  301
-/forums/:slug/  /forums/:slug  301
-
-# Legacy / alternate sitemap URLs → single canonical sitemap
+# Legacy sitemaps
 /sitemap-pages.xml     /sitemap.xml  301
 /sitemap-products.xml  /sitemap.xml  301
 /sitemap-forums.xml    /sitemap.xml  301
@@ -160,4 +73,3 @@
 /sitemap-regions.xml   /sitemap.xml  301
 /sitemap-index.xml     /sitemap.xml  301
 /sitemap_index.xml     /sitemap.xml  301
-/sitemap.xml/          /sitemap.xml  301

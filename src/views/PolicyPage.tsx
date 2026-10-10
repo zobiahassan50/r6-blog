@@ -1,6 +1,6 @@
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
-import { SITE_HOST, SITE_NAME } from '../data/site'
+import { SITE_NAME } from '../data/site'
 import type { PolicyPageContent } from '../data/policies'
 
 type PolicyPageProps = {
@@ -10,15 +10,13 @@ type PolicyPageProps = {
 export function PolicyPage({ page }: PolicyPageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
-      <div className="border-b border-z-soft/15 bg-z-bg/90 backdrop-blur-xl">
-        <Navbar />
-      </div>
+      <Navbar />
 
       <main className="page-body">
         <section className="page-x pt-12 sm:pt-20">
           <div className="mx-auto max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">
-              {SITE_NAME} · Policy · {SITE_HOST}
+              {SITE_NAME} · Policy
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
               {page.h1}

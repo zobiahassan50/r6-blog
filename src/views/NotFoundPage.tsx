@@ -1,14 +1,11 @@
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
 import { HeroSearch } from '../components/HeroSearch'
-import { CheckoutLink } from '../components/CheckoutLink'
 
 export function NotFoundPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
-      <div className="border-b border-z-soft/15 bg-z-bg/90 backdrop-blur-xl">
-        <Navbar />
-      </div>
+      <Navbar />
 
       <main className="page-body">
         <section className="page-x py-16 sm:py-28">
@@ -26,11 +23,11 @@ export function NotFoundPage() {
               Page not found
             </h2>
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/55 sm:text-base">
-              That route does not exist. Search the DayZ Cheats guides or head back home.
+              That route does not exist. Search our Rainbow Six Siege guides or head back home.
             </p>
 
             <div className="relative z-50 mx-auto mt-8 flex max-w-xl justify-center text-left">
-              <HeroSearch placeholder="Search DayZ cheats guides…" className="w-full" />
+              <HeroSearch placeholder="Search R6 guides…" className="w-full" />
             </div>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
@@ -41,14 +38,17 @@ export function NotFoundPage() {
                 Back home
               </a>
               <a
-                href="/forums"
+                href="/guides"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+              >
+                Guides
+              </a>
+              <a
+                href="/forums"
+                className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
               >
                 Forums
               </a>
-              <CheckoutLink className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white">
-                Get
-              </CheckoutLink>
             </div>
           </div>
         </section>

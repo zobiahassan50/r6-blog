@@ -1,415 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://dayzcheats.io/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://r6cheat.net/</loc>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/home.jpg</image:loc>
-      <image:title>DayZ Cheats Open Graph</image:title>
-      <image:caption>Google and social preview image for dayzcheats.io homepage.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-hero-full.webp</image:loc>
-      <image:title>DayZ Cheats Hero</image:title>
-      <image:caption>Buy DayZ cheats - DayZ Aimbot, ESP and radar hack hero artwork for PC.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-cover.webp</image:loc>
-      <image:title>DayZ Cheats Product Cover</image:title>
-      <image:caption>DayZ cheats product cover for checkout and social previews.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-video-thumb.jpg</image:loc>
-      <image:title>DayZ Cheats Preview Thumbnail</image:title>
-      <image:caption>Thumbnail for the DayZ Aimbot and ESP preview video.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/dayz-cheats.jpg</image:loc>
-      <image:title>DayZ Cheats Product Social Preview</image:title>
-      <image:caption>Default Open Graph image for dayzcheats.io product pages.</image:caption>
+      <image:loc>https://r6cheat.net/og/home.jpg</image:loc>
+      <image:title>R6 Siege Cheats - home Open Graph</image:title>
+      <image:caption>Google and social preview image for the home page on R6 Siege Cheats.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://dayzcheats.io/dayz-cheats</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://r6cheat.net/r6-cheats</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/r6-cheats" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/r6-cheats" />
+    <image:image>
+      <image:loc>https://r6cheat.net/og/r6-cheats.jpg</image:loc>
+      <image:title>R6 Siege Cheats - r6-cheats Open Graph</image:title>
+      <image:caption>Google and social preview image for the r6-cheats page on R6 Siege Cheats.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://r6cheat.net/guides</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/dayz-cheats" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/dayz-cheats" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/dayz-cheats.jpg</image:loc>
-      <image:title>DayZ Cheats Open Graph</image:title>
-      <image:caption>Google and social preview for the DayZ cheats product page.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-cover.webp</image:loc>
-      <image:title>DayZ Aimbot ESP Product Artwork</image:title>
-      <image:caption>Product features, compatibility, status and price before checkout.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-hero-full.webp</image:loc>
-      <image:title>DayZ Cheats Product Hero</image:title>
-      <image:caption>Hero artwork for DayZ Aimbot, ESP and radar hack product details.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-menu.gif</image:loc>
-      <image:title>DayZ Cheats Menu Preview</image:title>
-      <image:caption>Menu and Aimbot settings preview for DayZ cheats.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-esp-gameplay.gif</image:loc>
-      <image:title>DayZ ESP Gameplay</image:title>
-      <image:caption>Player ESP and wallhack preview for DayZ.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-video-thumb.jpg</image:loc>
-      <image:title>DayZ Cheats Preview Thumbnail</image:title>
-      <image:caption>Thumbnail for the DayZ cheats preview video.</image:caption>
-    </image:image>
-    <video:video>
-      <video:thumbnail_loc>https://dayzcheats.io/media/dayz-video-thumb.jpg</video:thumbnail_loc>
-      <video:title>DayZ Cheats Aimbot and ESP Preview</video:title>
-      <video:description>Self-hosted DayZ cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.</video:description>
-      <video:content_loc>https://dayzcheats.io/videos/dayz-preview.mp4</video:content_loc>
-      <video:family_friendly>yes</video:family_friendly>
-      <video:live>no</video:live>
-    </video:video>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums.jpg</image:loc>
-      <image:title>DayZ Cheats Forums Open Graph</image:title>
-      <image:caption>Google preview image for the DayZ Cheats guides index.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-menu.gif</image:loc>
-      <image:title>DayZ Cheats Forum Artwork</image:title>
-      <image:caption>Artwork reference for DayZ setup and feature guides.</image:caption>
+      <image:loc>https://r6cheat.net/og/guides.jpg</image:loc>
+      <image:title>R6 Siege Cheats - guides Open Graph</image:title>
+      <image:caption>Google and social preview image for the guides page on R6 Siege Cheats.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://dayzcheats.io/forums/aimbot-settings</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/aimbot-settings" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/aimbot-settings" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-aimbot-settings.jpg</image:loc>
-      <image:title>DayZ Aimbot Settings for Silent Aim Open Graph</image:title>
-      <image:caption>DayZ Aimbot settings for PC: silent aim, FOV, smoothing and visible-check so your DayZ cheat looks legit on official and private servers. Start conservative, then save configs.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-menu.gif</image:loc>
-      <image:title>DayZ Aimbot Settings for Silent Aim Artwork</image:title>
-      <image:caption>Tune DayZ Aimbot FOV, smoothing, hitbox and silent aim so survivor tracking stays effective without looking robotic to spectating admins.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/battleye-status</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/battleye-status" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/battleye-status" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-battleye-status.jpg</image:loc>
-      <image:title>DayZ BattlEye Status: Clear to Load vs Updating Open Graph</image:title>
-      <image:caption>DayZ BattlEye status explained for DayZ cheats: clear-to-load vs Updating after patches, why you wait, and how admin bans differ from anti-cheat detections.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-cover.webp</image:loc>
-      <image:title>DayZ BattlEye Status: Clear to Load vs Updating Artwork</image:title>
-      <image:caption>What clear-to-load and Updating mean for DayZ cheats after BattlEye and game patches - and why admin bans are a separate risk.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/complete-setup</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/complete-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/complete-setup" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-complete-setup.jpg</image:loc>
-      <image:title>Complete DayZ Cheats Setup Open Graph</image:title>
-      <image:caption>Complete DayZ cheats setup for Windows PC: buy when status is clear, antivirus exclusions, load order, first-run ESP and Aimbot config, then re-check BattlEye after every patch.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-hero-full.webp</image:loc>
-      <image:title>Complete DayZ Cheats Setup Artwork</image:title>
-      <image:caption>Step-by-step DayZ cheats setup: buy from $35, antivirus exclusions, load order, enable ESP and Aimbot, save configs, re-check BattlEye.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/disable-antivirus</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/disable-antivirus" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/disable-antivirus" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-disable-antivirus.jpg</image:loc>
-      <image:title>Antivirus Exclusions for DayZ Cheats Open Graph</image:title>
-      <image:caption>Allowlist DayZ cheats loaders in Windows Defender and third-party antivirus before you load. Restore quarantines, exclude the delivery folder, then continue setup when status is clear.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-control-art.jpg</image:loc>
-      <image:title>Antivirus Exclusions for DayZ Cheats Artwork</image:title>
-      <image:caption>Allowlist DayZ cheats in Windows Defender and common antivirus so the loader is not quarantined before first run.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/esp-wallhack-guide</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/esp-wallhack-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/esp-wallhack-guide" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-esp-wallhack-guide.jpg</image:loc>
-      <image:title>DayZ ESP and Wallhack Setup Open Graph</image:title>
-      <image:caption>DayZ ESP and wallhack setup: survivor boxes, skeletons, distance, health, infected ESP and loot highlighting. Clean HUD defaults for DayZ cheats on PC.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-esp-gameplay.gif</image:loc>
-      <image:title>DayZ ESP and Wallhack Setup Artwork</image:title>
-      <image:caption>Configure DayZ ESP and wallhack for survivor boxes, infected tracking and loot highlighting without flooding your HUD.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/features-list</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/features-list" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/features-list" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-features-list.jpg</image:loc>
-      <image:title>DayZ Cheat Features Checklist Open Graph</image:title>
-      <image:caption>DayZ cheat features checklist: silent aim Aimbot, player ESP, loot ESP, wallhack, radar hack and spoofer on dayzcheats.io from $35. Compare modules before you buy.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-cover.webp</image:loc>
-      <image:title>DayZ Cheat Features Checklist Artwork</image:title>
-      <image:caption>Checklist of every DayZ cheat module on dayzcheats.io - silent aim, player ESP, loot ESP, wallhack, radar hack and spoofer - before you open checkout from $35.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/hotkeys</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/hotkeys" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/hotkeys" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-hotkeys.jpg</image:loc>
-      <image:title>DayZ Cheats Hotkeys After Load Open Graph</image:title>
-      <image:caption>DayZ cheats hotkeys after checkout: open menu, Aimbot toggle, player ESP, loot ESP, radar hack and stream-proof binds. Keep panic keys minimal for field use.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-menu.gif</image:loc>
-      <image:title>DayZ Cheats Hotkeys After Load Artwork</image:title>
-      <image:caption>Menu and toggle hotkeys for DayZ cheats after a clean load - Aimbot, ESP, loot ESP, radar and panic binds.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/loader-errors</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/loader-errors" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/loader-errors" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-loader-errors.jpg</image:loc>
-      <image:title>Fix DayZ Cheats Loader Errors Open Graph</image:title>
-      <image:caption>Fix DayZ cheats loader errors on Windows: antivirus quarantine, overlays, failed inject and menu not opening. Confirm BattlEye status is clear first, then escalate with your order ID.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-tactical-art.jpg</image:loc>
-      <image:title>Fix DayZ Cheats Loader Errors Artwork</image:title>
-      <image:caption>Troubleshoot DayZ cheats loader errors - menu not opening, instant close, antivirus quarantine and failed inject.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/radar-hack-guide</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/radar-hack-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/radar-hack-guide" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-radar-hack-guide.jpg</image:loc>
-      <image:title>DayZ Radar Hack Overlay Guide Open Graph</image:title>
-      <image:caption>DayZ radar hack guide for PC: 2D radar overlay, off-screen survivor tracking and safer military loot approaches. Pair with ESP for DayZ cheats that stay readable.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-menu.gif</image:loc>
-      <image:title>DayZ Radar Hack Overlay Guide Artwork</image:title>
-      <image:caption>Use the DayZ radar hack 2D overlay to track off-screen survivors, avoid third parties and approach military loot safer.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/raid-play-guide</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/raid-play-guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/raid-play-guide" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-raid-play-guide.jpg</image:loc>
-      <image:title>Safer DayZ Cheat Settings for Loot Runs Open Graph</image:title>
-      <image:caption>Safer DayZ cheat settings for loot runs and survival: ESP-first play, mild silent aim, loot highlighting, radar hack and BattlEye habits that reduce report risk on private servers.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-box.jpg</image:loc>
-      <image:title>Safer DayZ Cheat Settings for Loot Runs Artwork</image:title>
-      <image:caption>Safer DayZ cheat defaults for survival and loot runs - ESP-first play, mild silent aim, radar awareness and report-conscious habits.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/stream-proof-setup</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/stream-proof-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/stream-proof-setup" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-stream-proof-setup.jpg</image:loc>
-      <image:title>Stream-Proof DayZ Cheats for OBS Open Graph</image:title>
-      <image:caption>Stream-proof DayZ cheats for OBS and clips: keep ESP, wallhack and Aimbot overlays off recordings while you still see them locally. Test with a private capture first.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-home-art.jpg</image:loc>
-      <image:title>Stream-Proof DayZ Cheats for OBS Artwork</image:title>
-      <image:caption>Hide DayZ ESP, loot highlighting and Aimbot overlays from OBS and capture tools with stream-proof mode.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/undetected-status</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/undetected-status" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/undetected-status" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-undetected-status.jpg</image:loc>
-      <image:title>BattlEye Status Checklist Before You Buy or Load Open Graph</image:title>
-      <image:caption>BattlEye status checklist for DayZ cheats: confirm clear-to-load before checkout and before every post-patch session. Wait when Updating; buy from $35 when status is live.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-cover.webp</image:loc>
-      <image:title>BattlEye Status Checklist Before You Buy or Load Artwork</image:title>
-      <image:caption>Short BattlEye status checklist for DayZ cheats - confirm clear-to-load before checkout and before every post-patch session.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/forums/windows-setup</loc>
-    <lastmod>2026-09-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/forums/windows-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/forums/windows-setup" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/forums-windows-setup.jpg</image:loc>
-      <image:title>DayZ Cheats on Windows 10 and 11 Open Graph</image:title>
-      <image:caption>Windows 10 and 11 setup for DayZ cheats: close overlays, add Defender exclusions, launch with correct permissions and run a clean first load against BattlEye.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://dayzcheats.io/media/dayz-hero-full.webp</image:loc>
-      <image:title>DayZ Cheats on Windows 10 and 11 Artwork</image:title>
-      <image:caption>Windows 10/11 prep for DayZ cheats - overlays, Defender exclusions, admin rights and a clean first launch against BattlEye.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/reviews</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/reviews" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/reviews" />
-    <image:image>
-      <image:loc>https://dayzcheats.io/og/reviews.jpg</image:loc>
-      <image:title>DayZ Cheats Reviews Open Graph</image:title>
-      <image:caption>Google preview image for DayZ cheats reviews.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://dayzcheats.io/faq</loc>
+    <loc>https://r6cheat.net/guides/esp-wallhack-anticheat</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/faq" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/esp-wallhack-anticheat" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/esp-wallhack-anticheat" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/faq.jpg</image:loc>
-      <image:title>DayZ Cheats FAQ Open Graph</image:title>
-      <image:caption>Google preview image for the DayZ Cheats FAQ.</image:caption>
+      <image:loc>https://r6cheat.net/og/guides-esp-wallhack-anticheat.jpg</image:loc>
+      <image:title>Rainbow Six Siege Cheats 2026: R6 ESP, Wallhack and Anti-Cheat Open Graph</image:title>
+      <image:caption>Explore R6 cheats terminology, including Rainbow Six Siege ESP, wallhack, aimbot, no recoil, and the latest developments in Siege anti-cheat.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://dayzcheats.io/support</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://r6cheat.net/guides/fair-play-risks</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/support" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/support" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/fair-play-risks" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/fair-play-risks" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/support.jpg</image:loc>
-      <image:title>DayZ Cheats Support Open Graph</image:title>
-      <image:caption>Google preview image for DayZ Cheats support.</image:caption>
+      <image:loc>https://r6cheat.net/og/guides-fair-play-risks.jpg</image:loc>
+      <image:title>Rainbow Six Siege Hacks 2026: Wallhack, Skeleton ESP and Chams Open Graph</image:title>
+      <image:caption>Learn about Rainbow Six Siege hacks, R6 wallhack, skeleton ESP, operator ESP, gadget ESP, chams, and external cheat terminology.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://dayzcheats.io/privacy</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/privacy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/privacy" />
+    <loc>https://r6cheat.net/guides/features-overview</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/features-overview" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/features-overview" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/privacy.jpg</image:loc>
-      <image:title>DayZ Cheats Privacy Policy</image:title>
-      <image:caption>Privacy policy preview for dayzcheats.io orders and support.</image:caption>
+      <image:loc>https://r6cheat.net/og/guides-features-overview.jpg</image:loc>
+      <image:title>R6 Siege Cheats Features Overview Open Graph</image:title>
+      <image:caption>An overview of what R6 Siege Cheats includes at a high level - visual awareness, aim assistance, and access - with current specifics always on the product page.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://dayzcheats.io/refunds</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.45</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/refunds" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/refunds" />
+    <loc>https://r6cheat.net/guides/pc-compatibility</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/pc-compatibility" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/pc-compatibility" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/refunds.jpg</image:loc>
-      <image:title>DayZ Cheats Refund Policy</image:title>
-      <image:caption>Refund rules preview for digital DayZ Cheats licenses.</image:caption>
+      <image:loc>https://r6cheat.net/og/guides-pc-compatibility.jpg</image:loc>
+      <image:title>Rainbow Six Siege Cheats 2026: ESP, Wallhack and Aimbot Open Graph</image:title>
+      <image:caption>Explore Rainbow Six Siege cheats, including R6 Siege cheats 2026, Rainbow Six Siege ESP, aimbot, wallhack, and PC cheat features.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://dayzcheats.io/terms</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://dayzcheats.io/terms" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://dayzcheats.io/terms" />
+    <loc>https://r6cheat.net/guides/status-before-purchase</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/status-before-purchase" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/status-before-purchase" />
     <image:image>
-      <image:loc>https://dayzcheats.io/og/terms.jpg</image:loc>
-      <image:title>DayZ Cheats Terms of Use</image:title>
-      <image:caption>License terms preview for DayZ Cheats.</image:caption>
+      <image:loc>https://r6cheat.net/og/guides-status-before-purchase.jpg</image:loc>
+      <image:title>R6 Cheats Settings 2026: No Recoil, Radar and DMA Open Graph</image:title>
+      <image:caption>Explore R6 cheats settings, R6 no recoil, R6 radar, triggerbot, silent aim, and DMA terminology related to Rainbow Six Siege.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://r6cheat.net/forums</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/forums" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/forums" />
+    <image:image>
+      <image:loc>https://r6cheat.net/og/community.jpg</image:loc>
+      <image:title>R6 Siege Cheats - forums Open Graph</image:title>
+      <image:caption>Google and social preview image for the forums page on R6 Siege Cheats.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://r6cheat.net/faq</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/faq" />
+    <image:image>
+      <image:loc>https://r6cheat.net/og/faq.jpg</image:loc>
+      <image:title>R6 Siege Cheats - faq Open Graph</image:title>
+      <image:caption>Google and social preview image for the faq page on R6 Siege Cheats.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://r6cheat.net/contact</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/contact" />
+    <image:image>
+      <image:loc>https://r6cheat.net/og/contact.jpg</image:loc>
+      <image:title>R6 Siege Cheats - contact Open Graph</image:title>
+      <image:caption>Google and social preview image for the contact page on R6 Siege Cheats.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://r6cheat.net/privacy</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/privacy" />
+    <image:image>
+      <image:loc>https://r6cheat.net/og/privacy.jpg</image:loc>
+      <image:title>R6 Siege Cheats - privacy Open Graph</image:title>
+      <image:caption>Google and social preview image for the privacy page on R6 Siege Cheats.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://r6cheat.net/terms</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/terms" />
+    <image:image>
+      <image:loc>https://r6cheat.net/og/terms.jpg</image:loc>
+      <image:title>R6 Siege Cheats - terms Open Graph</image:title>
+      <image:caption>Google and social preview image for the terms page on R6 Siege Cheats.</image:caption>
     </image:image>
   </url>
 </urlset>

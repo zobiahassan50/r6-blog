@@ -1,14 +1,15 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent, SyntheticEvent } from 'react'
 import { ArrowRight, Search } from 'lucide-react'
-import { GAMES } from '../data/games'
+import { BLOGS, blogPath } from '../data/blogs'
+import { FORUM_THREADS } from '../data/forums'
 
 type HeroSearchProps = {
-  /** Controlled value when parent owns the query (e.g. Articles page) */
+  /** Controlled value when parent owns the query (e.g. Guides page) */
   value?: string
   onChange?: (value: string) => void
-  /** Where Go navigates when no exact game match — default /forums */
-  submitTo?: 'forums' | 'filter'
+  /** Where Go navigates when there's no single exact guide match */
+  submitTo?: 'guides' | 'forums' | 'filter'
   placeholder?: string
   autoFocus?: boolean
   className?: string
@@ -17,8 +18,8 @@ type HeroSearchProps = {
 export function HeroSearch({
   value,
   onChange,
-  submitTo = 'forums',
-  placeholder = 'Search DayZ Cheats…',
+  submitTo = 'guides',
+  placeholder = 'Search R6 guides…',
   autoFocus = false,
   className = '',
 }: HeroSearchProps) {
@@ -38,25 +39,22 @@ export function HeroSearch({
     return () => document.removeEventListener('mousedown', onDoc)
   }, [])
 
+  const useForumsCorpus = submitTo === 'forums'
+
   const matches = useMemo(() => {
     const term = q.trim().toLowerCase()
     if (!term) return []
-    const cheatAliases = [
-      'dayz cheats',
-      'dayz cheat',
-      'dayz hacks',
-      'dayz hack',
-      'dayz standalone cheats',
-      'dayzhacks',
-      'cheats',
-    ]
-    if (cheatAliases.some((a) => a.includes(term) || term.includes(a))) {
-      return GAMES.slice(0, 1)
+    if (useForumsCorpus) {
+      return FORUM_THREADS.filter((thread) => {
+        const hay = `${thread.title} ${thread.excerpt} ${thread.tag} ${thread.searchTerms}`.toLowerCase()
+        return hay.includes(term)
+      }).slice(0, 8)
     }
-    return GAMES.filter(
-      (g) => g.name.toLowerCase().includes(term) || g.slug.includes(term),
-    ).slice(0, 8)
-  }, [q])
+    return BLOGS.filter((post) => {
+      const hay = `${post.title} ${post.excerpt} ${post.tag} ${post.searchTerms}`.toLowerCase()
+      return hay.includes(term)
+    }).slice(0, 8)
+  }, [q, useForumsCorpus])
 
   function setQuery(next: string) {
     if (value === undefined) setInternal(next)
@@ -65,33 +63,31 @@ export function HeroSearch({
     setActive(0)
   }
 
-  function goToHome() {
+  function goToMatch(index: number) {
+    const hit = matches[index]
+    if (!hit) return
     setOpen(false)
-    window.location.assign('/')
+    if (useForumsCorpus && 'href' in hit) {
+      window.location.assign(hit.href)
+      return
+    }
+    if ('slug' in hit) window.location.assign(blogPath(hit.slug))
   }
 
   function submit(e?: SyntheticEvent) {
     e?.preventDefault()
     const term = q.trim()
-    const exact = GAMES.find(
-      (g) =>
-        g.name.toLowerCase() === term.toLowerCase() ||
-        g.slug === term.toLowerCase().replace(/\s+/g, '-'),
-    )
-    if (exact) {
-      goToHome()
-      return
-    }
     if (matches.length === 1) {
-      goToHome()
-      return
-    }
-    if (submitTo === 'forums') {
-      setOpen(false)
-      window.location.assign(term ? `/forums?q=${encodeURIComponent(term)}` : '/forums')
+      goToMatch(0)
       return
     }
     setOpen(false)
+    // Parent owns live filtering (Guides / Forums pages).
+    if (submitTo === 'filter' || (submitTo === 'forums' && onChange)) {
+      return
+    }
+    const base = submitTo === 'forums' ? '/forums' : '/guides'
+    window.location.assign(term ? `${base}?q=${encodeURIComponent(term)}` : base)
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
@@ -107,7 +103,7 @@ export function HeroSearch({
       setActive((i) => Math.max(i - 1, 0))
     } else if (e.key === 'Enter' && open && matches[active]) {
       e.preventDefault()
-      goToHome()
+      goToMatch(active)
     } else if (e.key === 'Escape') {
       setOpen(false)
     }
@@ -155,21 +151,24 @@ export function HeroSearch({
           role="listbox"
           className="search-results absolute left-0 right-0 top-full z-[60] mt-2 max-h-72 overflow-y-auto rounded-2xl border border-z-soft/20 bg-z-card py-2"
         >
-          {matches.map((game, i) => (
-            <li key={game.slug} role="option" aria-selected={i === active}>
-              <button
-                type="button"
-                onMouseEnter={() => setActive(i)}
-                onClick={goToHome}
-                className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-sm transition-colors ${
-                  i === active ? 'bg-z-accent/20 text-z-ink' : 'text-white/75 hover:bg-z-accent/10'
-                }`}
-              >
-                <span className="truncate font-medium">{game.name}</span>
-                <span className="ml-3 shrink-0 text-xs text-z-soft/70">Open buy page</span>
-              </button>
-            </li>
-          ))}
+          {matches.map((item, i) => {
+            const key = 'id' in item ? item.id : item.slug
+            return (
+              <li key={key} role="option" aria-selected={i === active}>
+                <button
+                  type="button"
+                  onMouseEnter={() => setActive(i)}
+                  onClick={() => goToMatch(i)}
+                  className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
+                    i === active ? 'bg-z-accent/20 text-z-ink' : 'text-white/75 hover:bg-z-accent/10'
+                  }`}
+                >
+                  <span className="truncate font-medium">{item.title}</span>
+                  <span className="ml-3 shrink-0 text-xs text-z-soft/70">{item.tag}</span>
+                </button>
+              </li>
+            )
+          })}
         </ul>
       ) : null}
     </div>

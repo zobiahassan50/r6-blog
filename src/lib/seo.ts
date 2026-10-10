@@ -1,54 +1,39 @@
-﻿import type { FaqItem } from '../data/faqs'
+import type { FaqItem } from '../data/faqs'
+import type { BlogPost } from '../data/blogs'
+import {
+  PRODUCT_NAME,
+  PRODUCT_PATH,
+  PRODUCT_PRICE_USD,
+} from '../data/product'
 import {
   OG_IMAGE,
-  PRODUCT_PRICE_USD,
   SEO_REGIONS,
-  SITE_ABOUT,
   SITE_NAME,
   SITE_PURPOSE,
+  SITE_TOPICS,
   SITE_URL,
   absoluteUrl,
   type PageSeo,
 } from '../data/site'
-import { getReviewsAggregate, REVIEWS } from '../data/reviews'
-import type { GameStatus } from '../data/games'
-import { PAGE_MEDIA } from '../data/media'
-
-export const PRODUCT_ID = `${SITE_URL}/#product`
 
 function absoluteAsset(src: string) {
   return src.startsWith('http') ? src : `${SITE_URL}${src.startsWith('/') ? src : `/${src}`}`
 }
 
-function baseOffer(url: string, availability: string) {
-  return {
-    '@type': 'Offer',
-    url,
-    availability,
-    price: PRODUCT_PRICE_USD,
-    priceCurrency: 'USD',
-    priceValidUntil: '2027-12-31',
-    itemCondition: 'https://schema.org/NewCondition',
-    seller: { '@id': `${SITE_URL}/#organization` },
-  }
-}
+const HUB_PATHS = ['/', '/guides', '/forums', '/r6-cheats']
 
-/** Stable Organization + WebSite identity for every page. */
+export const PRODUCT_ID = `${SITE_URL}/#product`
+
 export function siteIdentityGraph() {
   return [
     {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
       name: SITE_NAME,
-      alternateName: [
-        'DayZ Hacks',
-        'DayZ Standalone Cheats',
-        'dayzcheats.io',
-        'DayZ Aimbot ESP',
-      ],
+      alternateName: ['R6 Siege Cheats', 'Rainbow Six Siege Cheats'],
       url: SITE_URL,
       description: SITE_PURPOSE,
-      knowsAbout: [...SITE_ABOUT],
+      knowsAbout: [...SITE_TOPICS],
       brand: { '@type': 'Brand', name: SITE_NAME },
       logo: {
         '@type': 'ImageObject',
@@ -68,9 +53,9 @@ export function siteIdentityGraph() {
       inLanguage: 'en',
       about: {
         '@type': 'Thing',
-        name: 'DayZ cheats',
+        name: 'Rainbow Six Siege',
         description:
-          'Commercial DayZ cheats for PC — silent aim Aimbot, player ESP, loot ESP, wallhack, radar hack and BattlEye status.',
+          'A product site for a third-party Rainbow Six Siege PC tool, with original articles on buying, compatibility and risk.',
       },
       publisher: { '@id': `${SITE_URL}/#organization` },
     },
@@ -90,8 +75,7 @@ export function webPageNode(seo: PageSeo) {
     inLanguage: 'en',
   } as Record<string, unknown>
   const hasVisibleImage =
-    ['/', '/dayz-cheats', '/forums'].includes(seo.path) || seo.path.startsWith('/forums/')
-  // Text pages (faq/support/reviews) still expose OG as WebPage.image for social crawlers
+    HUB_PATHS.includes(seo.path) || seo.path.startsWith('/guides/')
   const hasOgImage = Boolean(seo.image)
   if (hasVisibleImage || hasOgImage) {
     page.primaryImageOfPage = {
@@ -106,107 +90,6 @@ export function webPageNode(seo: PageSeo) {
   return page
 }
 
-export function productCoreJsonLd() {
-  return {
-    '@type': 'Product',
-    '@id': PRODUCT_ID,
-    name: 'DayZ Cheats',
-    alternateName: [
-      'DayZ Hacks',
-      'DayZ Standalone Cheats',
-      'DayZ Aimbot',
-      'DayZ ESP',
-      'DayZ Wallhack',
-      'DayZ Radar Hack',
-    ],
-    description: SITE_PURPOSE,
-    url: `${SITE_URL}/dayz-cheats`,
-    image: [
-      absoluteAsset('/og/dayz-cheats.jpg'),
-      absoluteAsset('/og/home.jpg'),
-      absoluteAsset(PAGE_MEDIA.product.image),
-      absoluteAsset(PAGE_MEDIA.home.image),
-    ],
-    brand: { '@type': 'Brand', name: SITE_NAME },
-    manufacturer: { '@id': `${SITE_URL}/#organization` },
-    category: 'PC game software',
-    offers: baseOffer(`${SITE_URL}/dayz-cheats`, 'https://schema.org/InStock'),
-    subjectOf: {
-      '@type': 'VideoObject',
-      name: 'DayZ Cheats Aimbot and ESP preview',
-      description:
-        'Preview of DayZ Aimbot, ESP menu, loot highlighting and radar hack features on PC.',
-      thumbnailUrl: absoluteAsset('/media/dayz-video-thumb.jpg'),
-      contentUrl: absoluteAsset('/videos/dayz-preview.mp4'),
-      uploadDate: '2026-09-16',
-      inLanguage: 'en',
-    },
-  }
-}
-
-export function productDetailJsonLd(status: GameStatus) {
-  const availability =
-    status === 'Undetected' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
-  return {
-    ...productCoreJsonLd(),
-    url: `${SITE_URL}/dayz-cheats`,
-    image: absoluteAsset(PAGE_MEDIA.product.image),
-    about: {
-      '@type': 'VideoGame',
-      name: 'DayZ',
-      alternateName: ['DayZ Standalone', 'DayZ SA'],
-      publisher: { '@type': 'Organization', name: 'Bohemia Interactive' },
-      gamePlatform: 'PC',
-    },
-    additionalProperty: [
-      { '@type': 'PropertyValue', name: 'Platform', value: 'Windows PC' },
-      {
-        '@type': 'PropertyValue',
-        name: 'Features',
-        value: 'Silent aim Aimbot, player ESP, infected ESP, loot ESP, wallhack, radar hack, spoofer',
-      },
-      { '@type': 'PropertyValue', name: 'Anti-cheat', value: 'BattlEye' },
-      {
-        '@type': 'PropertyValue',
-        name: 'Servers',
-        value: 'Official DayZ servers and private servers with common mods',
-      },
-      { '@type': 'PropertyValue', name: 'Status', value: status },
-    ],
-    offers: baseOffer(`${SITE_URL}/dayz-cheats`, availability),
-  }
-}
-
-export function productReviewsJsonLd() {
-  const aggregate = getReviewsAggregate()
-  return {
-    ...productCoreJsonLd(),
-    url: `${SITE_URL}/dayz-cheats`,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: aggregate.ratingValue,
-      reviewCount: aggregate.reviewCount,
-      bestRating: aggregate.bestRating,
-      worstRating: aggregate.worstRating,
-    },
-    review: REVIEWS.map((review) => ({
-      '@type': 'Review',
-      author: { '@type': 'Person', name: review.author },
-      datePublished: review.datePublished,
-      reviewBody: review.body,
-      name: `${review.author} DayZ Cheats review`,
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: String(review.rating),
-        bestRating: '5',
-        worstRating: '1',
-      },
-      itemReviewed: { '@id': PRODUCT_ID },
-    })),
-  }
-}
-
-/** Merge site identity + WebPage + optional extra nodes into FAQ/Product graph. */
 export function buildPageJsonLd(seo: PageSeo, extra: unknown[] = []) {
   const cleaned = extra.filter((node) => {
     if (!node || typeof node !== 'object') return true
@@ -219,7 +102,30 @@ export function buildPageJsonLd(seo: PageSeo, extra: unknown[] = []) {
   }
 }
 
-/** Build FAQPage JSON-LD graph node from the same items shown in FaqSection. */
+export function productJsonLd() {
+  return {
+    '@type': 'Product',
+    '@id': PRODUCT_ID,
+    name: PRODUCT_NAME,
+    description:
+      'Third-party Rainbow Six Siege PC modules with digital delivery after external checkout.',
+    url: absoluteUrl(PRODUCT_PATH),
+    image: absoluteAsset('/og/r6-cheats.jpg'),
+    brand: { '@type': 'Brand', name: SITE_NAME },
+    category: 'PC game software',
+    offers: {
+      '@type': 'Offer',
+      url: absoluteUrl(PRODUCT_PATH),
+      price: PRODUCT_PRICE_USD,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: '2027-12-31',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: { '@id': `${SITE_URL}/#organization` },
+    },
+  }
+}
+
 export function faqPageJsonLd(items: FaqItem[], pageUrl?: string) {
   return {
     '@type': 'FAQPage',
@@ -227,10 +133,60 @@ export function faqPageJsonLd(items: FaqItem[], pageUrl?: string) {
     mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.a,
-      },
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  }
+}
+
+function resolveUrl(pathOrUrl: string) {
+  if (pathOrUrl.startsWith('http')) return pathOrUrl
+  return absoluteUrl(pathOrUrl)
+}
+
+export function articleJsonLd(post: BlogPost, pathOrUrl: string, image: string) {
+  const url = resolveUrl(pathOrUrl)
+  return {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: post.title,
+    description: post.metaDescription || post.excerpt,
+    datePublished: post.date,
+    dateModified: post.updated || post.date,
+    author: { '@id': `${SITE_URL}/#organization` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: url,
+    isPartOf: { '@id': `${SITE_URL}/guides#webpage` },
+    image: absoluteAsset(image),
+    inLanguage: 'en',
+  }
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  }
+}
+
+/** Only emit HowTo when the post opts in — not used by this product site by default. */
+export function howToJsonLd(post: BlogPost, pageUrl: string, image: string) {
+  if (!post.howTo) return null
+  return {
+    '@type': 'HowTo',
+    name: post.title,
+    description: post.metaDescription || post.excerpt,
+    image: absoluteAsset(image),
+    url: pageUrl.startsWith('http') ? pageUrl : absoluteUrl(pageUrl),
+    step: post.sections.map((section, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: section.heading,
+      text: section.body.join(' '),
     })),
   }
 }

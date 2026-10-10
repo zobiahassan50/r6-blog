@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { ProductPage } from '../views/ProductPage'
+import { SEO } from '../data/site'
+import { breadcrumbJsonLd, productJsonLd } from '../lib/seo'
+
+const jsonLdExtra = [
+  productJsonLd(),
+  breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Product', path: '/r6-cheats' },
+  ]),
+]
+---
+
+<BaseLayout seo={SEO.product} jsonLdExtra={jsonLdExtra}>
+  <ProductPage client:idle />
+</BaseLayout>

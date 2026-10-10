@@ -1,5 +1,5 @@
-﻿/**
- * Single sitemap at /sitemap.xml — every indexed page URL + image entries.
+/**
+ * Single sitemap at /sitemap.xml - every indexed page URL + its OG image.
  * One urlset only (never a sitemap index). 404 is excluded.
  */
 import { existsSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
@@ -10,70 +10,42 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const publicDir = join(root, 'public')
 const dataDir = join(root, 'src', 'data')
 const pagesDir = join(root, 'src', 'pages')
-const SITE = (process.env.SITE_URL || 'https://dayzcheats.io').replace(/\/$/, '')
+const SITE = (process.env.SITE_URL || 'https://r6cheat.net').replace(/\/$/, '')
 const TODAY = new Date().toLocaleDateString('en-CA')
 const HREFLANG = ['en', 'x-default']
 
-const HERO_FULL = '/media/dayz-hero-full.webp'
-const COVER = '/media/dayz-cover.webp'
-const BOX = '/media/dayz-box.jpg'
-const ESP = '/media/dayz-esp-gameplay.gif'
-const MENU = '/media/dayz-menu.gif'
-const CONTROL = '/media/dayz-control-art.jpg'
-const HOME_ART = '/media/dayz-home-art.jpg'
-const TACTICAL_ART = '/media/dayz-tactical-art.jpg'
-const VIDEO_THUMB = '/media/dayz-video-thumb.jpg'
-const PREVIEW_VIDEO = '/videos/dayz-preview.mp4'
-const OG_DEFAULT = '/og/dayz-cheats.jpg'
-
-const ALL_SITE_IMAGES = [
-  HERO_FULL,
-  COVER,
-  BOX,
-  ESP,
-  MENU,
-  CONTROL,
-  HOME_ART,
-  TACTICAL_ART,
-  VIDEO_THUMB,
-  '/og/home.jpg',
-  '/og/dayz-cheats.jpg',
-  '/og/forums.jpg',
-  '/og/reviews.jpg',
-  '/og/faq.jpg',
-  '/og/support.jpg',
-  '/og/privacy.jpg',
-  '/og/terms.jpg',
-  '/og/refunds.jpg',
+const STATIC_ROUTES = [
+  '/',
+  '/guides',
+  '/forums',
+  '/r6-cheats',
+  '/faq',
+  '/contact',
+  '/privacy',
+  '/terms',
 ]
-
-const FORUM_IMAGES = {
-  'features-list': COVER,
-  hotkeys: MENU,
-  'complete-setup': HERO_FULL,
-  'disable-antivirus': CONTROL,
-  'undetected-status': COVER,
-  'aimbot-settings': MENU,
-  'esp-wallhack-guide': ESP,
-  'radar-hack-guide': MENU,
-  'stream-proof-setup': HOME_ART,
-  'battleye-status': COVER,
-  'windows-setup': HERO_FULL,
-  'raid-play-guide': BOX,
-  'loader-errors': TACTICAL_ART,
-}
 
 const PAGE_META = {
   '/': { priority: '1.0', changefreq: 'daily' },
-  '/dayz-cheats': { priority: '0.9', changefreq: 'weekly' },
-  '/forums': { priority: '0.85', changefreq: 'weekly' },
-  '/reviews': { priority: '0.8', changefreq: 'weekly' },
-  '/faq': { priority: '0.75', changefreq: 'monthly' },
-  '/support': { priority: '0.75', changefreq: 'weekly' },
-  '/privacy': { priority: '0.4', changefreq: 'yearly' },
-  '/terms': { priority: '0.4', changefreq: 'yearly' },
-  '/refunds': { priority: '0.45', changefreq: 'yearly' },
+  '/guides': { priority: '0.9', changefreq: 'daily' },
+  '/forums': { priority: '0.7', changefreq: 'weekly' },
+  '/r6-cheats': { priority: '0.95', changefreq: 'daily' },
+  '/faq': { priority: '0.6', changefreq: 'monthly' },
+  '/contact': { priority: '0.5', changefreq: 'monthly' },
+  '/privacy': { priority: '0.3', changefreq: 'yearly' },
+  '/terms': { priority: '0.3', changefreq: 'yearly' },
 }
+
+const ALL_SITE_IMAGES = [
+  '/og/home.jpg',
+  '/og/guides.jpg',
+  '/og/community.jpg',
+  '/og/r6-cheats.jpg',
+  '/og/faq.jpg',
+  '/og/contact.jpg',
+  '/og/privacy.jpg',
+  '/og/terms.jpg',
+]
 
 function escapeXml(value) {
   return String(value)
@@ -98,17 +70,10 @@ function siteUrl(path) {
   return !path || path === '/' ? `${SITE}/` : `${SITE}${path.startsWith('/') ? path : `/${path}`}`
 }
 
-function loadGames() {
-  const src = readFileSync(join(dataDir, 'games.ts'), 'utf8')
-  return [...src.matchAll(/\{\s*slug:\s*['"]([^'"]+)['"],\s*name:\s*['"]([^'"]+)['"]/g)].map(
-    (match) => ({ slug: match[1], name: match[2] }),
-  )
-}
-
-function loadForums() {
+function loadBlogs() {
   const src = readFileSync(join(dataDir, 'blogs.ts'), 'utf8')
   const pattern =
-    /slug:\s*['"]([^'"]+)['"],\s*title:\s*['"]([^'"]+)['"],\s*excerpt:\s*['"]([^'"]+)['"],\s*metaTitle:\s*['"]([^'"]+)['"],\s*metaDescription:\s*['"]([^'"]+)['"],[\s\S]*?date:\s*['"](\d{4}-\d{2}-\d{2})['"]/g
+    /slug:\s*['"]([^'"]+)['"],\s*title:\s*['"]([^'"]+)['"],\s*excerpt:\s*['"]([^'"]+)['"],\s*metaTitle:\s*['"]([^'"]+)['"],\s*metaDescription:\s*['"]([^'"]+)['"],[\s\S]*?date:\s*['"](\d{4}-\d{2}-\d{2})['"][\s\S]*?tag:\s*['"]([^'"]+)['"]/g
   return [...src.matchAll(pattern)].map((match) => ({
     slug: match[1],
     title: match[2],
@@ -116,6 +81,7 @@ function loadForums() {
     metaTitle: match[4],
     metaDescription: match[5],
     date: match[6],
+    tag: match[7],
   }))
 }
 
@@ -140,24 +106,10 @@ function imageBlock({ src, title, caption }) {
     </image:image>`
 }
 
-function videoBlock({ thumb, title, description, content }) {
-  return `    <video:video>
-      <video:thumbnail_loc>${escapeXml(siteUrl(thumb))}</video:thumbnail_loc>
-      <video:title>${escapeXml(asciiSafe(title))}</video:title>
-      <video:description>${escapeXml(asciiSafe(description))}</video:description>
-      <video:content_loc>${escapeXml(siteUrl(content))}</video:content_loc>
-      <video:family_friendly>yes</video:family_friendly>
-      <video:live>no</video:live>
-    </video:video>`
-}
-
-function urlEntry({ path, priority, changefreq, lastmod = TODAY, images, videos = [] }) {
+function urlEntry({ path, priority, changefreq, lastmod = TODAY, images }) {
   if (!images?.length) throw new Error(`Sitemap entry for ${path} is missing images`)
   const url = siteUrl(path)
-  const media = [
-    ...images.map((image) => imageBlock(image)),
-    ...videos.map((video) => videoBlock(video)),
-  ]
+  const media = images.map((image) => imageBlock(image))
   return `  <url>
     <loc>${escapeXml(url)}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -168,206 +120,63 @@ ${media.join('\n')}
   </url>`
 }
 
-function imagesForPath(path, games, forums) {
-  if (path === '/') {
+function imagesForPath(path, blogs) {
+  if (STATIC_ROUTES.includes(path)) {
+    // Forums reuses the community OG asset (same visual hub art).
+    const file = path === '/' ? 'home' : path === '/forums' ? 'community' : path.slice(1)
+    const label = path === '/' ? 'home' : path === '/forums' ? 'forums' : file
     return [
       {
-        src: '/og/home.jpg',
-        title: 'DayZ Cheats Open Graph',
-        caption: 'Google and social preview image for dayzcheats.io homepage.',
-      },
-      {
-        src: HERO_FULL,
-        title: 'DayZ Cheats Hero',
-        caption: 'Buy DayZ cheats - DayZ Aimbot, ESP and radar hack hero artwork for PC.',
-      },
-      {
-        src: COVER,
-        title: 'DayZ Cheats Product Cover',
-        caption: 'DayZ cheats product cover for checkout and social previews.',
-      },
-      {
-        src: VIDEO_THUMB,
-        title: 'DayZ Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the DayZ Aimbot and ESP preview video.',
-      },
-      {
-        src: OG_DEFAULT,
-        title: 'DayZ Cheats Product Social Preview',
-        caption: 'Default Open Graph image for dayzcheats.io product pages.',
+        src: `/og/${file}.jpg`,
+        title: `R6 Siege Cheats - ${label} Open Graph`,
+        caption: `Google and social preview image for the ${label} page on R6 Siege Cheats.`,
       },
     ]
   }
 
-  const game = games.find((g) => path === `/${g.slug}-cheats`)
-  if (game) {
+  if (path.startsWith('/guides/')) {
+    const slug = path.slice('/guides/'.length)
+    const blog = blogs.find((b) => b.slug === slug)
     return [
       {
-        src: '/og/dayz-cheats.jpg',
-        title: 'DayZ Cheats Open Graph',
-        caption: 'Google and social preview for the DayZ cheats product page.',
-      },
-      {
-        src: COVER,
-        title: 'DayZ Aimbot ESP Product Artwork',
-        caption: 'Product features, compatibility, status and price before checkout.',
-      },
-      {
-        src: HERO_FULL,
-        title: `${game.name} Cheats Product Hero`,
-        caption: `Hero artwork for ${game.name} Aimbot, ESP and radar hack product details.`,
-      },
-      {
-        src: MENU,
-        title: `${game.name} Cheats Menu Preview`,
-        caption: `Menu and Aimbot settings preview for ${game.name} cheats.`,
-      },
-      {
-        src: ESP,
-        title: `${game.name} ESP Gameplay`,
-        caption: `Player ESP and wallhack preview for ${game.name}.`,
-      },
-      {
-        src: VIDEO_THUMB,
-        title: 'DayZ Cheats Preview Thumbnail',
-        caption: 'Thumbnail for the DayZ cheats preview video.',
-      },
-    ]
-  }
-
-  if (path === '/forums') {
-    return [
-      {
-        src: '/og/forums.jpg',
-        title: 'DayZ Cheats Forums Open Graph',
-        caption: 'Google preview image for the DayZ Cheats guides index.',
-      },
-      {
-        src: MENU,
-        title: 'DayZ Cheats Forum Artwork',
-        caption: 'Artwork reference for DayZ setup and feature guides.',
-      },
-    ]
-  }
-
-  if (path.startsWith('/forums/')) {
-    const slug = path.slice('/forums/'.length)
-    const forum = forums.find((f) => f.slug === slug)
-    return [
-      {
-        src: `/og/forums-${slug}.jpg`,
-        title: `${forum?.title || slug} Open Graph`,
+        src: `/og/guides-${slug}.jpg`,
+        title: `${blog?.title || slug} Open Graph`,
         caption:
-          forum?.metaDescription ||
-          `Google preview image for ${forum?.title || slug} on dayzcheats.io.`,
-      },
-      {
-        src: FORUM_IMAGES[slug] || MENU,
-        title: `${forum?.title || slug} Artwork`,
-        caption:
-          forum?.excerpt ||
-          `Visible DayZ Cheats guide artwork for ${forum?.title || slug}.`,
+          blog?.metaDescription ||
+          `Google preview image for ${blog?.title || slug} on R6 Siege Cheats.`,
       },
     ]
   }
 
-  if (path === '/reviews') {
-    return [
-      {
-        src: '/og/reviews.jpg',
-        title: 'DayZ Cheats Reviews Open Graph',
-        caption: 'Google preview image for DayZ cheats reviews.',
-      },
-    ]
-  }
-  if (path === '/faq') {
-    return [
-      {
-        src: '/og/faq.jpg',
-        title: 'DayZ Cheats FAQ Open Graph',
-        caption: 'Google preview image for the DayZ Cheats FAQ.',
-      },
-    ]
-  }
-  if (path === '/support') {
-    return [
-      {
-        src: '/og/support.jpg',
-        title: 'DayZ Cheats Support Open Graph',
-        caption: 'Google preview image for DayZ Cheats support.',
-      },
-    ]
-  }
-  if (path === '/privacy') {
-    return [
-      {
-        src: '/og/privacy.jpg',
-        title: 'DayZ Cheats Privacy Policy',
-        caption: 'Privacy policy preview for dayzcheats.io orders and support.',
-      },
-    ]
-  }
-  if (path === '/terms') {
-    return [
-      {
-        src: '/og/terms.jpg',
-        title: 'DayZ Cheats Terms of Use',
-        caption: 'License terms preview for DayZ Cheats.',
-      },
-    ]
-  }
-  if (path === '/refunds') {
-    return [
-      {
-        src: '/og/refunds.jpg',
-        title: 'DayZ Cheats Refund Policy',
-        caption: 'Refund rules preview for digital DayZ Cheats licenses.',
-      },
-    ]
-  }
-
-  return [{ src: OG_DEFAULT, title: 'DayZ Cheats', caption: 'DayZ Cheats page artwork.' }]
+  return [
+    {
+      src: '/og/home.jpg',
+      title: 'R6 Siege Cheats',
+      caption: 'R6 Siege Cheats page artwork.',
+    },
+  ]
 }
 
-function videosForPath(path) {
-  if (path === '/dayz-cheats') {
-    return [
-      {
-        thumb: VIDEO_THUMB,
-        title: 'DayZ Cheats Aimbot and ESP Preview',
-        description:
-          'Self-hosted DayZ cheats preview showing Aimbot, ESP menu and survival gameplay visuals on PC.',
-        content: PREVIEW_VIDEO,
-      },
-    ]
-  }
-  return []
-}
-
-function collectAllPaths(games, forums, staticRoutes) {
-  const paths = new Set([
-    ...staticRoutes,
-    ...games.map((game) => `/${game.slug}-cheats`),
-    ...forums.map((forum) => `/forums/${forum.slug}`),
-  ])
+function collectAllPaths(blogs, staticRoutes) {
+  const paths = new Set([...staticRoutes, ...blogs.map((blog) => `/guides/${blog.slug}`)])
   // Never index error page
   paths.delete('/404')
   return [...paths]
 }
 
-function buildSitemap(games, forums, allPaths) {
-  const forumByPath = new Map(forums.map((f) => [`/forums/${f.slug}`, f]))
+function buildSitemap(blogs, allPaths) {
+  const blogByPath = new Map(blogs.map((b) => [`/guides/${b.slug}`, b]))
 
   const sorted = [...allPaths].sort((a, b) => {
     const rank = (path) => {
       if (path === '/') return 0
-      if (path.endsWith('-cheats')) return 1
-      if (path === '/forums') return 2
-      if (path.startsWith('/forums/')) return 3
-      if (path === '/reviews') return 4
+      if (path === '/r6-cheats') return 1
+      if (path === '/guides') return 2
+      if (path.startsWith('/guides/')) return 3
+      if (path === '/forums') return 4
       if (path === '/faq') return 5
-      if (path === '/support') return 6
-      return 10
+      if (path === '/contact') return 6
+      return 7
     }
     const diff = rank(a) - rank(b)
     return diff !== 0 ? diff : a.localeCompare(b)
@@ -375,41 +184,32 @@ function buildSitemap(games, forums, allPaths) {
 
   const entries = sorted.map((path) => {
     const meta = PAGE_META[path] || {
-      priority: path.startsWith('/forums/') ? '0.8' : '0.5',
-      changefreq: path.startsWith('/forums/') ? 'monthly' : 'weekly',
+      priority: path.startsWith('/guides/') ? '0.75' : '0.5',
+      changefreq: path.startsWith('/guides/') ? 'monthly' : 'weekly',
     }
-    const forum = forumByPath.get(path)
+    const blog = blogByPath.get(path)
     return urlEntry({
       path,
       priority: meta.priority,
       changefreq: meta.changefreq,
-      lastmod: forum?.date || TODAY,
-      images: imagesForPath(path, games, forums),
-      videos: videosForPath(path),
+      lastmod: blog?.date || TODAY,
+      images: imagesForPath(path, blogs),
     })
   })
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${entries.join('\n')}
 </urlset>
 `
 }
 
-function validate(games, forums, allPaths, sitemap) {
+function validate(blogs, allPaths, sitemap) {
   const errors = []
-  if (forums.some((forum) => ['instructions', 'how-to-load'].includes(forum.slug))) {
-    errors.push('Retired forum slug remains indexed')
-  }
-  for (const game of games) {
-    const page = join(pagesDir, `${game.slug}-cheats.astro`)
-    if (!existsSync(page)) errors.push(`Product route has no page file: /${game.slug}-cheats`)
-  }
-  if (forums.length && !existsSync(join(pagesDir, 'forums', '[slug].astro'))) {
-    errors.push('Forum routes have no dynamic page file: src/pages/forums/[slug].astro')
+  if (blogs.length && !existsSync(join(pagesDir, 'guides', '[slug].astro'))) {
+    errors.push('Guide routes have no dynamic page file: src/pages/guides/[slug].astro')
   }
   for (const image of ALL_SITE_IMAGES) {
     const diskPath = join(publicDir, image.replace(/^\//, ''))
@@ -444,34 +244,22 @@ function validate(games, forums, allPaths, sitemap) {
   for (const image of ALL_SITE_IMAGES) {
     if (!imageLocs.includes(siteUrl(image))) errors.push(`Sitemap missing required image: ${image}`)
   }
-  if (!sitemap.includes(siteUrl(PREVIEW_VIDEO))) {
-    errors.push('Sitemap missing DayZ preview video content_loc')
-  }
-  if (/Tarkov|tarkovcheats|EFT Reaper|Warzone|warzonecheats|Ricochet/i.test(sitemap)) {
-    errors.push('Sitemap still contains legacy Tarkov/Warzone labels')
-  }
-  if (!sitemap.includes('dayzcheats.io')) {
-    errors.push('Sitemap must target dayzcheats.io')
-  }
-  if (/tarkovcheats|warzonecheats|wardogshacks|theisle/i.test(sitemap)) {
-    errors.push('Sitemap contains a non-DayZ domain')
+  const sitemapWithoutHost = sitemap.replaceAll(SITE, '')
+  if (/DayZ|Tarkov|Warzone|Bohemia/i.test(sitemapWithoutHost)) {
+    errors.push('Sitemap still contains legacy cheat-site branding')
   }
   if (imageLocs.length < expectedUrls.size) {
     errors.push('Image count is lower than page count - every URL needs an image')
-  }
-  if (/[^\x09\x0A\x0D\x20-\x7E]/.test(sitemap.replace(/https?:\/\//g, ''))) {
-    // Allow non-ascii only inside https URLs if any; captions should be ascii.
   }
   if (errors.length) throw new Error(`Sitemap validation failed:\n- ${errors.join('\n- ')}`)
 }
 
 function main() {
-  const games = loadGames()
-  const forums = loadForums()
+  const blogs = loadBlogs()
   const staticRoutes = loadStaticRoutes()
-  const allPaths = collectAllPaths(games, forums, staticRoutes)
-  const sitemap = buildSitemap(games, forums, allPaths)
-  validate(games, forums, allPaths, sitemap)
+  const allPaths = collectAllPaths(blogs, staticRoutes)
+  const sitemap = buildSitemap(blogs, allPaths)
+  validate(blogs, allPaths, sitemap)
 
   writeFileSync(join(publicDir, 'sitemap.xml'), sitemap, 'utf8')
   writeFileSync(
@@ -481,35 +269,29 @@ function main() {
       'Allow: /',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
-      'Allow: /media/',
       'Allow: /og/',
-      'Allow: /videos/',
       '',
       'User-agent: Google-InspectionTool',
       'Allow: /',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
-      'Allow: /media/',
       'Allow: /og/',
-      'Allow: /videos/',
       '',
       'User-agent: Bingbot',
       'Allow: /',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
-      'Allow: /media/',
       'Allow: /og/',
-      'Allow: /videos/',
       '',
       'User-agent: *',
       'Allow: /',
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
-      'Allow: /media/',
       'Allow: /og/',
-      'Allow: /videos/',
       'Disallow: /404',
       'Disallow: /404.html',
+      'Disallow: /offline',
+      'Disallow: /offline.html',
       '',
       `Sitemap: ${siteUrl('/sitemap.xml')}`,
       '',
