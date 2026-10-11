@@ -2,8 +2,9 @@
 
 | File | Used on |
 |------|---------|
-| `r6-hero-preview.mp4` | Homepage hero only (clean encode, no color filters; ~3.5 Mbps) |
-| `card-featured.mp4` | Forums page hero background only (`FORUMS_HERO_VIDEO`) |
-| `card-article.mp4` | Articles/guides hub hero background only (`ARTICLES_HERO_VIDEO`) |
+| `r6-hero-preview.mp4` | Homepage hero (`HERO_VIDEO`) |
+| `r6-hero-home.mp4` | Guides landing page hero (`GUIDES_HERO_VIDEO`) |
+| `card-featured.mp4` | Forums page hero (`FORUMS_HERO_VIDEO`) |
+| `card-article.mp4` | Blogs hub hero (`ARTICLES_HERO_VIDEO`) |
 
-Grid cards (home “R6 Siege”, all articles, related posts, forum threads) use static images from `/media/blog-uploads/` — never these videos.
+Grid cards use static images from `/media/blog-uploads/` — never these videos.

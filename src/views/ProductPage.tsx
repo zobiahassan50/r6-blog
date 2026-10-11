@@ -47,7 +47,7 @@ export function ProductPage() {
                 {SITE_NAME} · Product
               </p>
               <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                {PRODUCT_NAME} for PC
+                Premium R6 Siege Cheat Modules
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/60">
                 Third-party Rainbow Six Siege PC modules listed below, with digital delivery after
@@ -58,7 +58,7 @@ export function ProductPage() {
               <div className="mt-8">
                 <MediaPlaceholder
                   label="[PRODUCT_PREVIEW]"
-                  src="/media/placeholder-product.jpg"
+                  src="/media/product.jpg"
                   alt="Branded artwork for R6 Siege Cheats product"
                   aspectRatio="16/9"
                 />

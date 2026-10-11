@@ -3,7 +3,10 @@ import { ArrowRight } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { SiteFooter } from '../components/SiteFooter'
 import { HeroSearch } from '../components/HeroSearch'
+import { MediaPlaceholder } from '../components/MediaPlaceholder'
 import { filterGuides } from '../data/guides'
+import { PAGE_IMAGES } from '../data/images'
+import { GUIDES_HERO_VIDEO } from '../data/media'
 import { SITE_NAME } from '../data/site'
 
 type GuidesPageProps = {
@@ -17,31 +20,52 @@ export function GuidesPage({ initialQuery = '' }: GuidesPageProps) {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-z-bg text-white">
-      <Navbar />
-      <main className="page-body relative z-10">
-        <section className="page-x border-b border-z-soft/15 py-12 sm:py-16">
-          <div className="mx-auto max-w-6xl">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
-              Guides · {SITE_NAME}
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              R6 Siege Cheats Guides
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-              Practical checklists for setup, compatibility, settings, and risk — separate from
-              editorial Blogs and community Forums.
-            </p>
-            <div className="relative z-50 mt-7 max-w-xl">
-              <HeroSearch
-                value={q}
-                onChange={setQ}
-                submitTo="filter"
-                placeholder="Search guides — setup, compatibility, risk…"
-              />
+      <section
+        id="guides-hero"
+        className="relative flex min-h-[55vh] flex-col overflow-x-clip sm:min-h-[60vh]"
+      >
+        <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden>
+          <MediaPlaceholder
+            label="[GUIDES_HERO]"
+            src={PAGE_IMAGES.guides.src}
+            videoUrl={GUIDES_HERO_VIDEO}
+            alt={PAGE_IMAGES.guides.alt}
+            aspectRatio="16/9"
+            className="absolute inset-0 h-full w-full rounded-none border-0"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-z-bg via-z-bg/75 to-z-bg/35" />
+        </div>
+        <Navbar onVideo heroSelector="#guides-hero" />
+        <div className="relative z-20 flex min-h-[55vh] flex-col pt-[4.5rem] sm:min-h-[60vh] sm:pt-[5rem]">
+          <div className="page-x mt-auto pb-10 sm:pb-14">
+            <div className="relative z-30 mx-auto max-w-6xl">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+                Guides · {SITE_NAME}
+              </p>
+              <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                R6 Siege Cheats Guides
+              </h1>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+                Practical checklists for setup, compatibility, settings, and risk — separate from
+                editorial Blogs and community Forums.
+              </p>
+              <div className="relative z-50 mt-7">
+                <HeroSearch
+                  value={q}
+                  onChange={setQ}
+                  submitTo="filter"
+                  placeholder="Search guides — setup, compatibility, risk…"
+                />
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="hero-to-body" aria-hidden />
+
+      <main className="page-body relative z-10">
         <section className="page-x py-12">
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">

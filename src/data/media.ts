@@ -7,7 +7,10 @@ export type SeoMediaItem = {
 
 export const HERO_POSTER = '/media/r6-hero-poster.webp'
 export const HERO_POSTER_JPG = '/media/r6-hero-poster.jpg'
+/** Homepage hero. */
 export const HERO_VIDEO = '/videos/r6-hero-preview.mp4'
+/** Guides landing hero — newer encode. */
+export const GUIDES_HERO_VIDEO = '/videos/r6-hero-home.mp4'
 
 /** Hub hero backgrounds only — never used on grid cards. */
 export const FORUMS_HERO_VIDEO = '/videos/card-featured.mp4'
