@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { LogoMark } from './LogoMark'
 import { CheckoutLink } from './CheckoutLink'
-import { HeroSearch } from './HeroSearch'
 import { PRODUCT_PATH } from '../data/product'
 import { SITE_NAME } from '../data/site'
 import { useHeroInView } from '../hooks/useHeroInView'
@@ -73,14 +72,6 @@ export function Navbar({ onVideo = false, heroSelector = '#home' }: NavbarProps)
                 </a>
               ))}
             </div>
-            <div className="relative z-[60] w-[11.5rem] lg:w-[14rem]">
-              <HeroSearch
-                variant="nav"
-                corpus="all"
-                submitTo="blogs"
-                placeholder="Search site…"
-              />
-            </div>
             <CheckoutLink className="cta-gradient flex shrink-0 items-center self-stretch whitespace-nowrap rounded-full px-5 text-sm font-semibold text-white transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-z-soft/50">
               Buy Now
             </CheckoutLink>
@@ -122,14 +113,6 @@ export function Navbar({ onVideo = false, heroSelector = '#home' }: NavbarProps)
         }`}
       >
         <div className="flex flex-col gap-1 px-5 pt-24">
-          <div className="mb-3">
-            <HeroSearch
-              variant="nav"
-              corpus="all"
-              submitTo="blogs"
-              placeholder="Search blogs, guides, forums…"
-            />
-          </div>
           {NAV_LINKS.map((link, index) => (
             <a
               key={link.label}
