@@ -210,6 +210,7 @@ export function HomePage() {
               <HeroSearch
                 placeholder="Search forums — product, setup, billing, status…"
                 submitTo="forums"
+                corpus="forums"
               />
             </div>
 

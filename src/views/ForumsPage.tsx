@@ -29,11 +29,11 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
             src={PAGE_IMAGES.community.src}
             videoUrl={FORUMS_HERO_VIDEO}
             alt={PAGE_IMAGES.community.alt}
-            aspectRatio="16/9"
+            fill
             className="absolute inset-0 h-full w-full rounded-none border-0"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-z-bg via-z-bg/70 to-z-bg/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-z-bg via-z-bg/55 to-z-bg/20" />
         </div>
 
         <Navbar onVideo heroSelector="#forums-hero" />
@@ -55,6 +55,7 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                   value={q}
                   onChange={setQ}
                   submitTo="forums"
+                  corpus="forums"
                   placeholder={FORUM_PAGE.searchPlaceholder}
                 />
               </div>

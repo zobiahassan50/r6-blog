@@ -27,7 +27,12 @@ export function NotFoundPage() {
             </p>
 
             <div className="relative z-50 mx-auto mt-8 flex max-w-xl justify-center text-left">
-              <HeroSearch placeholder="Search R6 guides…" className="w-full" />
+              <HeroSearch
+                placeholder="Search blogs, guides, forums…"
+                className="w-full"
+                corpus="all"
+                submitTo="blogs"
+              />
             </div>
 
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">

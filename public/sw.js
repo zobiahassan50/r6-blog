@@ -1,5 +1,5 @@
-/* R6 Siege Cheats service worker — cache static assets; network-first for HTML. */
-const CACHE_VERSION = 'r6-cheats-v2'
+/* R6 Siege Cheats service worker — cache static assets; network-first for HTML + media. */
+const CACHE_VERSION = 'r6-cheats-v3'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const PAGE_CACHE = `${CACHE_VERSION}-pages`
 const OFFLINE_URL = '/offline.html'
@@ -40,15 +40,19 @@ function isCheckoutOrExternal(url) {
   return url.hostname.includes('zadeyo.com') || url.origin !== self.location.origin
 }
 
-function isVersionedAsset(url) {
+/** Hashed build assets only — safe to cache-first. */
+function isHashedAsset(url) {
   return (
     url.pathname.startsWith('/_astro/') ||
     url.pathname.startsWith('/og/') ||
-    url.pathname.startsWith('/media/') ||
-    url.pathname.startsWith('/videos/') ||
     url.pathname.startsWith('/icons/') ||
     url.pathname.endsWith('.woff2')
   )
+}
+
+/** Media/videos change in place — always prefer network so deploys show up. */
+function isMutableMedia(url) {
+  return url.pathname.startsWith('/media/') || url.pathname.startsWith('/videos/')
 }
 
 self.addEventListener('fetch', (event) => {
@@ -74,7 +78,22 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
-  if (isVersionedAsset(url)) {
+  if (isMutableMedia(url)) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const copy = response.clone()
+            caches.open(STATIC_CACHE).then((cache) => cache.put(request, copy))
+          }
+          return response
+        })
+        .catch(() => caches.match(request)),
+    )
+    return
+  }
+
+  if (isHashedAsset(url)) {
     event.respondWith(
       caches.match(request).then(
         (cached) =>

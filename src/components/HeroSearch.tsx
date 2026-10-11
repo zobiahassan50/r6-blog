@@ -3,6 +3,16 @@ import type { KeyboardEvent, SyntheticEvent } from 'react'
 import { ArrowRight, Search } from 'lucide-react'
 import { BLOGS, blogPath } from '../data/blogs'
 import { FORUM_THREADS } from '../data/forums'
+import { GUIDES } from '../data/guides'
+
+type SearchCorpus = 'blogs' | 'guides' | 'forums' | 'all'
+
+type Hit = {
+  key: string
+  title: string
+  meta: string
+  href: string
+}
 
 type HeroSearchProps = {
   /** Controlled value when parent owns the query (e.g. Guides page) */
@@ -10,15 +20,73 @@ type HeroSearchProps = {
   onChange?: (value: string) => void
   /** Where Go navigates when there's no single exact match */
   submitTo?: 'blogs' | 'guides' | 'forums' | 'filter'
+  /** Which content set powers suggestions (defaults from submitTo) */
+  corpus?: SearchCorpus
   placeholder?: string
   autoFocus?: boolean
   className?: string
+}
+
+function resolveCorpus(submitTo: HeroSearchProps['submitTo'], corpus?: SearchCorpus): SearchCorpus {
+  if (corpus) return corpus
+  if (submitTo === 'forums') return 'forums'
+  if (submitTo === 'guides') return 'guides'
+  if (submitTo === 'filter') return 'blogs'
+  return 'blogs'
+}
+
+function searchHits(term: string, corpus: SearchCorpus): Hit[] {
+  const q = term.trim().toLowerCase()
+  if (!q) return []
+
+  const blogs: Hit[] =
+    corpus === 'blogs' || corpus === 'all'
+      ? BLOGS.filter((post) => {
+          const hay = `${post.title} ${post.excerpt} ${post.tag} ${post.searchTerms}`.toLowerCase()
+          return hay.includes(q)
+        }).map((post) => ({
+          key: `blog-${post.slug}`,
+          title: post.title,
+          meta: post.tag,
+          href: blogPath(post.slug),
+        }))
+      : []
+
+  const guides: Hit[] =
+    corpus === 'guides' || corpus === 'all'
+      ? GUIDES.filter((guide) => {
+          const hay = `${guide.title} ${guide.excerpt} ${guide.tag} ${guide.searchTerms}`.toLowerCase()
+          return hay.includes(q)
+        }).map((guide) => ({
+          key: `guide-${guide.id}`,
+          title: guide.title,
+          meta: guide.tag,
+          href: guide.href,
+        }))
+      : []
+
+  const forums: Hit[] =
+    corpus === 'forums' || corpus === 'all'
+      ? FORUM_THREADS.filter((thread) => {
+          const hay =
+            `${thread.title} ${thread.excerpt} ${thread.board} ${thread.searchTerms}`.toLowerCase()
+          return hay.includes(q)
+        }).map((thread) => ({
+          key: `forum-${thread.id}`,
+          title: thread.title,
+          meta: thread.board,
+          href: thread.href,
+        }))
+      : []
+
+  return [...guides, ...blogs, ...forums].slice(0, 8)
 }
 
 export function HeroSearch({
   value,
   onChange,
   submitTo = 'blogs',
+  corpus,
   placeholder = 'Search R6 blogs…',
   autoFocus = false,
   className = '',
@@ -30,6 +98,7 @@ export function HeroSearch({
   const [active, setActive] = useState(0)
 
   const q = value !== undefined ? value : internal
+  const activeCorpus = resolveCorpus(submitTo, corpus)
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -39,22 +108,7 @@ export function HeroSearch({
     return () => document.removeEventListener('mousedown', onDoc)
   }, [])
 
-  const useForumsCorpus = submitTo === 'forums'
-
-  const matches = useMemo(() => {
-    const term = q.trim().toLowerCase()
-    if (!term) return []
-    if (useForumsCorpus) {
-      return FORUM_THREADS.filter((thread) => {
-        const hay = `${thread.title} ${thread.excerpt} ${thread.board} ${thread.searchTerms}`.toLowerCase()
-        return hay.includes(term)
-      }).slice(0, 8)
-    }
-    return BLOGS.filter((post) => {
-      const hay = `${post.title} ${post.excerpt} ${post.tag} ${post.searchTerms}`.toLowerCase()
-      return hay.includes(term)
-    }).slice(0, 8)
-  }, [q, useForumsCorpus])
+  const matches = useMemo(() => searchHits(q, activeCorpus), [q, activeCorpus])
 
   function setQuery(next: string) {
     if (value === undefined) setInternal(next)
@@ -67,11 +121,7 @@ export function HeroSearch({
     const hit = matches[index]
     if (!hit) return
     setOpen(false)
-    if (useForumsCorpus && 'href' in hit) {
-      window.location.assign(hit.href)
-      return
-    }
-    if ('slug' in hit) window.location.assign(blogPath(hit.slug))
+    window.location.assign(hit.href)
   }
 
   function submit(e?: SyntheticEvent) {
@@ -152,26 +202,21 @@ export function HeroSearch({
           role="listbox"
           className="search-results absolute left-0 right-0 top-full z-[60] mt-2 max-h-72 overflow-y-auto rounded-2xl border border-z-soft/20 bg-z-card py-2"
         >
-          {matches.map((item, i) => {
-            const key = 'id' in item ? item.id : item.slug
-            return (
-              <li key={key} role="option" aria-selected={i === active}>
-                <button
-                  type="button"
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => goToMatch(i)}
-                  className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
-                    i === active ? 'bg-z-accent/20 text-z-ink' : 'text-white/75 hover:bg-z-accent/10'
-                  }`}
-                >
-                  <span className="truncate font-medium">{item.title}</span>
-                  <span className="ml-3 shrink-0 text-xs text-z-soft/70">
-                    {'board' in item ? item.board : item.tag}
-                  </span>
-                </button>
-              </li>
-            )
-          })}
+          {matches.map((item, i) => (
+            <li key={item.key} role="option" aria-selected={i === active}>
+              <button
+                type="button"
+                onMouseEnter={() => setActive(i)}
+                onClick={() => goToMatch(i)}
+                className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
+                  i === active ? 'bg-z-accent/20 text-z-ink' : 'text-white/75 hover:bg-z-accent/10'
+                }`}
+              >
+                <span className="truncate font-medium">{item.title}</span>
+                <span className="ml-3 shrink-0 text-xs text-z-soft/70">{item.meta}</span>
+              </button>
+            </li>
+          ))}
         </ul>
       ) : null}
     </div>

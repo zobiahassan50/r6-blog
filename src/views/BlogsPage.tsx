@@ -37,11 +37,11 @@ export function BlogsPage({ initialQuery = '' }: BlogsPageProps) {
             src={PAGE_IMAGES.guides.src}
             videoUrl={ARTICLES_HERO_VIDEO}
             alt={PAGE_IMAGES.guides.alt}
-            aspectRatio="16/9"
+            fill
             className="absolute inset-0 h-full w-full rounded-none border-0"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-z-bg via-z-bg/75 to-z-bg/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-z-bg via-z-bg/55 to-z-bg/20" />
         </div>
         <Navbar onVideo heroSelector="#blogs-hero" />
         <div className="relative z-20 flex min-h-[55vh] flex-col pt-[4.5rem] sm:min-h-[60vh] sm:pt-[5rem]">
@@ -62,6 +62,7 @@ export function BlogsPage({ initialQuery = '' }: BlogsPageProps) {
                   value={q}
                   onChange={setQ}
                   submitTo="filter"
+                  corpus="blogs"
                   placeholder="Search blogs — ESP, wallhack, BattlEye, settings…"
                 />
               </div>

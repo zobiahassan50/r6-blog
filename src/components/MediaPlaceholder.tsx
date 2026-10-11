@@ -18,6 +18,8 @@ type MediaPlaceholderProps = {
   priority?: boolean
   quality?: number
   unoptimized?: boolean
+  /** Stretch to parent (hero backgrounds) — skips fixed aspect-ratio box. */
+  fill?: boolean
 }
 
 const ASPECT_STYLE: Record<NonNullable<MediaPlaceholderProps['aspectRatio']>, string> = {
@@ -93,12 +95,16 @@ export function MediaPlaceholder({
   priority = false,
   quality = 100,
   unoptimized = false,
+  fill = false,
 }: MediaPlaceholderProps) {
   void quality
 
-  const frameClass =
-    `relative w-full overflow-hidden rounded-2xl ${ASPECT_CLASS[aspectRatio]} ${className}`.trim()
-  const frameStyle = { aspectRatio: ASPECT_STYLE[aspectRatio], width: '100%' as const }
+  const frameClass = fill
+    ? `relative overflow-hidden bg-zinc-900 ${className}`.trim()
+    : `relative w-full overflow-hidden rounded-2xl ${ASPECT_CLASS[aspectRatio]} ${className}`.trim()
+  const frameStyle = fill
+    ? undefined
+    : { aspectRatio: ASPECT_STYLE[aspectRatio], width: '100%' as const }
 
   // Prefer looping video for card thumbnails when a URL is provided.
   if (typeof videoUrl === 'string') {
@@ -114,7 +120,7 @@ export function MediaPlaceholder({
     }
 
     return (
-      <div className={`${frameClass} bg-zinc-900`.trim()} style={frameStyle}>
+      <div className={frameClass} style={frameStyle}>
         <CardVideo
           videoUrl={videoUrl}
           poster={src}
@@ -129,7 +135,7 @@ export function MediaPlaceholder({
 
   if (src) {
     return (
-      <div className={`${frameClass} bg-z-card`.trim()} style={frameStyle}>
+      <div className={`${frameClass} ${fill ? '' : 'bg-z-card'}`.trim()} style={frameStyle}>
         <img
           src={src}
           alt={alt || label}
@@ -155,7 +161,7 @@ export function MediaPlaceholder({
     <div
       role="img"
       aria-label={label}
-      className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl border border-dashed border-white/15 bg-[linear-gradient(165deg,rgba(26,21,41,0.9),rgba(14,11,22,0.95))] ${ASPECT_CLASS[aspectRatio]} ${className}`.trim()}
+      className={`relative flex w-full items-center justify-center overflow-hidden rounded-2xl border border-dashed border-white/15 bg-[linear-gradient(165deg,rgba(26,21,41,0.9),rgba(14,11,22,0.95))] ${fill ? className : `${ASPECT_CLASS[aspectRatio]} ${className}`}`.trim()}
       style={frameStyle}
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(167,139,250,0.08),transparent_70%)]" />

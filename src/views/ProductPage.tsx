@@ -58,9 +58,11 @@ export function ProductPage() {
               <div className="mt-8">
                 <MediaPlaceholder
                   label="[PRODUCT_PREVIEW]"
-                  src="/media/product.jpg"
+                  src="/media/product-hero.jpg"
                   alt="Branded artwork for R6 Siege Cheats product"
                   aspectRatio="16/9"
+                  priority
+                  unoptimized
                 />
               </div>
 
