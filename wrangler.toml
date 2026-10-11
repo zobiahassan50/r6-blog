@@ -21,7 +21,9 @@ custom_domain = true
 directory = "./dist"
 binding = "ASSETS"
 not_found_handling = "404-page"
-html_handling = "drop-trailing-slash"
+# Keep trailing slashes so /guides/ serves guides/index.html (matches Astro trailingSlash: always).
+# drop-trailing-slash fought directory indexes and caused ERR_TOO_MANY_REDIRECTS.
+html_handling = "force-trailing-slash"
 run_worker_first = [
   "/*",
   "!/sitemap.xml",

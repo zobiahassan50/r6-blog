@@ -24,7 +24,7 @@ export function ContactPage() {
             <p className="mt-3 text-sm text-white/45">
               Browse the{' '}
               <a
-                href="/guides"
+                href="/guides/"
                 className="text-z-soft underline-offset-2 hover:text-white hover:underline"
               >
                 articles hub
@@ -100,13 +100,13 @@ export function ContactPage() {
             </div>
             <div className="flex shrink-0 flex-wrap items-center gap-3">
               <a
-                href="/faq"
+                href="/faq/"
                 className="inline-flex h-11 items-center justify-center rounded-full border border-z-soft/35 bg-white/[0.06] px-5 text-sm font-semibold text-white backdrop-blur-xl transition-colors hover:border-z-soft/50 hover:bg-white/[0.1]"
               >
                 FAQ
               </a>
               <a
-                href="/guides"
+                href="/guides/"
                 className="cta-gradient inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold text-white"
               >
                 Articles hub
@@ -116,7 +116,7 @@ export function ContactPage() {
         </section>
       </main>
 
-      <SiteFooter currentPath="/contact" />
+      <SiteFooter currentPath="/contact/" />
     </div>
   )
 }

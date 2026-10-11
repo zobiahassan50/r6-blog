@@ -40,7 +40,7 @@ const jsonLdExtra = [
   ...(howToLd ? [howToLd] : []),
   breadcrumbJsonLd([
     { name: 'Home', path: '/' },
-    { name: 'Articles', path: '/guides' },
+    { name: 'Articles', path: '/guides/' },
     { name: post.title, path: blogPath(post.slug) },
   ]),
 ]

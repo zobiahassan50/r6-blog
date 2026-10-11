@@ -6,9 +6,11 @@ import { sitemapBrowserViewPlugin } from './scripts/sitemap-browser-view.mjs'
 export default defineConfig({
   site: 'https://r6cheat.net',
   output: 'static',
-  trailingSlash: 'never',
+  // Match Cloudflare Pages / Workers Assets directory indexes (…/guides/index.html).
+  trailingSlash: 'always',
   compressHTML: true,
   build: {
+    format: 'directory',
     inlineStylesheets: 'auto',
     assets: '_astro',
   },

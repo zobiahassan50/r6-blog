@@ -133,14 +133,14 @@ export function ProductPage() {
                   Buy Now
                 </CheckoutLink>
                 <a
-                  href="/guides"
+                  href="/guides/"
                   className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
                 >
                   Browse articles
                   <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
                 </a>
                 <a
-                  href="/faq"
+                  href="/faq/"
                   className="mt-3 block text-center text-xs text-white/45 hover:text-white/70"
                 >
                   Read FAQ before buying
@@ -155,7 +155,7 @@ export function ProductPage() {
           heading={`${PRODUCT_NAME} FAQ`}
           intro="Price, status honesty, affiliation, and checkout — before you buy."
           items={[...PRODUCT_FAQS]}
-          moreHref="/faq"
+          moreHref="/faq/"
           moreLabel="Full site FAQ →"
         />
 

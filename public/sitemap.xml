@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://r6cheat.net/</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/" />
@@ -16,12 +16,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/r6-cheats</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/r6-cheats/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/r6-cheats" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/r6-cheats" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/r6-cheats/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/r6-cheats/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/r6-cheats.jpg</image:loc>
       <image:title>R6 Siege Cheats - r6-cheats Open Graph</image:title>
@@ -29,12 +29,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/guides</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/guides/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/guides.jpg</image:loc>
       <image:title>R6 Siege Cheats - guides Open Graph</image:title>
@@ -42,12 +42,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/guides/esp-wallhack-anticheat</loc>
+    <loc>https://r6cheat.net/guides/esp-wallhack-anticheat/</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/esp-wallhack-anticheat" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/esp-wallhack-anticheat" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/esp-wallhack-anticheat/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/esp-wallhack-anticheat/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/guides-esp-wallhack-anticheat.jpg</image:loc>
       <image:title>Rainbow Six Siege Cheats 2026: R6 ESP, Wallhack and Anti-Cheat Open Graph</image:title>
@@ -55,12 +55,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/guides/fair-play-risks</loc>
+    <loc>https://r6cheat.net/guides/fair-play-risks/</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/fair-play-risks" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/fair-play-risks" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/fair-play-risks/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/fair-play-risks/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/guides-fair-play-risks.jpg</image:loc>
       <image:title>Rainbow Six Siege Hacks 2026: Wallhack, Skeleton ESP and Chams Open Graph</image:title>
@@ -68,12 +68,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/guides/features-overview</loc>
+    <loc>https://r6cheat.net/guides/features-overview/</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/features-overview" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/features-overview" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/features-overview/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/features-overview/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/guides-features-overview.jpg</image:loc>
       <image:title>R6 Siege Cheats Features Overview Open Graph</image:title>
@@ -81,12 +81,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/guides/pc-compatibility</loc>
+    <loc>https://r6cheat.net/guides/pc-compatibility/</loc>
     <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/pc-compatibility" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/pc-compatibility" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/pc-compatibility/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/pc-compatibility/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/guides-pc-compatibility.jpg</image:loc>
       <image:title>Rainbow Six Siege Cheats 2026: ESP, Wallhack and Aimbot Open Graph</image:title>
@@ -94,12 +94,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/guides/status-before-purchase</loc>
+    <loc>https://r6cheat.net/guides/status-before-purchase/</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/status-before-purchase" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/status-before-purchase" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/guides/status-before-purchase/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/guides/status-before-purchase/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/guides-status-before-purchase.jpg</image:loc>
       <image:title>R6 Cheats Settings 2026: No Recoil, Radar and DMA Open Graph</image:title>
@@ -107,12 +107,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/forums</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/forums/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/forums" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/forums" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/forums/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/forums/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/community.jpg</image:loc>
       <image:title>R6 Siege Cheats - forums Open Graph</image:title>
@@ -120,12 +120,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/faq</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/faq/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/faq" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/faq/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/faq.jpg</image:loc>
       <image:title>R6 Siege Cheats - faq Open Graph</image:title>
@@ -133,12 +133,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/contact</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/contact/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/contact/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/contact.jpg</image:loc>
       <image:title>R6 Siege Cheats - contact Open Graph</image:title>
@@ -146,12 +146,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/privacy</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/privacy/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/privacy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/privacy/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/privacy.jpg</image:loc>
       <image:title>R6 Siege Cheats - privacy Open Graph</image:title>
@@ -159,12 +159,12 @@
     </image:image>
   </url>
   <url>
-    <loc>https://r6cheat.net/terms</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://r6cheat.net/terms/</loc>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/terms" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://r6cheat.net/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://r6cheat.net/terms/" />
     <image:image>
       <image:loc>https://r6cheat.net/og/terms.jpg</image:loc>
       <image:title>R6 Siege Cheats - terms Open Graph</image:title>

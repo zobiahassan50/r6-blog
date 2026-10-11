@@ -16,24 +16,24 @@ const HREFLANG = ['en', 'x-default']
 
 const STATIC_ROUTES = [
   '/',
-  '/guides',
-  '/forums',
-  '/r6-cheats',
-  '/faq',
-  '/contact',
-  '/privacy',
-  '/terms',
+  '/guides/',
+  '/forums/',
+  '/r6-cheats/',
+  '/faq/',
+  '/contact/',
+  '/privacy/',
+  '/terms/',
 ]
 
 const PAGE_META = {
   '/': { priority: '1.0', changefreq: 'daily' },
-  '/guides': { priority: '0.9', changefreq: 'daily' },
-  '/forums': { priority: '0.7', changefreq: 'weekly' },
-  '/r6-cheats': { priority: '0.95', changefreq: 'daily' },
-  '/faq': { priority: '0.6', changefreq: 'monthly' },
-  '/contact': { priority: '0.5', changefreq: 'monthly' },
-  '/privacy': { priority: '0.3', changefreq: 'yearly' },
-  '/terms': { priority: '0.3', changefreq: 'yearly' },
+  '/guides/': { priority: '0.9', changefreq: 'daily' },
+  '/forums/': { priority: '0.7', changefreq: 'weekly' },
+  '/r6-cheats/': { priority: '0.95', changefreq: 'daily' },
+  '/faq/': { priority: '0.6', changefreq: 'monthly' },
+  '/contact/': { priority: '0.5', changefreq: 'monthly' },
+  '/privacy/': { priority: '0.3', changefreq: 'yearly' },
+  '/terms/': { priority: '0.3', changefreq: 'yearly' },
 }
 
 const ALL_SITE_IMAGES = [
@@ -67,7 +67,10 @@ function asciiSafe(value) {
 }
 
 function siteUrl(path) {
-  return !path || path === '/' ? `${SITE}/` : `${SITE}${path.startsWith('/') ? path : `/${path}`}`
+  if (!path || path === '/') return `${SITE}/`
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  if (/\.[a-z0-9]+$/i.test(normalized)) return `${SITE}${normalized}`
+  return `${SITE}${normalized.endsWith('/') ? normalized : `${normalized}/`}`
 }
 
 function loadBlogs() {
@@ -88,7 +91,10 @@ function loadBlogs() {
 function loadStaticRoutes() {
   return readdirSync(pagesDir, { withFileTypes: true })
     .filter((entry) => entry.isFile() && entry.name.endsWith('.astro') && entry.name !== '404.astro')
-    .map((entry) => (entry.name === 'index.astro' ? '/' : `/${entry.name.slice(0, -6)}`))
+    .map((entry) => {
+      if (entry.name === 'index.astro') return '/'
+      return `/${entry.name.slice(0, -6)}/`
+    })
 }
 
 function alternateLinks(url) {
@@ -123,8 +129,13 @@ ${media.join('\n')}
 function imagesForPath(path, blogs) {
   if (STATIC_ROUTES.includes(path)) {
     // Forums reuses the community OG asset (same visual hub art).
-    const file = path === '/' ? 'home' : path === '/forums' ? 'community' : path.slice(1)
-    const label = path === '/' ? 'home' : path === '/forums' ? 'forums' : file
+    const file =
+      path === '/'
+        ? 'home'
+        : path === '/forums/'
+          ? 'community'
+          : path.replace(/^\/|\/$/g, '')
+    const label = path === '/' ? 'home' : path === '/forums/' ? 'forums' : file
     return [
       {
         src: `/og/${file}.jpg`,
@@ -134,8 +145,8 @@ function imagesForPath(path, blogs) {
     ]
   }
 
-  if (path.startsWith('/guides/')) {
-    const slug = path.slice('/guides/'.length)
+  if (path.startsWith('/guides/') && path !== '/guides/') {
+    const slug = path.slice('/guides/'.length).replace(/\/$/, '')
     const blog = blogs.find((b) => b.slug === slug)
     return [
       {
@@ -158,24 +169,28 @@ function imagesForPath(path, blogs) {
 }
 
 function collectAllPaths(blogs, staticRoutes) {
-  const paths = new Set([...staticRoutes, ...blogs.map((blog) => `/guides/${blog.slug}`)])
+  const paths = new Set([
+    ...staticRoutes,
+    ...blogs.map((blog) => `/guides/${blog.slug}/`),
+  ])
   // Never index error page
   paths.delete('/404')
+  paths.delete('/404/')
   return [...paths]
 }
 
 function buildSitemap(blogs, allPaths) {
-  const blogByPath = new Map(blogs.map((b) => [`/guides/${b.slug}`, b]))
+  const blogByPath = new Map(blogs.map((b) => [`/guides/${b.slug}/`, b]))
 
   const sorted = [...allPaths].sort((a, b) => {
     const rank = (path) => {
       if (path === '/') return 0
-      if (path === '/r6-cheats') return 1
-      if (path === '/guides') return 2
-      if (path.startsWith('/guides/')) return 3
-      if (path === '/forums') return 4
-      if (path === '/faq') return 5
-      if (path === '/contact') return 6
+      if (path === '/r6-cheats/') return 1
+      if (path === '/guides/') return 2
+      if (path.startsWith('/guides/') && path !== '/guides/') return 3
+      if (path === '/forums/') return 4
+      if (path === '/faq/') return 5
+      if (path === '/contact/') return 6
       return 7
     }
     const diff = rank(a) - rank(b)

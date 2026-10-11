@@ -142,7 +142,7 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
           </div>
         </section>
 
-        <SiteFooter currentPath="/forums" />
+        <SiteFooter currentPath="/forums/" />
       </main>
     </div>
   )

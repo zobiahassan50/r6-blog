@@ -59,7 +59,7 @@ export const SEO = {
     title: 'R6 Siege Cheats | PC Product Details & Checkout',
     description:
       'R6 Siege Cheats for Windows PC — module overview, compatibility notes, pricing from $35, and external checkout.',
-    path: '/r6-cheats',
+    path: '/r6-cheats/',
     ogType: 'product',
     image: PAGE_OG.product,
     imageAlt: 'R6 Siege Cheats product details for PC',
@@ -69,7 +69,7 @@ export const SEO = {
     title: 'R6 Siege Cheats Articles | ESP, Wallhack, Compatibility & Risk',
     description:
       'Original articles about R6 Siege Cheats — features overview, R6 ESP and wallhack, anti-cheat context, settings, and hacks explainers.',
-    path: '/guides',
+    path: '/guides/',
     ogType: 'website',
     image: PAGE_OG.guides,
     imageAlt: 'R6 Siege Cheats articles hub',
@@ -79,7 +79,7 @@ export const SEO = {
     title: 'R6 Siege Cheats Guides | Setup, ESP, Compatibility & FAQ',
     description:
       'Forum-style R6 Siege Cheats guides — setup, ESP and aimbot terminology, BattlEye compatibility notes, configuration, troubleshooting, and FAQ before checkout.',
-    path: '/forums',
+    path: '/forums/',
     ogType: 'website',
     image: PAGE_OG.community,
     imageAlt: 'R6 Siege Cheats forums and setup guides',
@@ -89,7 +89,7 @@ export const SEO = {
     title: 'R6 Siege Cheats FAQ',
     description:
       'Frequently asked questions about R6 Siege Cheats — pricing, checkout, compatibility and risk.',
-    path: '/faq',
+    path: '/faq/',
     ogType: 'website',
     image: PAGE_OG.faq,
     imageAlt: 'R6 Siege Cheats frequently asked questions',
@@ -98,7 +98,7 @@ export const SEO = {
   contact: {
     title: 'Contact R6 Siege Cheats',
     description: 'Contact R6 Siege Cheats with questions about our articles or this site.',
-    path: '/contact',
+    path: '/contact/',
     ogType: 'website',
     image: PAGE_OG.contact,
     imageAlt: 'Contact R6 Siege Cheats',
@@ -107,7 +107,7 @@ export const SEO = {
   privacy: {
     title: 'Privacy Policy | R6 Siege Cheats',
     description: 'How R6 Siege Cheats handles site analytics and contact messages.',
-    path: '/privacy',
+    path: '/privacy/',
     ogType: 'website',
     image: PAGE_OG.privacy,
     imageAlt: 'R6 Siege Cheats privacy policy',
@@ -116,7 +116,7 @@ export const SEO = {
   terms: {
     title: 'Terms of Use | R6 Siege Cheats',
     description: 'Terms of use for R6 Siege Cheats, including purchase and risk disclosures.',
-    path: '/terms',
+    path: '/terms/',
     ogType: 'website',
     image: PAGE_OG.terms,
     imageAlt: 'R6 Siege Cheats terms of use',
@@ -135,5 +135,8 @@ export const HOME_HEADINGS = {
 
 export function absoluteUrl(path: string) {
   if (!path || path === '/') return `${SITE_URL}/`
-  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  // HTML pages use trailing slashes; leave asset/file URLs alone.
+  if (/\.[a-z0-9]+$/i.test(normalized)) return `${SITE_URL}${normalized}`
+  return `${SITE_URL}${normalized.endsWith('/') ? normalized : `${normalized}/`}`
 }

@@ -21,8 +21,8 @@ function htmlFiles(directory) {
 function pageUrl(file) {
   const page = relative(dist, file).replaceAll('\\', '/')
   if (page === 'index.html') return `${site}/`
-  if (page.endsWith('/index.html')) return `${site}/${page.slice(0, -11)}`
-  return `${site}/${page.slice(0, -5)}`
+  if (page.endsWith('/index.html')) return `${site}/${page.slice(0, -11)}/`
+  return `${site}/${page.slice(0, -5)}/`
 }
 
 function decodeEntities(value = '') {
@@ -206,8 +206,14 @@ if (!robots.includes('Allow: /sitemap.xml')) fail('robots.txt must explicitly al
 
 const redirects = readFileSync(join(root, 'public', '_redirects'), 'utf8')
 if (!redirects.includes('/dayz-cheats')) fail('_redirects must map the legacy /dayz-cheats route')
-if (!redirects.includes('/community')) fail('_redirects must map legacy /community to /forums')
+if (!redirects.includes('/community')) fail('_redirects must map legacy /community to /forums/')
 if (!redirects.includes('/operators')) fail('_redirects must redirect removed /operators')
+if (/^\/\*\s+\/index\.html\s+200/m.test(redirects)) {
+  fail('_redirects must not include an SPA /* /index.html fallback (causes redirect loops)')
+}
+if (/^\/guides\/\s+\/guides\s+301/m.test(redirects)) {
+  fail('_redirects must not strip trailing slash from /guides/ (conflicts with directory indexes)')
+}
 
 for (const asset of [
   'public/manifest.webmanifest',

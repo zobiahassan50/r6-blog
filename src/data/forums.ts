@@ -34,7 +34,7 @@ export const FORUM_THREADS: ForumThread[] = [
     title: 'Rainbow Six Siege Updates',
     excerpt:
       'Season and game updates can affect third-party tools. Use the articles hub for current compatibility language — this page does not host a live patch tracker.',
-    href: '/guides',
+    href: '/guides/',
     tag: 'Updates',
     readMinutes: 3,
     searchTerms: 'rainbow six siege updates r6 patch season game version',
@@ -65,7 +65,7 @@ export const FORUM_THREADS: ForumThread[] = [
     title: 'R6 Troubleshooting and Support',
     excerpt:
       'Need help with checkout, access, or product questions? Start with FAQ answers, then use Contact if you still need support.',
-    href: '/contact',
+    href: '/contact/',
     tag: 'Support',
     readMinutes: 4,
     searchTerms: 'r6 troubleshooting support errors checkout help contact',
@@ -97,7 +97,7 @@ export const FORUM_THREADS: ForumThread[] = [
     title: 'R6 Frequently Asked Questions',
     excerpt:
       'Pricing, compatibility, risk, and delivery questions for R6 Siege Cheats answered in one FAQ.',
-    href: '/faq',
+    href: '/faq/',
     tag: 'FAQ',
     readMinutes: 4,
     searchTerms: 'r6 faq frequently asked questions pricing risk compatibility',

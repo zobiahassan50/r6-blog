@@ -142,7 +142,7 @@ export function HomePage() {
                 </p>
               </div>
               <a
-                href="/guides"
+                href="/guides/"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
               >
                 All articles
@@ -209,7 +209,7 @@ export function HomePage() {
                 </p>
               </div>
               <a
-                href="/forums"
+                href="/forums/"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"
               >
                 View All
@@ -251,7 +251,7 @@ export function HomePage() {
         <section id="about" className="page-band page-x border-t border-white/10 py-16 sm:py-20">
           <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-2">
             <a
-              href="/faq"
+              href="/faq/"
               className="page-card group flex h-full min-h-[240px] flex-col justify-between rounded-2xl p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-purple-500/30 hover:bg-gradient-to-br hover:from-purple-900/20 hover:to-transparent hover:shadow-[0_8px_30px_rgba(168,85,247,0.15)] sm:rounded-3xl sm:p-8 lg:p-10"
             >
               <div>
@@ -312,7 +312,7 @@ export function HomePage() {
           heading={HOME_HEADINGS.h2Faq}
           intro="What this site covers, how buying works, and how risk and fair play are handled."
           items={HOME_FAQS}
-          moreHref="/faq"
+          moreHref="/faq/"
           moreLabel="Full FAQ →"
         />
 

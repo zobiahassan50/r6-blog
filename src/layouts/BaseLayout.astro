@@ -38,10 +38,10 @@ const isHome = seo.path === '/' || seo.path === ''
 /** Preload OG only when it supports LCP (home, guides hub, guide articles) — not text pages */
 const preloadOg =
   isHome ||
-  seo.path === '/r6-cheats' ||
-  seo.path === '/guides' ||
+  seo.path === '/r6-cheats/' ||
+  seo.path === '/guides/' ||
   seo.path.startsWith('/guides/') ||
-  seo.path === '/forums'
+  seo.path === '/forums/'
 ---
 
 <!doctype html>

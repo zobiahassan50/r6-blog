@@ -6,10 +6,10 @@ import { SITE_FAQS } from '../data/faqs'
 import { breadcrumbJsonLd, faqPageJsonLd } from '../lib/seo'
 
 const jsonLdExtra = [
-  faqPageJsonLd(SITE_FAQS, absoluteUrl('/faq')),
+  faqPageJsonLd(SITE_FAQS, absoluteUrl('/faq/')),
   breadcrumbJsonLd([
     { name: 'Home', path: '/' },
-    { name: 'FAQ', path: '/faq' },
+    { name: 'FAQ', path: '/faq/' },
   ]),
 ]
 ---

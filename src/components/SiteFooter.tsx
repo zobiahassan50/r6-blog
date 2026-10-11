@@ -19,12 +19,12 @@ function isCurrent(to: string, currentPath?: string) {
   return path === target || path.startsWith(`${target}/`)
 }
 
-const PAGE_LINKS = SITE_PAGE_LINKS.filter((l) => !['/privacy', '/terms'].includes(l.to))
+const PAGE_LINKS = SITE_PAGE_LINKS.filter((l) => !['/privacy/', '/terms/'].includes(l.to))
 
 const LEGAL_LINKS = [
-  { label: 'Privacy', to: '/privacy' },
-  { label: 'Terms', to: '/terms' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Privacy', to: '/privacy/' },
+  { label: 'Terms', to: '/terms/' },
+  { label: 'Contact', to: '/contact/' },
 ] as const
 
 export function SiteFooter({ currentPath }: SiteFooterProps) {
@@ -89,7 +89,7 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
                 ))}
                 <li>
                   <a
-                    href="/guides"
+                    href="/guides/"
                     className="font-medium text-white/80 transition-colors hover:text-white"
                   >
                     All articles →

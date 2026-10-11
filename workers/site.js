@@ -70,7 +70,10 @@ export default {
     }
     const contentType = headers.get('content-type') || ''
     if (contentType.includes('text/html')) {
-      const canonical = `https://${url.hostname}${url.pathname === '/' ? '/' : url.pathname.replace(/\/$/, '') || '/'}`
+      // Prefer trailing-slash canonicals (matches Astro trailingSlash: always).
+      let pathname = url.pathname || '/'
+      if (pathname !== '/' && !pathname.endsWith('/')) pathname = `${pathname}/`
+      const canonical = `https://${url.hostname}${pathname}`
       const existing = headers.get('Link')
       const linkCanonical = `<${canonical}>; rel="canonical"`
       headers.set('Link', existing ? `${existing}, ${linkCanonical}` : linkCanonical)

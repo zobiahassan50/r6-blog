@@ -20,7 +20,7 @@ function absoluteAsset(src: string) {
   return src.startsWith('http') ? src : `${SITE_URL}${src.startsWith('/') ? src : `/${src}`}`
 }
 
-const HUB_PATHS = ['/', '/guides', '/forums', '/r6-cheats']
+const HUB_PATHS = ['/', '/guides/', '/forums/', '/r6-cheats/']
 
 export const PRODUCT_ID = `${SITE_URL}/#product`
 
@@ -155,7 +155,7 @@ export function articleJsonLd(post: BlogPost, pathOrUrl: string, image: string) 
     author: { '@id': `${SITE_URL}/#organization` },
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: url,
-    isPartOf: { '@id': `${SITE_URL}/guides#webpage` },
+    isPartOf: { '@id': `${SITE_URL}/guides/#webpage` },
     image: absoluteAsset(image),
     inLanguage: 'en',
   }

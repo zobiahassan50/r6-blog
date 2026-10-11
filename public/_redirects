@@ -1,68 +1,75 @@
 # Cloudflare Workers/Pages redirects
+# Live pages use trailing slashes (Astro trailingSlash: always + force-trailing-slash).
+# Do NOT strip trailing slashes on existing routes — that causes redirect loops with directory indexes.
+# No SPA fallback (/* /index.html 200) — this is a static Astro site.
 
-# Trailing-slash canonicalization for current routes
-/guides/        /guides        301
-/community      /forums        301
-/community/     /forums        301
-/r6-cheats/     /r6-cheats     301
-/product        /r6-cheats     301
-/product/       /r6-cheats     301
-/faq/           /faq           301
-/contact/       /contact       301
-/privacy/       /privacy       301
-/terms/         /terms         301
+# Bare paths → trailing-slash canonicals for current hubs
+/guides         /guides/        301
+/forums         /forums/        301
+/r6-cheats      /r6-cheats/     301
+/faq            /faq/           301
+/contact        /contact/       301
+/privacy        /privacy/       301
+/terms          /terms/         301
+
+# Legacy / renamed routes
+/community      /forums/        301
+/community/     /forums/        301
+/product        /r6-cheats/     301
+/product/       /r6-cheats/     301
 
 # Removed general R6 fan sections → articles hub
-/operators      /guides        301
-/operators/     /guides        301
-/operators/*    /guides        301
-/maps           /guides        301
-/maps/          /guides        301
-/maps/*         /guides        301
-/updates        /guides        301
-/updates/       /guides        301
-/updates/*      /guides        301
+/operators      /guides/        301
+/operators/     /guides/        301
+/operators/*    /guides/        301
+/maps           /guides/        301
+/maps/          /guides/        301
+/maps/*         /guides/        301
+/updates        /guides/        301
+/updates/       /guides/        301
+/updates/*      /guides/        301
 
 # Legacy DayZ routes
-/dayz-cheats    /r6-cheats     301
-/dayz-cheats/   /r6-cheats     301
-/reviews        /              301
-/reviews/       /              301
-/refunds        /terms         301
-/refunds/       /terms         301
-/support        /contact       301
-/support/       /contact       301
-/forums/        /forums        301
+/dayz-cheats    /r6-cheats/     301
+/dayz-cheats/   /r6-cheats/     301
+/reviews        /               301
+/reviews/       /               301
+/refunds        /terms/         301
+/refunds/       /terms/         301
+/support        /contact/       301
+/support/       /contact/       301
 
-# Deleted general-guide article slugs
-/guides/buying-guide              /guides/esp-wallhack-anticheat  301
-/guides/buying-guide/             /guides/esp-wallhack-anticheat  301
-/guides/understanding-anticheat   /guides/fair-play-risks   301
-/guides/understanding-anticheat/  /guides/fair-play-risks   301
-/guides/ranked-3-0                /guides                   301
-/guides/ranked-3-0/               /guides                   301
-/guides/operator-guide            /guides                   301
-/guides/operator-guide/           /guides                   301
-/guides/maps-guide                /guides                   301
-/guides/maps-guide/               /guides                   301
-/guides/season-updates            /guides                   301
-/guides/season-updates/           /guides                   301
-/guides/beginner-attack-defend    /guides                   301
-/guides/beginner-attack-defend/   /guides                   301
-/guides/map-knowledge             /guides                   301
-/guides/map-knowledge/            /guides                   301
-/guides/operator-gadgets          /guides                   301
-/guides/operator-gadgets/         /guides                   301
+# Deleted / renamed guide article slugs
+/guides/buying-guide              /guides/esp-wallhack-anticheat/  301
+/guides/buying-guide/             /guides/esp-wallhack-anticheat/  301
+/guides/understanding-anticheat   /guides/fair-play-risks/   301
+/guides/understanding-anticheat/  /guides/fair-play-risks/   301
+/guides/ranked-3-0                /guides/                   301
+/guides/ranked-3-0/               /guides/                   301
+/guides/operator-guide            /guides/                   301
+/guides/operator-guide/           /guides/                   301
+/guides/maps-guide                /guides/                   301
+/guides/maps-guide/               /guides/                   301
+/guides/season-updates            /guides/                   301
+/guides/season-updates/           /guides/                   301
+/guides/beginner-attack-defend    /guides/                   301
+/guides/beginner-attack-defend/   /guides/                   301
+/guides/map-knowledge             /guides/                   301
+/guides/map-knowledge/            /guides/                   301
+/guides/operator-gadgets          /guides/                   301
+/guides/operator-gadgets/         /guides/                   301
+
+# Guide article bare slug → trailing slash
+/guides/:slug   /guides/:slug/  301
 
 # Legacy blog routes
-/articles       /guides        301
-/articles/      /guides        301
-/articles/*     /guides        301
-/blog           /guides        301
-/blog/          /guides        301
-/blog/:slug/    /guides/:slug  301
-/blog/:slug     /guides/:slug  301
-/guides/:slug/  /guides/:slug  301
+/articles       /guides/        301
+/articles/      /guides/        301
+/articles/*     /guides/        301
+/blog           /guides/        301
+/blog/          /guides/        301
+/blog/:slug/    /guides/:slug/  301
+/blog/:slug     /guides/:slug/  301
 
 # Legacy sitemaps
 /sitemap-pages.xml     /sitemap.xml  301

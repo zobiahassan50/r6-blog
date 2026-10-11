@@ -149,7 +149,7 @@ export function GuidesPage({ initialQuery = '' }: GuidesPageProps) {
           </div>
         </section>
 
-        <SiteFooter currentPath="/guides" />
+        <SiteFooter currentPath="/guides/" />
       </main>
     </div>
   )

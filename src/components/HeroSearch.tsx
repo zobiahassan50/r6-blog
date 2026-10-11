@@ -86,7 +86,7 @@ export function HeroSearch({
     if (submitTo === 'filter' || (submitTo === 'forums' && onChange)) {
       return
     }
-    const base = submitTo === 'forums' ? '/forums' : '/guides'
+    const base = submitTo === 'forums' ? '/forums/' : '/guides/'
     window.location.assign(term ? `${base}?q=${encodeURIComponent(term)}` : base)
   }
 

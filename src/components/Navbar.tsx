@@ -8,11 +8,11 @@ import { useScrollDirection } from '../hooks/useScrollDirection'
 
 /** Primary nav: Forums + Product + Guides + FAQ + Contact + Buy CTA. */
 const NAV_LINKS = [
-  { label: 'Forums', to: '/forums' },
+  { label: 'Forums', to: '/forums/' },
   { label: 'Product', to: PRODUCT_PATH },
-  { label: 'Guides', to: '/guides' },
-  { label: 'FAQ', to: '/faq' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Guides', to: '/guides/' },
+  { label: 'FAQ', to: '/faq/' },
+  { label: 'Contact', to: '/contact/' },
 ] as const
 
 type NavbarProps = {

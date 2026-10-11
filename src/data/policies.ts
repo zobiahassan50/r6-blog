@@ -5,7 +5,7 @@ export type PolicySection = {
 
 export type PolicyPageContent = {
   slug: 'privacy' | 'terms'
-  path: '/privacy' | '/terms'
+  path: '/privacy/' | '/terms/'
   title: string
   description: string
   h1: string
@@ -17,7 +17,7 @@ export type PolicyPageContent = {
 export const POLICY_PAGES: PolicyPageContent[] = [
   {
     slug: 'privacy',
-    path: '/privacy',
+    path: '/privacy/',
     title: 'Privacy Policy | R6 Siege Cheats',
     description: 'How R6 Siege Cheats handles basic site analytics and contact messages.',
     h1: 'Privacy Policy',
@@ -49,13 +49,13 @@ export const POLICY_PAGES: PolicyPageContent[] = [
       },
     ],
     related: [
-      { label: 'Terms of Use', to: '/terms' },
-      { label: 'Contact', to: '/contact' },
+      { label: 'Terms of Use', to: '/terms/' },
+      { label: 'Contact', to: '/contact/' },
     ],
   },
   {
     slug: 'terms',
-    path: '/terms',
+    path: '/terms/',
     title: 'Terms of Use | R6 Siege Cheats',
     description: 'Terms of use for R6 Siege Cheats, including purchase and risk disclosures.',
     h1: 'Terms of Use',
@@ -82,8 +82,8 @@ export const POLICY_PAGES: PolicyPageContent[] = [
       },
     ],
     related: [
-      { label: 'Privacy Policy', to: '/privacy' },
-      { label: 'Product', to: '/r6-cheats' },
+      { label: 'Privacy Policy', to: '/privacy/' },
+      { label: 'Product', to: '/r6-cheats/' },
     ],
   },
 ]

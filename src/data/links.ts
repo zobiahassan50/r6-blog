@@ -9,7 +9,7 @@ export const SITE_PAGE_LINKS = [
   { label: 'Home', to: '/', description: 'R6 Siege Cheats product site' },
   {
     label: 'Guides',
-    to: '/guides',
+    to: '/guides/',
     description: 'Buying, compatibility and risk articles',
   },
   {
@@ -19,23 +19,23 @@ export const SITE_PAGE_LINKS = [
   },
   {
     label: 'Forums',
-    to: '/forums',
+    to: '/forums/',
     description: 'R6 setup, compatibility, and troubleshooting guides',
   },
-  { label: 'FAQ', to: '/faq', description: 'Frequently asked questions about this site' },
+  { label: 'FAQ', to: '/faq/', description: 'Frequently asked questions about this site' },
   {
     label: 'Contact',
-    to: '/contact',
+    to: '/contact/',
     description: 'Send questions about our articles or this site',
   },
   {
     label: 'Privacy policy',
-    to: '/privacy',
+    to: '/privacy/',
     description: 'How we handle analytics and contact messages',
   },
   {
     label: 'Terms of use',
-    to: '/terms',
+    to: '/terms/',
     description: 'Terms for using this site and buying the product',
   },
 ] as const

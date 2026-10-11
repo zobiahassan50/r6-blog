@@ -4,7 +4,7 @@
  */
 
 export const PRODUCT_SLUG = 'r6-cheats'
-export const PRODUCT_PATH = '/r6-cheats'
+export const PRODUCT_PATH = '/r6-cheats/'
 export const PRODUCT_NAME = 'R6 Siege Cheats'
 export const PRODUCT_PRICE_USD = '35'
 
@@ -80,5 +80,5 @@ export function isCheckoutConfigured() {
 }
 
 export function getCheckoutHref() {
-  return isCheckoutConfigured() ? CHECKOUT_URL : '/contact'
+  return isCheckoutConfigured() ? CHECKOUT_URL : '/contact/'
 }
