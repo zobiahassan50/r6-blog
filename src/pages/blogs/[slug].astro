@@ -16,7 +16,7 @@ const { slug } = Astro.params
 const post = getBlog(slug!)
 
 if (!post) {
-  return Astro.redirect('/404')
+  return Astro.redirect('/404/')
 }
 
 const ogImage = guideOgImage(post.slug)

@@ -54,7 +54,7 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                 <HeroSearch
                   value={q}
                   onChange={setQ}
-                  submitTo="forums"
+                  submitTo="filter"
                   corpus="forums"
                   placeholder={FORUM_PAGE.searchPlaceholder}
                 />

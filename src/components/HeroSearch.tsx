@@ -25,6 +25,8 @@ type HeroSearchProps = {
   placeholder?: string
   autoFocus?: boolean
   className?: string
+  /** Compact control for the site navbar */
+  variant?: 'hero' | 'nav'
 }
 
 function resolveCorpus(submitTo: HeroSearchProps['submitTo'], corpus?: SearchCorpus): SearchCorpus {
@@ -47,7 +49,7 @@ function searchHits(term: string, corpus: SearchCorpus): Hit[] {
         }).map((post) => ({
           key: `blog-${post.slug}`,
           title: post.title,
-          meta: post.tag,
+          meta: `Blog · ${post.tag}`,
           href: blogPath(post.slug),
         }))
       : []
@@ -60,7 +62,7 @@ function searchHits(term: string, corpus: SearchCorpus): Hit[] {
         }).map((guide) => ({
           key: `guide-${guide.id}`,
           title: guide.title,
-          meta: guide.tag,
+          meta: `Guide · ${guide.tag}`,
           href: guide.href,
         }))
       : []
@@ -74,12 +76,18 @@ function searchHits(term: string, corpus: SearchCorpus): Hit[] {
         }).map((thread) => ({
           key: `forum-${thread.id}`,
           title: thread.title,
-          meta: thread.board,
+          meta: `Forum · ${thread.board}`,
           href: thread.href,
         }))
       : []
 
   return [...guides, ...blogs, ...forums].slice(0, 8)
+}
+
+function hubForCorpus(corpus: SearchCorpus, submitTo: HeroSearchProps['submitTo']) {
+  if (submitTo === 'forums' || corpus === 'forums') return '/forums/'
+  if (submitTo === 'guides' || corpus === 'guides') return '/guides/'
+  return '/blogs/'
 }
 
 export function HeroSearch({
@@ -90,6 +98,7 @@ export function HeroSearch({
   placeholder = 'Search R6 blogs…',
   autoFocus = false,
   className = '',
+  variant = 'hero',
 }: HeroSearchProps) {
   const listId = useId()
   const rootRef = useRef<HTMLDivElement>(null)
@@ -99,6 +108,11 @@ export function HeroSearch({
 
   const q = value !== undefined ? value : internal
   const activeCorpus = resolveCorpus(submitTo, corpus)
+  const isNav = variant === 'nav'
+
+  useEffect(() => {
+    if (value !== undefined) setInternal(value)
+  }, [value])
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -127,8 +141,17 @@ export function HeroSearch({
   function submit(e?: SyntheticEvent) {
     e?.preventDefault()
     const term = q.trim()
+    if (!term) {
+      if (isNav) return
+      window.location.assign(hubForCorpus(activeCorpus, submitTo))
+      return
+    }
     if (matches.length === 1) {
       goToMatch(0)
+      return
+    }
+    if (matches.length > 1 && open && matches[active]) {
+      goToMatch(active)
       return
     }
     setOpen(false)
@@ -136,9 +159,8 @@ export function HeroSearch({
     if (submitTo === 'filter' || (submitTo === 'forums' && onChange)) {
       return
     }
-    const base =
-      submitTo === 'forums' ? '/forums/' : submitTo === 'guides' ? '/guides/' : '/blogs/'
-    window.location.assign(term ? `${base}?q=${encodeURIComponent(term)}` : base)
+    const base = hubForCorpus(activeCorpus, submitTo)
+    window.location.assign(`${base}?q=${encodeURIComponent(term)}`)
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
@@ -163,14 +185,31 @@ export function HeroSearch({
   const showList = open && matches.length > 0
 
   return (
-    <div ref={rootRef} className={`relative z-50 w-full ${className || 'max-w-xl'}`.trim()}>
+    <div
+      ref={rootRef}
+      className={`relative z-50 w-full ${className || (isNav ? '' : 'max-w-xl')}`.trim()}
+    >
       <form
         onSubmit={submit}
-        className="relative z-50 flex w-full max-w-full flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:bg-white sm:p-1"
+        className={
+          isNav
+            ? 'relative z-50 flex w-full items-center gap-1.5 rounded-full border border-z-soft/25 bg-z-elevated/70 px-2.5 py-1.5 backdrop-blur-md'
+            : 'relative z-50 flex w-full max-w-full flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:bg-white sm:p-1'
+        }
         role="search"
       >
-        <div className="flex w-full min-w-0 items-center gap-2 rounded-full bg-white px-3.5 py-2.5 sm:flex-1 sm:rounded-none sm:bg-transparent sm:px-3.5 sm:py-1.5">
-          <Search className="h-4 w-4 shrink-0 text-gray-400" strokeWidth={1.75} aria-hidden />
+        <div
+          className={
+            isNav
+              ? 'flex min-w-0 flex-1 items-center gap-1.5'
+              : 'flex w-full min-w-0 items-center gap-2 rounded-full bg-white px-3.5 py-2.5 sm:flex-1 sm:rounded-none sm:bg-transparent sm:px-3.5 sm:py-1.5'
+          }
+        >
+          <Search
+            className={`h-4 w-4 shrink-0 ${isNav ? 'text-z-ink/45' : 'text-gray-400'}`}
+            strokeWidth={1.75}
+            aria-hidden
+          />
           <input
             type="search"
             value={q}
@@ -183,24 +222,40 @@ export function HeroSearch({
             aria-autocomplete="list"
             aria-controls={listId}
             aria-expanded={showList}
-            className="w-full min-w-0 flex-1 bg-transparent text-sm text-gray-900 outline-none placeholder-gray-400"
+            className={
+              isNav
+                ? 'w-full min-w-0 flex-1 bg-transparent text-sm text-z-ink outline-none placeholder:text-z-ink/40'
+                : 'w-full min-w-0 flex-1 bg-transparent text-sm text-gray-900 outline-none placeholder-gray-400'
+            }
             autoComplete="off"
           />
         </div>
-        <button
-          type="submit"
-          className="cta-gradient inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-auto sm:shrink-0 sm:py-2"
-        >
-          Go
-          <ArrowRight className="h-4 w-4" strokeWidth={2} />
-        </button>
+        {isNav ? (
+          <button
+            type="submit"
+            aria-label="Search"
+            className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-z-accent/25 text-z-ink transition-colors hover:bg-z-accent/40"
+          >
+            <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="cta-gradient inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-auto sm:shrink-0 sm:py-2"
+          >
+            Go
+            <ArrowRight className="h-4 w-4" strokeWidth={2} />
+          </button>
+        )}
       </form>
 
       {showList ? (
         <ul
           id={listId}
           role="listbox"
-          className="search-results absolute left-0 right-0 top-full z-[60] mt-2 max-h-72 overflow-y-auto rounded-2xl border border-z-soft/20 bg-z-card py-2"
+          className={`search-results absolute top-full z-[60] mt-2 max-h-72 overflow-y-auto rounded-2xl border border-z-soft/20 bg-z-card py-2 ${
+            isNav ? 'left-auto right-0 w-[min(22rem,calc(100vw-2rem))]' : 'left-0 right-0'
+          }`}
         >
           {matches.map((item, i) => (
             <li key={item.key} role="option" aria-selected={i === active}>

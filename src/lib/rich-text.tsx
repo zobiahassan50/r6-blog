@@ -9,6 +9,14 @@ function isAllowedHref(href: string) {
   return false
 }
 
+/** Keep internal routes on trailing-slash canonicals. */
+function normalizeInternalHref(href: string) {
+  if (!href.startsWith('/') || href.startsWith('//')) return href
+  if (href.includes('?') || href.includes('#')) return href
+  if (href.endsWith('/')) return href
+  return `${href}/`
+}
+
 /** Render paragraph text with optional markdown-style `[label](/path)` links. */
 export function renderRichParagraph(text: string): ReactNode {
   const nodes: ReactNode[] = []
@@ -18,13 +26,14 @@ export function renderRichParagraph(text: string): ReactNode {
 
   while ((match = re.exec(text)) !== null) {
     if (match.index > last) nodes.push(text.slice(last, match.index))
-    const [, label, href] = match
-    if (isAllowedHref(href)) {
-      const external = href === CHECKOUT_URL
+    const [, label, rawHref] = match
+    const href = isAllowedHref(rawHref) ? normalizeInternalHref(rawHref) : rawHref
+    if (isAllowedHref(rawHref)) {
+      const external = rawHref === CHECKOUT_URL
       nodes.push(
         <a
           key={`${href}-${match.index}`}
-          href={href}
+          href={external ? rawHref : href}
           className="text-z-soft underline-offset-2 hover:text-white hover:underline"
           {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >

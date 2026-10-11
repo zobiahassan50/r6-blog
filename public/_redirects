@@ -72,9 +72,9 @@
 /guides/operator-gadgets               /blogs/                             301
 /guides/operator-gadgets/              /blogs/                             301
 
-# Any remaining /guides/:slug → blogs (catch-all after specific rules)
-/guides/:slug   /blogs/:slug/   301
-/guides/:slug/  /blogs/:slug/   301
+# Any remaining unknown /guides/:slug → guides hub (avoid /blogs/:missing 404s)
+/guides/:slug   /guides/   301
+/guides/:slug/  /guides/   301
 
 # Blog article bare slug → trailing slash
 /blogs/:slug    /blogs/:slug/   301
