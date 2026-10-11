@@ -20,7 +20,8 @@ custom_domain = true
 [assets]
 directory = "./dist"
 binding = "ASSETS"
-not_found_handling = "404-page"
+# Unknown routes are redirected to / in workers/site.js (no public 404 page).
+not_found_handling = "none"
 # Keep trailing slashes so /guides/ serves guides/index.html (matches Astro trailingSlash: always).
 # drop-trailing-slash fought directory indexes and caused ERR_TOO_MANY_REDIRECTS.
 html_handling = "force-trailing-slash"

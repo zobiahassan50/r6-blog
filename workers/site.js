@@ -45,6 +45,10 @@ function toApexUrl(url) {
   return next
 }
 
+function looksLikeStaticAsset(pathname) {
+  return /\.[a-z0-9]{2,8}$/i.test(pathname)
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
@@ -60,7 +64,19 @@ export default {
       return Response.redirect(apex.toString(), 301)
     }
 
+    // No public 404 URL — send legacy /404 hits home.
+    const path = url.pathname
+    if (path === '/404' || path === '/404/' || path === '/404.html') {
+      return Response.redirect(new URL('/', url).toString(), 301)
+    }
+
     const assetResponse = await assetsFetch(env, request, url.pathname + url.search)
+
+    // Unknown HTML routes → home (never serve a 404 page).
+    if (assetResponse.status === 404 && !looksLikeStaticAsset(path)) {
+      return Response.redirect(new URL('/', url).toString(), 302)
+    }
+
     const response = withHtmlCharset(assetResponse)
 
     // Help crawlers + Seobility: advertise preferred host + self-canonical

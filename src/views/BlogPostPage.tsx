@@ -7,7 +7,6 @@ import { BLOGS, blogPath, getBlog } from '../data/blogs'
 import { getGuideMedia } from '../data/media'
 import { PRODUCT_NAME, PRODUCT_PATH } from '../data/product'
 import { renderRichParagraph } from '../lib/rich-text'
-import { NotFoundPage } from './NotFoundPage'
 
 type BlogPostPageProps = {
   slug: string
@@ -24,7 +23,10 @@ function sectionId(heading: string) {
 export function BlogPostPage({ slug }: BlogPostPageProps) {
   const post = getBlog(slug)
 
-  if (!post) return <NotFoundPage />
+  if (!post) {
+    if (typeof window !== 'undefined') window.location.replace('/')
+    return null
+  }
 
   const index = BLOGS.findIndex((b) => b.slug === post.slug)
   const prev = index > 0 ? BLOGS[index - 1] : undefined

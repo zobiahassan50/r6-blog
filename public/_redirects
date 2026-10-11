@@ -1,7 +1,7 @@
 # Cloudflare Workers/Pages redirects
 # Live pages use trailing slashes (Astro trailingSlash: always + force-trailing-slash).
 # Do NOT strip trailing slashes on existing routes — that causes redirect loops with directory indexes.
-# No SPA fallback (/* /index.html 200) — this is a static Astro site.
+# No SPA fallback (/* /index.html 200) — unknown paths redirect to / (302), not rewrite.
 
 # Bare paths → trailing-slash canonicals for current hubs
 /blogs          /blogs/         301
@@ -97,3 +97,9 @@
 /sitemap-regions.xml   /sitemap.xml  301
 /sitemap-index.xml     /sitemap.xml  301
 /sitemap_index.xml     /sitemap.xml  301
+
+# No public 404 page — unknown paths go home (static assets still win over this rule)
+/404            /       301
+/404/           /       301
+/404.html       /       301
+/*              /       302

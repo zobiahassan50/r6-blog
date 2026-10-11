@@ -315,8 +315,6 @@ function main() {
       'Allow: /sitemap.xml',
       'Allow: /robots.txt',
       'Allow: /og/',
-      'Disallow: /404',
-      'Disallow: /404.html',
       'Disallow: /offline',
       'Disallow: /offline.html',
       '',

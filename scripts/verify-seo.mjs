@@ -215,6 +215,9 @@ if (!redirects.includes('/guides/features-overview')) {
 if (/^\/\*\s+\/index\.html\s+200/m.test(redirects)) {
   fail('_redirects must not include an SPA /* /index.html fallback (causes redirect loops)')
 }
+if (!/^\/\*\s+\/\s+302/m.test(redirects)) {
+  fail('_redirects must send unknown paths home with /* / 302')
+}
 if (/^\/guides\/\s+\/guides\s+301/m.test(redirects)) {
   fail('_redirects must not strip trailing slash from /guides/ (conflicts with directory indexes)')
 }
@@ -238,6 +241,12 @@ if (!home.includes('/sw.js')) fail('Home must register the service worker')
 const worker = readFileSync(join(root, 'workers', 'site.js'), 'utf8')
 if (!worker.includes("startsWith('www.')") && !worker.includes('startsWith("www.")')) {
   fail('workers/site.js must detect www. hostnames for apex redirect')
+}
+if (!worker.includes('status === 404') || !worker.includes("Response.redirect(new URL('/', url)")) {
+  fail('workers/site.js must redirect unknown HTML routes to /')
+}
+if (existsSync(join(dist, '404.html'))) {
+  fail('dist must not ship 404.html — unknown URLs redirect home')
 }
 
 if (failures.length) {
