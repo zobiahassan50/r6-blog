@@ -215,8 +215,8 @@ if (!redirects.includes('/guides/features-overview')) {
 if (/^\/\*\s+\/index\.html\s+200/m.test(redirects)) {
   fail('_redirects must not include an SPA /* /index.html fallback (causes redirect loops)')
 }
-if (!/^\/\*\s+\/\s+302/m.test(redirects)) {
-  fail('_redirects must send unknown paths home with /* / 302')
+if (/^\/\*\s+\/\s+302/m.test(redirects) || /^\/\*\s+\/\s+301/m.test(redirects)) {
+  fail('_redirects must not use /* → / (matches homepage and causes redirect loops)')
 }
 if (/^\/guides\/\s+\/guides\s+301/m.test(redirects)) {
   fail('_redirects must not strip trailing slash from /guides/ (conflicts with directory indexes)')

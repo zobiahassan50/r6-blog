@@ -98,8 +98,8 @@
 /sitemap-index.xml     /sitemap.xml  301
 /sitemap_index.xml     /sitemap.xml  301
 
-# No public 404 page — unknown paths go home (static assets still win over this rule)
+# No public 404 page — /404* goes home. Unknown routes are handled in workers/site.js
+# (do NOT use /* → / here — it matches / itself and causes ERR_TOO_MANY_REDIRECTS).
 /404            /       301
 /404/           /       301
 /404.html       /       301
-/*              /       302

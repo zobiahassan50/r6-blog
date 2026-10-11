@@ -73,7 +73,12 @@ export default {
     const assetResponse = await assetsFetch(env, request, url.pathname + url.search)
 
     // Unknown HTML routes → home (never serve a 404 page).
-    if (assetResponse.status === 404 && !looksLikeStaticAsset(path)) {
+    // Never redirect `/` itself — that creates ERR_TOO_MANY_REDIRECTS.
+    if (
+      assetResponse.status === 404 &&
+      path !== '/' &&
+      !looksLikeStaticAsset(path)
+    ) {
       return Response.redirect(new URL('/', url).toString(), 302)
     }
 
