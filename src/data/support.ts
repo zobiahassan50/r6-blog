@@ -24,8 +24,8 @@ export const CONTACT_TOPICS = [
 
 export const CONTACT_FAQS = [
   {
-    q: 'How do I contact R6 Siege Cheats?',
-    a: 'Use the Contact form on this page. Include the page URL if your question is about a specific article.',
+    q: 'How do I reach R6 Siege Cheats support?',
+    a: 'Use the Support form on this page. Include the page URL if your question is about a specific article.',
   },
   {
     q: 'Can you help with checkout payment problems?',

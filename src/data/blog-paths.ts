@@ -1,7 +1,11 @@
-/** Guide article path helpers — keep post bodies out of shared chunks. */
+/** Blog article path helpers — keep post bodies out of shared chunks. */
 
 export function blogPath(slug: string) {
-  return `/guides/${slug}/`
+  return `/blogs/${slug}/`
+}
+
+export function blogsPath() {
+  return '/blogs/'
 }
 
 export function guidesPath() {

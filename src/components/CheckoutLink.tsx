@@ -5,7 +5,7 @@ type CheckoutLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
   children: ReactNode
 }
 
-/** External checkout CTA. Falls back to Contact when checkout URL is still a placeholder. */
+/** External checkout CTA. Falls back to Support when checkout URL is still a placeholder. */
 export function CheckoutLink({ children, className, ...rest }: CheckoutLinkProps) {
   const configured = isCheckoutConfigured()
   const href = getCheckoutHref()
@@ -21,7 +21,7 @@ export function CheckoutLink({ children, className, ...rest }: CheckoutLinkProps
       title={
         configured
           ? undefined
-          : 'Checkout URL not configured yet — opens Contact instead'
+          : 'Checkout URL not configured yet — opens Support instead'
       }
     >
       {children}

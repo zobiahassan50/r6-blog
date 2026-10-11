@@ -208,6 +208,10 @@ const redirects = readFileSync(join(root, 'public', '_redirects'), 'utf8')
 if (!redirects.includes('/dayz-cheats')) fail('_redirects must map the legacy /dayz-cheats route')
 if (!redirects.includes('/community')) fail('_redirects must map legacy /community to /forums/')
 if (!redirects.includes('/operators')) fail('_redirects must redirect removed /operators')
+if (!redirects.includes('/blogs')) fail('_redirects must include /blogs trailing-slash canonical')
+if (!redirects.includes('/guides/features-overview')) {
+  fail('_redirects must map legacy /guides/:slug posts to /blogs/:slug/')
+}
 if (/^\/\*\s+\/index\.html\s+200/m.test(redirects)) {
   fail('_redirects must not include an SPA /* /index.html fallback (causes redirect loops)')
 }

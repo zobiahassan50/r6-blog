@@ -133,10 +133,10 @@ export function ProductPage() {
                   Buy Now
                 </CheckoutLink>
                 <a
-                  href="/guides/"
+                  href="/blogs/"
                   className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
                 >
-                  Browse articles
+                  Browse blogs
                   <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
                 </a>
                 <a

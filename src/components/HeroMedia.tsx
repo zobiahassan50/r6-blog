@@ -17,10 +17,10 @@ export function HeroMedia() {
   }, [])
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-z-bg" aria-hidden>
+    <div className="hero-video-wrap absolute inset-0 z-0 overflow-hidden" aria-hidden>
       <video
         ref={videoRef}
-        className="absolute inset-0 size-full object-cover"
+        className="hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center"
         autoPlay
         muted
         loop

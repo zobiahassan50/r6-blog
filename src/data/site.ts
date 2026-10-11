@@ -65,24 +65,34 @@ export const SEO = {
     imageAlt: 'R6 Siege Cheats product details for PC',
     robots: INDEX_ROBOTS,
   },
-  guides: {
-    title: 'R6 Siege Cheats Articles | ESP, Wallhack, Compatibility & Risk',
+  blogs: {
+    title: 'R6 Siege Cheats Blogs | ESP, Wallhack, Compatibility & Risk',
     description:
-      'Original articles about R6 Siege Cheats — features overview, R6 ESP and wallhack, anti-cheat context, settings, and hacks explainers.',
+      'Original blog posts about R6 Siege Cheats — features overview, R6 ESP and wallhack, anti-cheat context, settings, and fair-play explainers.',
+    path: '/blogs/',
+    ogType: 'website',
+    image: PAGE_OG.guides,
+    imageAlt: 'R6 Siege Cheats blogs hub',
+    robots: INDEX_ROBOTS,
+  },
+  guides: {
+    title: 'R6 Siege Cheats Guides | Setup, Compatibility & Risk Checklists',
+    description:
+      'Practical R6 Siege Cheats guides — setup checklists, PC compatibility, settings basics, and fair-play notes before checkout.',
     path: '/guides/',
     ogType: 'website',
     image: PAGE_OG.guides,
-    imageAlt: 'R6 Siege Cheats articles hub',
+    imageAlt: 'R6 Siege Cheats guides hub',
     robots: INDEX_ROBOTS,
   },
   forums: {
-    title: 'R6 Siege Cheats Guides | Setup, ESP, Compatibility & FAQ',
+    title: 'R6 Siege Cheats Forums | Community Boards & Topics',
     description:
-      'Forum-style R6 Siege Cheats guides — setup, ESP and aimbot terminology, BattlEye compatibility notes, configuration, troubleshooting, and FAQ before checkout.',
+      'R6 Siege Cheats community forums — product questions, setup talk, status notes, billing, and support topics. Separate from Blogs and Guides.',
     path: '/forums/',
     ogType: 'website',
     image: PAGE_OG.community,
-    imageAlt: 'R6 Siege Cheats forums and setup guides',
+    imageAlt: 'R6 Siege Cheats community forums',
     robots: INDEX_ROBOTS,
   },
   faq: {
@@ -96,17 +106,17 @@ export const SEO = {
     robots: INDEX_ROBOTS,
   },
   contact: {
-    title: 'Contact R6 Siege Cheats',
-    description: 'Contact R6 Siege Cheats with questions about our articles or this site.',
+    title: 'Support | R6 Siege Cheats',
+    description: 'Support for R6 Siege Cheats — questions about our articles or this site.',
     path: '/contact/',
     ogType: 'website',
     image: PAGE_OG.contact,
-    imageAlt: 'Contact R6 Siege Cheats',
+    imageAlt: 'R6 Siege Cheats support',
     robots: INDEX_ROBOTS,
   },
   privacy: {
     title: 'Privacy Policy | R6 Siege Cheats',
-    description: 'How R6 Siege Cheats handles site analytics and contact messages.',
+    description: 'How R6 Siege Cheats handles site analytics and support messages.',
     path: '/privacy/',
     ogType: 'website',
     image: PAGE_OG.privacy,
@@ -126,8 +136,9 @@ export const SEO = {
 
 export const HOME_HEADINGS = {
   h1: 'R6 Siege Cheats for PC',
-  h2Features: 'R6 Siege',
-  h2Featured: 'Forums',
+  h2Guides: 'Guides',
+  h2Blogs: 'Blogs',
+  h2Forums: 'R6 Siege Cheats forums',
   h2About: 'About R6 Siege Cheats',
   h2Access: 'R6 Siege Cheats product',
   h2Faq: 'R6 Siege Cheats FAQ',

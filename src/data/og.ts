@@ -20,13 +20,17 @@ export function guideOgImage(slug: string) {
 export function getOgImageForPath(path?: string): string {
   if (!path || path === '/') return OG_HOME
   const normalized = path.endsWith('/') || path === '/' ? path : `${path}/`
-  if (normalized === '/guides/') return OG_GUIDES
+  if (normalized === '/blogs/' || normalized === '/guides/') return OG_GUIDES
   if (normalized === '/forums/' || normalized === '/community/') return OG_COMMUNITY
   if (normalized === '/r6-cheats/' || normalized === '/product/') return OG_PRODUCT
   if (normalized === '/faq/') return OG_FAQ
   if (normalized === '/contact/') return OG_CONTACT
   if (normalized === '/privacy/') return OG_PRIVACY
   if (normalized === '/terms/') return OG_TERMS
+  if (normalized.startsWith('/blogs/')) {
+    const slug = normalized.slice('/blogs/'.length).replace(/\/$/, '')
+    return guideOgImage(slug)
+  }
   if (normalized.startsWith('/guides/')) {
     const slug = normalized.slice('/guides/'.length).replace(/\/$/, '')
     return guideOgImage(slug)

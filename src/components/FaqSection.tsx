@@ -17,12 +17,12 @@ type FaqSectionProps = {
   headingClassName?: string
 }
 
-const PANEL_TRANSITION = { duration: 0.3, ease: 'easeInOut' as const }
-const ICON_TRANSITION = { duration: 0.3, ease: 'easeInOut' as const }
+const PANEL_TRANSITION = { duration: 0.25, ease: 'easeInOut' as const }
+const ICON_TRANSITION = { duration: 0.25, ease: 'easeInOut' as const }
 
 /**
  * Animated FAQ accordion — one panel open at a time.
- * Answer text stays in the DOM for SEO; height/opacity animate with framer-motion.
+ * Questions are real <h2> elements for hierarchy; answers stay in the DOM for SEO.
  */
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const baseId = useId()
@@ -41,26 +41,26 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
 
         return (
           <div key={item.q} className="faq-item py-1">
-            <button
-              type="button"
-              id={buttonId}
-              aria-expanded={isOpen}
-              aria-controls={panelId}
-              onClick={() => toggle(index)}
-              className="flex w-full cursor-pointer list-none items-start justify-between gap-4 py-5 text-left outline-none transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-900/40 hover:to-transparent hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] focus-visible:ring-2 focus-visible:ring-z-soft/40"
-            >
-              <span className="text-sm font-semibold leading-snug text-white sm:text-base">
-                {item.q}
-              </span>
-              <motion.span
-                className="mt-0.5 inline-flex shrink-0"
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={ICON_TRANSITION}
-                aria-hidden
+            <h2 className="m-0 text-[1.05rem] font-semibold leading-snug tracking-tight text-white sm:text-xl">
+              <button
+                type="button"
+                id={buttonId}
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => toggle(index)}
+                className="flex w-full cursor-pointer list-none items-start justify-between gap-4 rounded-lg py-5 text-left font-inherit outline-none transition-[color,box-shadow] duration-200 hover:text-white/90 focus-visible:ring-2 focus-visible:ring-z-soft/40"
               >
-                <ChevronDown className="h-4 w-4 text-white/40" strokeWidth={1.75} />
-              </motion.span>
-            </button>
+                <span className="pr-2">{item.q}</span>
+                <motion.span
+                  className="mt-1 inline-flex shrink-0"
+                  animate={{ rotate: isOpen ? 180 : 0 }}
+                  transition={ICON_TRANSITION}
+                  aria-hidden
+                >
+                  <ChevronDown className="h-5 w-5 text-white/40" strokeWidth={1.75} />
+                </motion.span>
+              </button>
+            </h2>
 
             <motion.div
               id={panelId}
@@ -74,10 +74,11 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               }
               transition={PANEL_TRANSITION}
               className="overflow-hidden"
-              // Keep answer text in the DOM for SEO; hide from AT when collapsed.
               aria-hidden={!isOpen}
             >
-              <p className="pb-5 pr-8 text-sm leading-relaxed text-white/55">{item.a}</p>
+              <p className="pb-5 pr-8 text-sm leading-relaxed text-white/55 sm:text-base">
+                {item.a}
+              </p>
             </motion.div>
           </div>
         )
@@ -87,8 +88,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
 }
 
 /**
- * Visible FAQ accordion: real H2 + answer text in the DOM.
- * Questions use strong text (not H3) so page heading counts stay proportional.
+ * Visible FAQ accordion: section H2 + question H2s + answer text in the DOM.
  * Structured data comes from page-level FAQPage JSON-LD only (no duplicate microdata).
  */
 export function FaqSection({

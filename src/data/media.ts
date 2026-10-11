@@ -33,15 +33,15 @@ export const PAGE_MEDIA = {
   },
   guides: {
     image: PLACEHOLDER_GUIDES,
-    alt: 'Branded artwork for the R6 Siege Cheats articles hub',
-    title: 'R6 Siege Cheats Articles',
-    caption: 'Buying, compatibility and fair-play articles in one hub.',
+    alt: 'Branded artwork for the R6 Siege Cheats guides and blogs hubs',
+    title: 'R6 Siege Cheats Guides & Blogs',
+    caption: 'Practical guides and editorial blogs in separate hubs.',
   },
   community: {
     image: PLACEHOLDER_COMMUNITY,
     alt: 'Branded artwork for the R6 Siege Cheats forums hub',
     title: 'R6 Siege Cheats Forums',
-    caption: 'Forum-style setup and compatibility guides.',
+    caption: 'Community boards for product and support topics.',
   },
   faq: {
     image: PLACEHOLDER_FAQ,
@@ -51,8 +51,8 @@ export const PAGE_MEDIA = {
   },
   contact: {
     image: PLACEHOLDER_CONTACT,
-    alt: 'Branded artwork for the R6 Siege Cheats contact page',
-    title: 'Contact R6 Siege Cheats',
+    alt: 'Branded artwork for the R6 Siege Cheats support page',
+    title: 'Support R6 Siege Cheats',
     caption: 'Send questions about our articles or this site.',
   },
   product: {

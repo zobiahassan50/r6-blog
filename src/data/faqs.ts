@@ -25,8 +25,8 @@ export const SITE_FAQS: FaqItem[] = [
     a: 'No. This product is scoped to Windows PC. Console versions are not supported.',
   },
   {
-    q: 'Do you guarantee it is undetectable?',
-    a: 'No. We do not claim undetectability, ban immunity, or guaranteed results. Using third-party tools can violate the game’s terms and risk account sanctions.',
+    q: 'How safe is this against BattlEye?',
+    a: 'While we continuously update our tools to stay ahead of BattlEye, no software is 100% immune to bans forever. We highly recommend using a smurf account and avoiding obvious tracking (like tracing through walls) to prevent manual player reports.',
   },
   {
     q: 'How do I confirm current status before buying?',
@@ -38,7 +38,7 @@ export const SITE_FAQS: FaqItem[] = [
   },
   {
     q: 'How do I get in touch?',
-    a: 'Use the Contact page for questions about our articles or this site. Checkout and payment issues are handled on the external checkout provider’s side.',
+    a: 'Use the Support page for questions about our articles or this site. Checkout and payment issues are handled on the external checkout provider’s side.',
   },
 ]
 

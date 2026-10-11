@@ -53,7 +53,7 @@ export const PRODUCT_COMPAT = [
   'Platform: Windows PC',
   'Game: Rainbow Six Siege (PC)',
   'Delivery: digital access after external checkout',
-  'Support: use Contact for non-checkout questions',
+  'Support: use the Support page for non-checkout questions',
 ] as const
 
 export const PRODUCT_FAQS = [

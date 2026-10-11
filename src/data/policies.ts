@@ -19,16 +19,16 @@ export const POLICY_PAGES: PolicyPageContent[] = [
     slug: 'privacy',
     path: '/privacy/',
     title: 'Privacy Policy | R6 Siege Cheats',
-    description: 'How R6 Siege Cheats handles basic site analytics and contact messages.',
+    description: 'How R6 Siege Cheats handles basic site analytics and support messages.',
     h1: 'Privacy Policy',
     intro:
-      'R6 Siege Cheats is a product listing site with supporting articles. This page explains what little data we collect when you read the site or contact us.',
+      'R6 Siege Cheats is a product listing site with supporting articles. This page explains what little data we collect when you read the site or reach Support.',
     sections: [
       {
         heading: 'What we collect',
         body: [
           'Like most websites, our hosting provider may log basic technical data such as IP address, browser type, and requested URLs for security and reliability.',
-          'If you use the Contact form, we receive the information you submit so we can respond. We do not sell contact messages.',
+          'If you use the Support form, we receive the information you submit so we can respond. We do not sell support messages.',
         ],
       },
       {
@@ -44,13 +44,13 @@ export const POLICY_PAGES: PolicyPageContent[] = [
         ],
       },
       {
-        heading: 'Contact',
-        body: ['Questions about this privacy policy can be sent through the Contact page.'],
+        heading: 'Support',
+        body: ['Questions about this privacy policy can be sent through the Support page.'],
       },
     ],
     related: [
       { label: 'Terms of Use', to: '/terms/' },
-      { label: 'Contact', to: '/contact/' },
+      { label: 'Support', to: '/contact/' },
     ],
   },
   {

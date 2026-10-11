@@ -39,8 +39,9 @@ const isHome = seo.path === '/' || seo.path === ''
 const preloadOg =
   isHome ||
   seo.path === '/r6-cheats/' ||
+  seo.path === '/blogs/' ||
+  seo.path.startsWith('/blogs/') ||
   seo.path === '/guides/' ||
-  seo.path.startsWith('/guides/') ||
   seo.path === '/forums/'
 ---
 
@@ -53,7 +54,7 @@ const preloadOg =
     <meta name="theme-color" content="#08060f" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" sizes="192x192" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />

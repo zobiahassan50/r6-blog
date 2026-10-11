@@ -4,6 +4,7 @@
 # No SPA fallback (/* /index.html 200) — this is a static Astro site.
 
 # Bare paths → trailing-slash canonicals for current hubs
+/blogs          /blogs/         301
 /guides         /guides/        301
 /forums         /forums/        301
 /r6-cheats      /r6-cheats/     301
@@ -18,7 +19,7 @@
 /product        /r6-cheats/     301
 /product/       /r6-cheats/     301
 
-# Removed general R6 fan sections → articles hub
+# Removed general R6 fan sections → guides hub
 /operators      /guides/        301
 /operators/     /guides/        301
 /operators/*    /guides/        301
@@ -39,37 +40,53 @@
 /support        /contact/       301
 /support/       /contact/       301
 
-# Deleted / renamed guide article slugs
-/guides/buying-guide              /guides/esp-wallhack-anticheat/  301
-/guides/buying-guide/             /guides/esp-wallhack-anticheat/  301
-/guides/understanding-anticheat   /guides/fair-play-risks/   301
-/guides/understanding-anticheat/  /guides/fair-play-risks/   301
-/guides/ranked-3-0                /guides/                   301
-/guides/ranked-3-0/               /guides/                   301
-/guides/operator-guide            /guides/                   301
-/guides/operator-guide/           /guides/                   301
-/guides/maps-guide                /guides/                   301
-/guides/maps-guide/               /guides/                   301
-/guides/season-updates            /guides/                   301
-/guides/season-updates/           /guides/                   301
-/guides/beginner-attack-defend    /guides/                   301
-/guides/beginner-attack-defend/   /guides/                   301
-/guides/map-knowledge             /guides/                   301
-/guides/map-knowledge/            /guides/                   301
-/guides/operator-gadgets          /guides/                   301
-/guides/operator-gadgets/         /guides/                   301
+# Blog posts moved from /guides/:slug → /blogs/:slug
+/guides/features-overview              /blogs/features-overview/           301
+/guides/features-overview/             /blogs/features-overview/           301
+/guides/esp-wallhack-anticheat         /blogs/esp-wallhack-anticheat/      301
+/guides/esp-wallhack-anticheat/        /blogs/esp-wallhack-anticheat/      301
+/guides/pc-compatibility               /blogs/pc-compatibility/            301
+/guides/pc-compatibility/              /blogs/pc-compatibility/            301
+/guides/status-before-purchase         /blogs/status-before-purchase/      301
+/guides/status-before-purchase/        /blogs/status-before-purchase/      301
+/guides/fair-play-risks                /blogs/fair-play-risks/             301
+/guides/fair-play-risks/               /blogs/fair-play-risks/             301
 
-# Guide article bare slug → trailing slash
-/guides/:slug   /guides/:slug/  301
+# Deleted / renamed article slugs → current blogs
+/guides/buying-guide                   /blogs/esp-wallhack-anticheat/      301
+/guides/buying-guide/                  /blogs/esp-wallhack-anticheat/      301
+/guides/understanding-anticheat        /blogs/fair-play-risks/             301
+/guides/understanding-anticheat/       /blogs/fair-play-risks/             301
+/guides/ranked-3-0                     /blogs/                             301
+/guides/ranked-3-0/                    /blogs/                             301
+/guides/operator-guide                 /blogs/                             301
+/guides/operator-guide/                /blogs/                             301
+/guides/maps-guide                     /blogs/                             301
+/guides/maps-guide/                    /blogs/                             301
+/guides/season-updates                 /blogs/                             301
+/guides/season-updates/                /blogs/                             301
+/guides/beginner-attack-defend         /blogs/                             301
+/guides/beginner-attack-defend/        /blogs/                             301
+/guides/map-knowledge                  /blogs/                             301
+/guides/map-knowledge/                 /blogs/                             301
+/guides/operator-gadgets               /blogs/                             301
+/guides/operator-gadgets/              /blogs/                             301
 
-# Legacy blog routes
-/articles       /guides/        301
-/articles/      /guides/        301
-/articles/*     /guides/        301
-/blog           /guides/        301
-/blog/          /guides/        301
-/blog/:slug/    /guides/:slug/  301
-/blog/:slug     /guides/:slug/  301
+# Any remaining /guides/:slug → blogs (catch-all after specific rules)
+/guides/:slug   /blogs/:slug/   301
+/guides/:slug/  /blogs/:slug/   301
+
+# Blog article bare slug → trailing slash
+/blogs/:slug    /blogs/:slug/   301
+
+# Legacy blog / articles routes
+/articles       /blogs/         301
+/articles/      /blogs/         301
+/articles/*     /blogs/         301
+/blog           /blogs/         301
+/blog/          /blogs/         301
+/blog/:slug/    /blogs/:slug/   301
+/blog/:slug     /blogs/:slug/   301
 
 # Legacy sitemaps
 /sitemap-pages.xml     /sitemap.xml  301

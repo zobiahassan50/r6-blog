@@ -8,8 +8,8 @@ type HeroSearchProps = {
   /** Controlled value when parent owns the query (e.g. Guides page) */
   value?: string
   onChange?: (value: string) => void
-  /** Where Go navigates when there's no single exact guide match */
-  submitTo?: 'guides' | 'forums' | 'filter'
+  /** Where Go navigates when there's no single exact match */
+  submitTo?: 'blogs' | 'guides' | 'forums' | 'filter'
   placeholder?: string
   autoFocus?: boolean
   className?: string
@@ -18,8 +18,8 @@ type HeroSearchProps = {
 export function HeroSearch({
   value,
   onChange,
-  submitTo = 'guides',
-  placeholder = 'Search R6 guides…',
+  submitTo = 'blogs',
+  placeholder = 'Search R6 blogs…',
   autoFocus = false,
   className = '',
 }: HeroSearchProps) {
@@ -46,7 +46,7 @@ export function HeroSearch({
     if (!term) return []
     if (useForumsCorpus) {
       return FORUM_THREADS.filter((thread) => {
-        const hay = `${thread.title} ${thread.excerpt} ${thread.tag} ${thread.searchTerms}`.toLowerCase()
+        const hay = `${thread.title} ${thread.excerpt} ${thread.board} ${thread.searchTerms}`.toLowerCase()
         return hay.includes(term)
       }).slice(0, 8)
     }
@@ -82,11 +82,12 @@ export function HeroSearch({
       return
     }
     setOpen(false)
-    // Parent owns live filtering (Guides / Forums pages).
+    // Parent owns live filtering (Blogs / Guides / Forums pages).
     if (submitTo === 'filter' || (submitTo === 'forums' && onChange)) {
       return
     }
-    const base = submitTo === 'forums' ? '/forums/' : '/guides/'
+    const base =
+      submitTo === 'forums' ? '/forums/' : submitTo === 'guides' ? '/guides/' : '/blogs/'
     window.location.assign(term ? `${base}?q=${encodeURIComponent(term)}` : base)
   }
 
@@ -164,7 +165,9 @@ export function HeroSearch({
                   }`}
                 >
                   <span className="truncate font-medium">{item.title}</span>
-                  <span className="ml-3 shrink-0 text-xs text-z-soft/70">{item.tag}</span>
+                  <span className="ml-3 shrink-0 text-xs text-z-soft/70">
+                    {'board' in item ? item.board : item.tag}
+                  </span>
                 </button>
               </li>
             )

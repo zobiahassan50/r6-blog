@@ -20,7 +20,7 @@ function absoluteAsset(src: string) {
   return src.startsWith('http') ? src : `${SITE_URL}${src.startsWith('/') ? src : `/${src}`}`
 }
 
-const HUB_PATHS = ['/', '/guides/', '/forums/', '/r6-cheats/']
+const HUB_PATHS = ['/', '/blogs/', '/guides/', '/forums/', '/r6-cheats/']
 
 export const PRODUCT_ID = `${SITE_URL}/#product`
 
@@ -75,7 +75,9 @@ export function webPageNode(seo: PageSeo) {
     inLanguage: 'en',
   } as Record<string, unknown>
   const hasVisibleImage =
-    HUB_PATHS.includes(seo.path) || seo.path.startsWith('/guides/')
+    HUB_PATHS.includes(seo.path) ||
+    seo.path.startsWith('/blogs/') ||
+    seo.path.startsWith('/guides/')
   const hasOgImage = Boolean(seo.image)
   if (hasVisibleImage || hasOgImage) {
     page.primaryImageOfPage = {
@@ -155,7 +157,7 @@ export function articleJsonLd(post: BlogPost, pathOrUrl: string, image: string) 
     author: { '@id': `${SITE_URL}/#organization` },
     publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: url,
-    isPartOf: { '@id': `${SITE_URL}/guides/#webpage` },
+    isPartOf: { '@id': `${SITE_URL}/blogs/#webpage` },
     image: absoluteAsset(image),
     inLanguage: 'en',
   }

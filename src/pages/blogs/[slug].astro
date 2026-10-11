@@ -29,7 +29,7 @@ const seo: PageSeo = {
   path: blogPath(post.slug),
   ogType: 'article',
   image: ogImage,
-  imageAlt: `${post.title} — R6 Siege Cheats article`,
+  imageAlt: `${post.title} — R6 Siege Cheats blog`,
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 }
 
@@ -40,7 +40,7 @@ const jsonLdExtra = [
   ...(howToLd ? [howToLd] : []),
   breadcrumbJsonLd([
     { name: 'Home', path: '/' },
-    { name: 'Articles', path: '/guides/' },
+    { name: 'Blogs', path: '/blogs/' },
     { name: post.title, path: blogPath(post.slug) },
   ]),
 ]

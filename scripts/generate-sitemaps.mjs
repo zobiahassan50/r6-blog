@@ -16,6 +16,7 @@ const HREFLANG = ['en', 'x-default']
 
 const STATIC_ROUTES = [
   '/',
+  '/blogs/',
   '/guides/',
   '/forums/',
   '/r6-cheats/',
@@ -27,7 +28,8 @@ const STATIC_ROUTES = [
 
 const PAGE_META = {
   '/': { priority: '1.0', changefreq: 'daily' },
-  '/guides/': { priority: '0.9', changefreq: 'daily' },
+  '/blogs/': { priority: '0.9', changefreq: 'daily' },
+  '/guides/': { priority: '0.85', changefreq: 'weekly' },
   '/forums/': { priority: '0.7', changefreq: 'weekly' },
   '/r6-cheats/': { priority: '0.95', changefreq: 'daily' },
   '/faq/': { priority: '0.6', changefreq: 'monthly' },
@@ -134,8 +136,17 @@ function imagesForPath(path, blogs) {
         ? 'home'
         : path === '/forums/'
           ? 'community'
-          : path.replace(/^\/|\/$/g, '')
-    const label = path === '/' ? 'home' : path === '/forums/' ? 'forums' : file
+          : path === '/blogs/'
+            ? 'guides'
+            : path.replace(/^\/|\/$/g, '')
+    const label =
+      path === '/'
+        ? 'home'
+        : path === '/forums/'
+          ? 'forums'
+          : path === '/blogs/'
+            ? 'blogs'
+            : file
     return [
       {
         src: `/og/${file}.jpg`,
@@ -145,8 +156,8 @@ function imagesForPath(path, blogs) {
     ]
   }
 
-  if (path.startsWith('/guides/') && path !== '/guides/') {
-    const slug = path.slice('/guides/'.length).replace(/\/$/, '')
+  if (path.startsWith('/blogs/') && path !== '/blogs/') {
+    const slug = path.slice('/blogs/'.length).replace(/\/$/, '')
     const blog = blogs.find((b) => b.slug === slug)
     return [
       {
@@ -171,7 +182,7 @@ function imagesForPath(path, blogs) {
 function collectAllPaths(blogs, staticRoutes) {
   const paths = new Set([
     ...staticRoutes,
-    ...blogs.map((blog) => `/guides/${blog.slug}/`),
+    ...blogs.map((blog) => `/blogs/${blog.slug}/`),
   ])
   // Never index error page
   paths.delete('/404')
@@ -180,18 +191,19 @@ function collectAllPaths(blogs, staticRoutes) {
 }
 
 function buildSitemap(blogs, allPaths) {
-  const blogByPath = new Map(blogs.map((b) => [`/guides/${b.slug}/`, b]))
+  const blogByPath = new Map(blogs.map((b) => [`/blogs/${b.slug}/`, b]))
 
   const sorted = [...allPaths].sort((a, b) => {
     const rank = (path) => {
       if (path === '/') return 0
       if (path === '/r6-cheats/') return 1
-      if (path === '/guides/') return 2
-      if (path.startsWith('/guides/') && path !== '/guides/') return 3
-      if (path === '/forums/') return 4
-      if (path === '/faq/') return 5
-      if (path === '/contact/') return 6
-      return 7
+      if (path === '/blogs/') return 2
+      if (path.startsWith('/blogs/') && path !== '/blogs/') return 3
+      if (path === '/guides/') return 4
+      if (path === '/forums/') return 5
+      if (path === '/faq/') return 6
+      if (path === '/contact/') return 7
+      return 8
     }
     const diff = rank(a) - rank(b)
     return diff !== 0 ? diff : a.localeCompare(b)
@@ -199,8 +211,8 @@ function buildSitemap(blogs, allPaths) {
 
   const entries = sorted.map((path) => {
     const meta = PAGE_META[path] || {
-      priority: path.startsWith('/guides/') ? '0.75' : '0.5',
-      changefreq: path.startsWith('/guides/') ? 'monthly' : 'weekly',
+      priority: path.startsWith('/blogs/') ? '0.75' : '0.5',
+      changefreq: path.startsWith('/blogs/') ? 'monthly' : 'weekly',
     }
     const blog = blogByPath.get(path)
     return urlEntry({
@@ -223,8 +235,8 @@ ${entries.join('\n')}
 
 function validate(blogs, allPaths, sitemap) {
   const errors = []
-  if (blogs.length && !existsSync(join(pagesDir, 'guides', '[slug].astro'))) {
-    errors.push('Guide routes have no dynamic page file: src/pages/guides/[slug].astro')
+  if (blogs.length && !existsSync(join(pagesDir, 'blogs', '[slug].astro'))) {
+    errors.push('Blog routes have no dynamic page file: src/pages/blogs/[slug].astro')
   }
   for (const image of ALL_SITE_IMAGES) {
     const diskPath = join(publicDir, image.replace(/^\//, ''))

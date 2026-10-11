@@ -4,28 +4,33 @@ import { LogoMark } from './LogoMark'
 import { CheckoutLink } from './CheckoutLink'
 import { PRODUCT_PATH } from '../data/product'
 import { SITE_NAME } from '../data/site'
-import { useScrollDirection } from '../hooks/useScrollDirection'
+import { useHeroInView } from '../hooks/useHeroInView'
 
-/** Primary nav: Forums + Product + Guides + FAQ + Contact + Buy CTA. */
+/** Primary nav — Home + distinct Blogs / Guides / Forums hubs. */
 const NAV_LINKS = [
+  { label: 'Home', to: '/' },
+  { label: 'Blogs', to: '/blogs/' },
+  { label: 'Guides', to: '/guides/' },
   { label: 'Forums', to: '/forums/' },
   { label: 'Product', to: PRODUCT_PATH },
-  { label: 'Guides', to: '/guides/' },
   { label: 'FAQ', to: '/faq/' },
-  { label: 'Contact', to: '/contact/' },
+  { label: 'Support', to: '/contact/' },
 ] as const
 
 type NavbarProps = {
   onVideo?: boolean
+  /** CSS selector for the hero; navbar only shows while this is in view when onVideo. */
+  heroSelector?: string
 }
 
 /**
- * Fixed smart sticky header: hides on scroll down, shows on scroll up.
- * Desktop: right-aligned horizontal chip bar with hover expand animations.
+ * Fixed header. On video heroes, only visible while the hero is on screen —
+ * does not reappear on scroll-up after leaving the hero.
+ * Background stays fully transparent.
  */
-export function Navbar({ onVideo = false }: NavbarProps) {
+export function Navbar({ onVideo = false, heroSelector = '#home' }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { direction, scrolled } = useScrollDirection()
+  const heroInView = useHeroInView(heroSelector, onVideo)
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -34,18 +39,15 @@ export function Navbar({ onVideo = false }: NavbarProps) {
     }
   }, [menuOpen])
 
-  const hidden = !menuOpen && direction === 'down' && scrolled
+  // Video heroes: hide once past the hero. Non-hero pages: always visible.
+  const hidden = onVideo && !menuOpen && !heroInView
   const brandClass = 'text-z-ink'
 
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 w-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`fixed left-0 right-0 top-0 z-50 w-full bg-transparent transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           hidden ? '-translate-y-full' : 'translate-y-0'
-        } ${
-          onVideo && !scrolled
-            ? 'bg-transparent'
-            : 'border-b border-z-soft/15 bg-z-bg/90 backdrop-blur-xl'
         }`}
       >
         <nav className="page-x flex flex-row flex-nowrap items-center justify-between gap-3 py-4 sm:py-5">
@@ -64,13 +66,13 @@ export function Navbar({ onVideo = false }: NavbarProps) {
                 <a
                   key={link.label}
                   href={link.to}
-                  className="nav-chip-link inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm font-medium text-z-ink/70 transition-[color,background-color,transform,padding] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-z-accent/15 hover:text-z-ink hover:scale-[1.03] focus-visible:bg-z-accent/15 focus-visible:text-z-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-z-soft/40"
+                  className="nav-chip-link inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-2.5 py-1.5 text-sm font-medium text-z-ink/70 transition-[color,background-color] duration-200 ease-out hover:bg-z-accent/12 hover:text-z-ink focus-visible:bg-z-accent/12 focus-visible:text-z-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-z-soft/40 lg:px-3"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-            <CheckoutLink className="cta-gradient flex shrink-0 items-center self-stretch whitespace-nowrap rounded-full px-5 text-sm font-semibold text-white transition-[opacity,transform] duration-300 hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-z-soft/50">
+            <CheckoutLink className="cta-gradient flex shrink-0 items-center self-stretch whitespace-nowrap rounded-full px-5 text-sm font-semibold text-white transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-z-soft/50">
               Buy Now
             </CheckoutLink>
           </div>
@@ -80,7 +82,7 @@ export function Navbar({ onVideo = false }: NavbarProps) {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-z-soft/25 bg-z-elevated/80 text-z-ink backdrop-blur-lg transition-colors duration-300 md:hidden"
+            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-z-soft/25 bg-z-elevated/80 text-z-ink transition-colors duration-200 md:hidden"
           >
             <Menu
               className={`absolute h-5 w-5 transition-all duration-300 ${brandClass} ${
@@ -111,13 +113,6 @@ export function Navbar({ onVideo = false }: NavbarProps) {
         }`}
       >
         <div className="flex flex-col gap-1 px-5 pt-24">
-          <a
-            href="/"
-            onClick={() => setMenuOpen(false)}
-            className="rounded-xl px-4 py-3 text-base font-medium text-z-ink/80 transition-all hover:bg-z-accent/15 hover:text-z-ink"
-          >
-            Home
-          </a>
           {NAV_LINKS.map((link, index) => (
             <a
               key={link.label}
@@ -127,7 +122,7 @@ export function Navbar({ onVideo = false }: NavbarProps) {
               style={{
                 opacity: menuOpen ? 1 : 0,
                 transform: menuOpen ? 'translateX(0)' : 'translateX(24px)',
-                transitionDelay: menuOpen ? `${(index + 1) * 50}ms` : '0ms',
+                transitionDelay: menuOpen ? `${index * 40}ms` : '0ms',
               }}
             >
               {link.label}

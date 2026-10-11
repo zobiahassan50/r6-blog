@@ -55,8 +55,8 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                 Home
               </a>
               <span>/</span>
-              <a href="/guides/" className="hover:text-white/70">
-                Articles
+              <a href="/blogs/" className="hover:text-white/70">
+                Blogs
               </a>
               <span>/</span>
               <span className="text-white/70">{post.tag}</span>
@@ -145,10 +145,10 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                   Buy Now
                 </CheckoutLink>
                 <a
-                  href="/guides/"
+                  href="/blogs/"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/5"
                 >
-                  More articles
+                  More blogs
                 </a>
               </div>
             </div>
@@ -185,11 +185,11 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
             ) : null}
 
             <a
-              href="/guides/"
+              href="/blogs/"
               className="mt-10 inline-flex items-center gap-1.5 text-sm text-white/55 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
-              All articles
+              All blogs
             </a>
           </div>
         </article>
@@ -198,7 +198,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
           <section className="page-band page-x border-t border-white/10 py-12 sm:py-16">
             <div className="mx-auto max-w-6xl">
               <h2 className="text-xl font-semibold tracking-tight text-white">
-                Related articles
+                Related blogs
               </h2>
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((b) => {

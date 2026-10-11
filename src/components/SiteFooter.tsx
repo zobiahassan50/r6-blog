@@ -1,5 +1,5 @@
 import { LogoMark } from './LogoMark'
-import { SITE_GUIDE_LINKS, SITE_PAGE_LINKS } from '../data/links'
+import { SITE_BLOG_LINKS, SITE_PAGE_LINKS } from '../data/links'
 import { SITE_NAME } from '../data/site'
 
 type SiteFooterProps = {
@@ -24,7 +24,7 @@ const PAGE_LINKS = SITE_PAGE_LINKS.filter((l) => !['/privacy/', '/terms/'].inclu
 const LEGAL_LINKS = [
   { label: 'Privacy', to: '/privacy/' },
   { label: 'Terms', to: '/terms/' },
-  { label: 'Contact', to: '/contact/' },
+  { label: 'Support', to: '/contact/' },
 ] as const
 
 export function SiteFooter({ currentPath }: SiteFooterProps) {
@@ -67,12 +67,12 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
               </ul>
             </nav>
 
-            <nav aria-label="Footer articles">
+            <nav aria-label="Footer blogs">
               <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
-                Articles
+                Blogs
               </p>
               <ul className="mt-3 space-y-2 text-sm text-white/65">
-                {SITE_GUIDE_LINKS.map((l) => (
+                {SITE_BLOG_LINKS.map((l) => (
                   <li key={l.to}>
                     <a
                       href={l.to}
@@ -89,10 +89,10 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
                 ))}
                 <li>
                   <a
-                    href="/guides/"
+                    href="/blogs/"
                     className="font-medium text-white/80 transition-colors hover:text-white"
                   >
-                    All articles →
+                    All blogs →
                   </a>
                 </li>
               </ul>
@@ -100,13 +100,17 @@ export function SiteFooter({ currentPath }: SiteFooterProps) {
 
             <nav aria-label="Footer legal">
               <p className="text-xs font-semibold uppercase tracking-wider text-white/45">Legal</p>
-              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/65">
+              <ul className="mt-3 space-y-2 text-sm text-white/65">
                 {LEGAL_LINKS.map((l) => (
                   <li key={l.to}>
                     <a
                       href={l.to}
                       aria-current={isCurrent(l.to, path) ? 'page' : undefined}
-                      className="hover:text-white"
+                      className={
+                        isCurrent(l.to, path)
+                          ? 'font-medium text-white'
+                          : 'transition-colors hover:text-white'
+                      }
                     >
                       {l.label}
                     </a>

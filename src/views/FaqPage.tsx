@@ -45,12 +45,12 @@ export function FaqPage() {
                 Still have a question?
               </h2>
               <p className="mt-2 max-w-md text-sm text-white/50">
-                Reach out via Contact, or browse the full guides hub.
+                Reach out via Support, or browse the blogs hub.
               </p>
             </div>
             <div className="flex shrink-0 flex-wrap items-center gap-3">
               <a
-                href="/guides/"
+                href="/blogs/"
                 className="inline-flex h-11 items-center justify-center rounded-full border border-z-soft/35 bg-white/[0.06] px-5 text-sm font-semibold text-white backdrop-blur-xl transition-colors hover:border-z-soft/50 hover:bg-white/[0.1]"
               >
                 Guides hub
@@ -59,7 +59,7 @@ export function FaqPage() {
                 href="/contact/"
                 className="cta-gradient inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-semibold text-white"
               >
-                Contact
+                Support
               </a>
             </div>
           </div>

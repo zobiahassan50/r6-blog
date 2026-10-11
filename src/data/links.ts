@@ -8,23 +8,28 @@ import { PRODUCT_PATH } from './product'
 export const SITE_PAGE_LINKS = [
   { label: 'Home', to: '/', description: 'R6 Siege Cheats product site' },
   {
+    label: 'Blogs',
+    to: '/blogs/',
+    description: 'Editorial articles on features, terminology, and fair play',
+  },
+  {
     label: 'Guides',
     to: '/guides/',
-    description: 'Buying, compatibility and risk articles',
+    description: 'Practical setup, compatibility, and risk checklists',
+  },
+  {
+    label: 'Forums',
+    to: '/forums/',
+    description: 'Community boards for product and support topics',
   },
   {
     label: 'Product',
     to: PRODUCT_PATH,
     description: 'R6 Siege Cheats modules, price and checkout',
   },
-  {
-    label: 'Forums',
-    to: '/forums/',
-    description: 'R6 setup, compatibility, and troubleshooting guides',
-  },
   { label: 'FAQ', to: '/faq/', description: 'Frequently asked questions about this site' },
   {
-    label: 'Contact',
+    label: 'Support',
     to: '/contact/',
     description: 'Send questions about our articles or this site',
   },
@@ -40,10 +45,13 @@ export const SITE_PAGE_LINKS = [
   },
 ] as const
 
-export const SITE_GUIDE_LINKS = [
+export const SITE_BLOG_LINKS = [
   { label: 'Features overview', to: blogPath('features-overview') },
   { label: 'ESP, wallhack & anti-cheat', to: blogPath('esp-wallhack-anticheat') },
   { label: 'ESP, wallhack & aimbot', to: blogPath('pc-compatibility') },
   { label: 'Settings 2026', to: blogPath('status-before-purchase') },
   { label: 'Hacks & ESP', to: blogPath('fair-play-risks') },
 ] as const
+
+/** @deprecated Use SITE_BLOG_LINKS */
+export const SITE_GUIDE_LINKS = SITE_BLOG_LINKS
